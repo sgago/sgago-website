@@ -1,0 +1,50 @@
+.window {
+  height: 95vh;
+  
+  display: flex;
+  flex-direction: column;
+  
+  padding: 0px;
+  margin-top: 10px;
+  
+  border: 5px solid lightgrey;
+  border-radius: 6px;
+  
+  box-shadow: 15px 15px 12px rgba(136, 136, 136, 0.55);
+  
+  overflow: hidden;
+}
+
+.window-body {
+  flex: 1;
+  
+  padding: 0px;
+  padding-top 50px;
+  margin: 0px;
+  
+  color: black;
+  background-color: white;
+  
+  overflow-y: scroll;
+}
+
+.window-header {
+  
+  padding: 0px;
+  margin: 0px;
+  
+  border-bottom: 1px solid darkgray;
+  
+  color: black;
+  background-color: lightgray;
+  
+  font-size: 2em;
+}
+
+.window-footer {
+  padding: 0px;
+  margin: 0px;
+  
+  color: black;
+  background-color: lightgray;
+}

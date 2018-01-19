@@ -1,0 +1,22 @@
+
+/*
+ * SUMMARY
+ *  
+ */
+header, section, footer, aside, nav, main, article, figure {
+  display: block; 
+}
+
+.slfy {
+  overflow-x: auto;
+  overflow-y: scroll;
+}
+
+.controls {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  -webkit-align-items: flex-end;
+  align-items: flex-end;
+}

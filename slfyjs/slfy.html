@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport">
+    <link rel="stylesheet" type="text/css" href="slfy.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="slfy.js"></script>
+  </head>
+  <body>
+    <main class="main"></main>
+    <aside class="slfy">
+      <div id="console" class="console"></div>
+      <div class="controls">
+        <input id="lock" type="checkbox" checked>
+        <label>Lock</label>
+      </div>
+    </aside>
+    <script type="text/javascript">
+      
+      let slfy = new Slfy("data.html");
+      
+      $(document).ready(function() {
+        
+        document.addEventListener("onSlfyAppend", function(){
+          $("body, slfy, console").scrollTop(9999);
+        }, false);
+        
+        slfy.start(2000);
+      });
+      
+    </script>
+  </body>
+</html>

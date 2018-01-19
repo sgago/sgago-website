@@ -1,0 +1,126 @@
+header, section, footer, aside, nav, main, article, figure {
+  display: block; 
+}
+
+body {
+  background-color: #510FAD;
+  
+  overflow: hidden;
+  
+  font-family: monospace;
+}
+
+.terminal-body {
+  
+  padding: 0px;
+  padding-left: 5px;
+  padding-right: 5px;
+  
+  color: #ffBE00;
+  background-color: black;
+  
+  background-image: repeating-linear-gradient(
+    180deg,
+    rgb(0,0,0),
+    rgb(0,0,0) 0.5%,
+    rgb(24,24,24) 0.75%
+  );
+  
+  border: 1px solid darkgray;
+  
+  overflow-y: scroll;
+}
+
+.terminal-header {
+  font-size: 1em;
+}
+
+.terminal-footer {
+  
+}
+
+.file-tree {
+
+  border-right: 1px solid darkgray;
+  
+  overflow-y: scroll;
+  
+  padding: 0px;
+}
+
+.file-tree-header {
+  font-size: 1em;
+  
+  padding-top: 10px;
+  padding-bottom: 0px;
+}
+
+.file-tree-section {
+  
+  list-style-type: none;
+  
+  position: relative;
+  left: -10px;
+  
+  padding-top: 0px;
+  padding-left: 20px;
+}
+
+.file-tree, a {
+  display: block;
+  color: black;
+  
+  text-decoration: none;
+}
+
+.file-tree, a.hover {
+
+  text-decoration: none;
+}
+
+.file-tree, a.hover:not(.active) {
+  background-color: lightgray;
+
+}
+
+.file-preview {
+  
+  overflow-y: scroll;
+}
+
+.underconstruction {
+  
+  color: #FFE700;
+  
+  background: repeating-linear-gradient(
+    45deg,
+    #43464B,
+    #43464B 10px,
+    black 10px,
+    black 20px
+  );
+}
+
+.text-center {
+  text-align: center;
+}
+
+@keyframes image-filters {
+  0% { filter: invert(75%); }
+  25% { filter: invert(100%); }
+  50% { filter: invert(75%); }
+  75% { filter: invert(85%); }
+  100% { filter: invert(100%); }
+}
+
+img#me {
+  max-width: 150px;
+  
+  border-radius: 50%;
+}
+
+img#me:hover {
+  animation-name: image-filters;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+}
