@@ -1,5 +1,5 @@
 .window {
-  height: 95vh;
+  /*height: 95vh;*/
   
   display: flex;
   flex-direction: column;
@@ -10,7 +10,7 @@
   border: 5px solid lightgrey;
   border-radius: 6px;
   
-  box-shadow: 15px 15px 12px rgba(136, 136, 136, 0.55);
+  box-shadow: 15px 15px 12px rgba(50, 50, 50, 0.55);
   
   overflow: hidden;
 }
@@ -24,8 +24,6 @@
   
   color: black;
   background-color: white;
-  
-  overflow-y: scroll;
 }
 
 .window-header {
@@ -39,6 +37,8 @@
   background-color: lightgray;
   
   font-size: 2em;
+  
+  z-index: 10;
 }
 
 .window-footer {
@@ -47,4 +47,6 @@
   
   color: black;
   background-color: lightgray;
+  
+  z-index: 10;
 }
