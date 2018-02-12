@@ -12,6 +12,10 @@ body {
   font-family: monospace;
 }
 
+footer {
+  color: white;
+}
+
 /*  */
 .terminal-body {
   
@@ -52,11 +56,13 @@ body {
   overflow-y: scroll;
   
   padding: 0px;
+  
+  list-style-type: none;
 }
 
 /*  */
 .file-tree-header {
-  font-size: 1em;
+  font-size: 1.3em;
   
   padding-top: 10px;
   padding-bottom: 0px;
@@ -74,12 +80,24 @@ body {
   padding-left: 20px;
 }
 
+.file-tree li {
+  
+  position: relative;
+  
+  left: -10px;
+  
+  margin-top: 15px;
+  
+  font-size: 1.5em;
+}
+
 /*  */
-.file-tree, a {
-  display: block;
+.file-tree a {
   color: black;
   
   text-decoration: none;
+  
+  display: inline;
 }
 
 /*  */
@@ -93,11 +111,12 @@ body {
 /*  */
 .file-tree, a.hover:not(.active) {
   background-color: lightgray;
-
 }
 
 /*  */
 .file-preview {
+  
+  height: inherit;
   
   overflow-y: auto;
 }
@@ -149,21 +168,16 @@ img#me:hover {
 
 /*  */
 .steve-window {
-    height: 65vh;
+  height: 64.5vh;
 }
 
 .steve-file-preview {
-  height: 55vh;
+  height: 100%;
 }
 
 /*  */
 .slfy-window {
-    height: 30vh;
-}
-
-/*  */
-nav * {
-  display: inline;
+    height: 29vh;
 }
 
 /*  */
@@ -181,26 +195,39 @@ nav * {
   display: none;
 }
 
+.navlink-text {
+  display: none;
+}
+
+
+
 /*  */
 @media screen and (min-width: 768px) {
+  
+  .file-tree ul li {
+    left: 10px;
+  }
+  
   .file-tree-header-links {
     display: block;
   }
   
-  nav * {
+  .file-tree-section {
     display: block;
   }
   
   .contact {
     display: block;
   }
-
-  .powered-by {
-    display: block;
+  
+  .navlink-text {
+    display: inline;
   }
-  
-  
 }
+
+
+
+
 
 /*  */
 @media screen and (min-width: 992px) {
