@@ -1,0 +1,24 @@
+@charset "utf-8";
+
+/*  */
+@keyframes image-filters {
+  0% { filter: invert(75%); }
+  25% { filter: invert(100%); }
+  50% { filter: invert(75%); }
+  75% { filter: invert(85%); }
+  100% { filter: invert(100%); }
+}
+
+/*  */
+img#me {
+  border-radius: 50%;
+  max-width: 150px;
+}
+
+/*  */
+img#me:hover {
+  animation-name: image-filters;
+  animation-delay: 2s;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+}
