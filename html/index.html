@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta name="description" content="">
@@ -11,7 +11,7 @@
     <title>Steven Gago</title>
     
     <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../images/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../images/favicons/favicon-16x16.png">
     <link rel="manifest" href="../images/favicons/site.webmanifest">
@@ -48,7 +48,7 @@
 
           <div class="window-body row">
             
-          <!-- The navigation bar or "file tree" -->
+            <!-- The side navigation bar -->
             <nav class="sidenav col-1 col-md-2">
               <h3 class="sidenav-header">
                 <i class="fa fa-link sidenav-icon" aria-hidden="true"></i>
@@ -57,6 +57,7 @@
               <ul class="sidenav-list">
                 <li class="sidenav-list-item">
                   <a class="sidenav-link" href="#about">
+                    <br>
                     <i class="fa fa-gamepad sidenav-icon" aria-hidden="true"></i>
                     <span class="sidenav-text">About</span>
                   </a>
@@ -119,7 +120,7 @@
                   spend the bulk of my time in front of soft-glowing rectangles.
                 </p>
               </article>
-              
+
               <article id="work">
                 <h2><i class="fa fa-gears" aria-hidden="true"></i> Work</h2>
                 <p>
@@ -162,7 +163,7 @@
                   <li>Scripting (Enough to be dangerous)</li>
                   <li>SQL and databases (SQL Server and SQLite)</li>
                 </ul>
-                
+
                 <p>More specifically, I've hacked away at</p>
                 <ul>
                   <li>Circuit board design and printing</li>
@@ -345,7 +346,7 @@
                       technology, and projects
                     </li>
                   </ul>
-                  
+
                   <h3>Firework Company</h3>
                   <h4>Software Engineer October 2011 - April 2012</h4>
                   <ul>
@@ -354,7 +355,7 @@
                       C# to synchronize music to firework displays
                     </li>
                   </ul>
-                  
+
                   <h3>Rockwell Automation</h3>
                     <h4>Firmware and Software Co-op June 2008 - May 2010, alt. semesters</h4>
                     <ul>
@@ -368,7 +369,7 @@
                       </li>
                     </ul>
                 </div>
-                
+
                 <div id="education">
                   <h2>Education</h2>
                   <ul>
@@ -384,7 +385,7 @@
                     </ul>
                   </ul>
                 </div>
-                
+
                 <div id="additional">
                   <h2>Additional</h2>
                   <ul>
@@ -400,14 +401,14 @@
               </div>
             </article>
 
-            <article id="hire">
-              <h2>Hire</h2>
-            </article>
-          </div> 
-        </div>
+              <article id="hire">
+                <h2>Hire</h2>
+              </article>
+            </div> 
+          </div>
 
-      </section>
-    </div>
+        </section>
+      </div>
       
       <div class="col-xs-12 col-lg-4">
         
@@ -494,9 +495,10 @@
     </footer>
     
     <!-- jQuery Library -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
     
     <!-- Popper Library for Bootstrap -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
@@ -510,6 +512,7 @@
     
     <script type="text/javascript">
       
+      let currentDiv = $("article#about").first();
       let terminalSizeElement = $("span#terminal-size").get();
       
       // 
@@ -528,12 +531,19 @@
                                      " x " + Math.round(terminal.height()));
       }
       
-      function toggle(selector) {
+      $(".sidenav-link").click(function(event) {
+        //event.preventDefault();
         
-        if ($(selector).is(":visible")) {
-
-        }
-      }
+        let divToShow = event.currentTarget.getAttribute("href");
+        
+        $(currentDiv).fadeOut("fast", function() {
+          $("article" + divToShow).fadeIn("fast");
+        });
+        
+        
+        currentDiv = $("article" + divToShow);
+        
+      });
       
       updateTerminalSize();
       

@@ -67,6 +67,9 @@ footer {
   height: 100%;
 }
 
+.steve-main article:not([id="about"]) {
+  display: none;
+}
 
 
 
@@ -116,7 +119,7 @@ footer {
 */
 @media screen and (min-width: 768px) {
   
-
+  
 }
 
 
