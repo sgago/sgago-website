@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-US">
   <head>
     <meta charset="utf-8">
     <meta name="description" content="">
@@ -11,7 +11,7 @@
     <title>Steven Gago</title>
     
     <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="../images/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../images/favicons/favicon-16x16.png">
     <link rel="manifest" href="../images/favicons/site.webmanifest">
@@ -19,7 +19,10 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
     
     <link rel="stylesheet"
           type="text/css"
@@ -27,7 +30,7 @@
     
     <link rel="stylesheet" type="text/css" href="../css/window.css">
     <link rel="stylesheet" type="text/css" href="../css/default.css">
-    
+    <link rel="stylesheet" type="text/css" href="../css/animations.css">
   </head>
   
   <body class="container">
@@ -45,86 +48,61 @@
 
           <div class="window-body row">
             
-            <!-- The navigation bar or "file tree" -->
-            <div class="file-tree col-1 col-md-2">
-              
-              <nav class="files">
-                <h3 class="file-tree-header file-tree-header-links">
-                  <i class="fa fa-link" aria-hidden="true"></i>
-                  <span class="navlink-text">Links</span>
-                </h3>
-                <ul class="file-tree-section">
-                  <li>
-                    <a href="#about">
-                      <i class="fa fa-gamepad" aria-hidden="true"></i>
-                      <span class="navlink-text">About</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#work">
-                      <i class="fa fa-gears" aria-hidden="true"></i>
-                      <span class="navlink-text">Work</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#education">
-                      <i class="fa fa-university" aria-hidden="true"></i>
-                      <span class="navlink-text">Education</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#experience">
-                      <i class="fa fa-industry" aria-hidden="true"></i>
-                      <span class="navlink-text">Experience</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#portfolio">
-                      <i class="fa fa-terminal" aria-hidden="true"></i>
-                      <span class="navlink-text">Portfolio</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#resume">
-                      <i class="fa fa-list-alt" aria-hidden="true"></i>
-                      <span class="navlink-text">R&eacute;sum&eacute;</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#contact">
-                      <i class="fa fa-comment" aria-hidden="true"></i> 
-                      <span class="navlink-text">Contact</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-
-              <!--
-              <div class="contact">
-                <h3 class="file-tree-header">
-                  <i class="fa fa-comment" aria-hidden="true"></i> 
-                  Contact
-                </h3>
-                <ul class="file-tree-section">
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-envelope" aria-hidden="true"></i> Email
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-linkedin" aria-hidden="true"></i> LinkedIn
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              -->
-
-
-            </div>
-
+            <!-- The side navigation bar -->
+            <nav class="sidenav col-1 col-md-2">
+              <h3 class="sidenav-header">
+                <i class="fa fa-link sidenav-icon" aria-hidden="true"></i>
+                <span class="sidenav-header-text">Links</span>
+              </h3>
+              <ul class="sidenav-list">
+                <li class="sidenav-list-item">
+                  <a class="sidenav-link" href="#about">
+                    <br>
+                    <i class="fa fa-gamepad sidenav-icon" aria-hidden="true"></i>
+                    <span class="sidenav-text">About</span>
+                  </a>
+                </li>
+                <li class="sidenav-list-item">
+                  <a class="sidenav-link" href="#work">
+                    <i class="fa fa-gears sidenav-icon" aria-hidden="true"></i>
+                    <span class="sidenav-text">Work</span>
+                  </a>
+                </li>
+                <li class="sidenav-list-item">
+                  <a class="sidenav-link" href="#education">
+                    <i class="fa fa-university sidenav-icon" aria-hidden="true"></i>
+                    <span class="sidenav-text">Education</span>
+                  </a>
+                </li>
+                <li class="sidenav-list-item">
+                  <a class="sidenav-link" href="#experience">
+                    <i class="fa fa-industry sidenav-icon" aria-hidden="true"></i>
+                    <span class="sidenav-text">Experience</span>
+                  </a>
+                </li>
+                <li class="sidenav-list-item">
+                  <a class="sidenav-link" href="#portfolio">
+                    <i class="fa fa-terminal sidenav-icon" aria-hidden="true"></i>
+                    <span class="sidenav-text">Portfolio</span>
+                  </a>
+                </li>
+                <li class="sidenav-list-item">
+                  <a class="sidenav-link" href="#resume">
+                    <i class="fa fa-list-alt sidenav-icon" aria-hidden="true"></i>
+                    <span class="sidenav-text">R&eacute;sum&eacute;</span>
+                  </a>
+                </li>
+                <li class="sidenav-list-item">
+                  <a class="sidenav-link" href="#contact">
+                    <i class="fa fa-comment sidenav-icon" aria-hidden="true"></i> 
+                    <span class="sidenav-text">Contact</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+            
             <!--  -->
-            <div id="main" class="file-preview steve-file-preview col-11 col-md-10">
+            <div id="main" class="window-main steve-main col-11 col-md-10">
 
               <article id="about">
                 <h2>
@@ -142,7 +120,7 @@
                   spend the bulk of my time in front of soft-glowing rectangles.
                 </p>
               </article>
-              
+
               <article id="work">
                 <h2><i class="fa fa-gears" aria-hidden="true"></i> Work</h2>
                 <p>
@@ -185,7 +163,7 @@
                   <li>Scripting (Enough to be dangerous)</li>
                   <li>SQL and databases (SQL Server and SQLite)</li>
                 </ul>
-                
+
                 <p>More specifically, I've hacked away at</p>
                 <ul>
                   <li>Circuit board design and printing</li>
@@ -368,7 +346,7 @@
                       technology, and projects
                     </li>
                   </ul>
-                  
+
                   <h3>Firework Company</h3>
                   <h4>Software Engineer October 2011 - April 2012</h4>
                   <ul>
@@ -377,7 +355,7 @@
                       C# to synchronize music to firework displays
                     </li>
                   </ul>
-                  
+
                   <h3>Rockwell Automation</h3>
                     <h4>Firmware and Software Co-op June 2008 - May 2010, alt. semesters</h4>
                     <ul>
@@ -391,7 +369,7 @@
                       </li>
                     </ul>
                 </div>
-                
+
                 <div id="education">
                   <h2>Education</h2>
                   <ul>
@@ -407,7 +385,7 @@
                     </ul>
                   </ul>
                 </div>
-                
+
                 <div id="additional">
                   <h2>Additional</h2>
                   <ul>
@@ -423,25 +401,25 @@
               </div>
             </article>
 
-            <article id="hire">
-              <h2>Hire</h2>
-            </article>
-          </div> 
-        </div>
+              <article id="hire">
+                <h2>Hire</h2>
+              </article>
+            </div> 
+          </div>
 
-      </section>
-    </div>
+        </section>
+      </div>
       
       <div class="col-xs-12 col-lg-4">
         
         <aside class="window slfy-window">
           
-          <h2 class="window-header terminal-header row">
+          <h2 class="window-header slfy-header row">
             Terminal -- SlfyJS --&nbsp;
             <span id="terminal-size">80x24</span>
           </h2>
           
-          <div class="window-body terminal-body">
+          <div class="window-body slfy-body">
             <p>&gt; ...</p>
             <p>&gt; Hello?</p>
             <p>&gt; (Is this thing on?)</p>
@@ -457,6 +435,16 @@
             <p>&gt; Behold!</p>
             <p>&gt; (I don't have eyes.  Does this actually look better?)</p>
           </div>
+          
+          <footer class="slfy-footer">
+            <i class="fa fa-step-backward" aria-hidden="true"></i>
+            <i class="fa fa-play" aria-hidden="true"></i>
+            <i class="fa fa-pause" aria-hidden="true"></i>
+            <i class="fa fa-stop" aria-hidden="true"></i>
+            <i class="fa fa-forward" aria-hidden="true"></i>
+            <i class="fa fa-play" aria-hidden="true"></i>
+            <i class="fa fa-step-forward" aria-hidden="true"></i>
+          </footer>
         </aside>
       </div>
     </main>
@@ -507,9 +495,10 @@
     </footer>
     
     <!-- jQuery Library -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
     
     <!-- Popper Library for Bootstrap -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
@@ -523,6 +512,7 @@
     
     <script type="text/javascript">
       
+      let currentDiv = $("article#about").first();
       let terminalSizeElement = $("span#terminal-size").get();
       
       // 
@@ -541,12 +531,19 @@
                                      " x " + Math.round(terminal.height()));
       }
       
-      function toggle(selector) {
+      $(".sidenav-link").click(function(event) {
+        //event.preventDefault();
         
-        if ($(selector).is(":visible")) {
-
-        }
-      }
+        let divToShow = event.currentTarget.getAttribute("href");
+        
+        $(currentDiv).fadeOut("fast", function() {
+          $("article" + divToShow).fadeIn("fast");
+        });
+        
+        
+        currentDiv = $("article" + divToShow);
+        
+      });
       
       updateTerminalSize();
       
