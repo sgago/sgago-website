@@ -1,5 +1,14 @@
 @charset "utf-8";
 
+/*
+  Good example website of what I'm aiming to be similar to:
+  https://timmyomahony.com/
+
+  My current color pallete idea:
+  http://paletton.com/#uid=71a0u0kw0w0jvDaoPy4y5oODajv
+*/
+
+
 /*  */
 header,
 section,
@@ -17,7 +26,8 @@ figure {
 
 /*  */
 body {
-  background-color: #510FAD;
+  /*background-color: #510FAD;*/  /* Purple */
+  background-color: #1A1EB2;  /* Blue */
   font-family: monospace;
   height: 100vh;
   overflow: hidden;
@@ -25,10 +35,13 @@ body {
 
 
 
-
+article {
+  margin-top: 15px;
+}
 
 footer {
   color: white;
+  font-size: 0.5em;
   padding-top: 10px;
 }
 
@@ -37,6 +50,9 @@ footer {
   display: none;
 }
 
+.container-fluid {
+  padding: 0;
+}
 
 
 
@@ -60,7 +76,7 @@ footer {
 
 /*  */
 .steve-window {
-  height: 64.5vh;
+  height: 94vh;
 }
 
 .steve-main {
@@ -71,16 +87,38 @@ footer {
   display: none;
 }
 
+.dl-horizontal dt {
+  float: left;
+  width: 160px;
+  overflow: hidden;
+  clear: left;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.dl-horizontal dd {
+  margin-left: 180px;
+}
+
+@media (min-width: 768px) {
+  dt {
+    display: block;
+  }
+  
+  dd {
+    display: block;
+  }
+}
 
 
 /*  */
 .slfy-window {
-    height: 29vh;
+  display: none;
 }
 
 /*  */
 .slfy-header {
-  font-size: 1.1em;
+  font-size: 1.0em;
 }
 
 /*  */
@@ -110,16 +148,38 @@ footer {
 
 
 
+@media screen and (min-height: 768px) {
+  
+  .steve-window {
+    height: 64.5vh;
+  }
+  
+  .slfy-window {
+    display: block;
+    height: 29vh;
+  }
+}
 
 
-
+@media screen and (min-width: 350px) {
+  
+  footer {
+    font-size: 0.75em;
+  }
+  
+  .container-fluid {
+    padding: 5px;
+  }
+}
 
 /*
   
 */
 @media screen and (min-width: 768px) {
   
-  
+  .container-fluid {
+    padding: 10px;
+  }
 }
 
 
