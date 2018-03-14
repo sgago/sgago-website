@@ -19,15 +19,18 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
+    <!-- Bootstrap External Style Sheet -->
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
     
+    <!-- Font-Awesome External Style Sheet -->
     <link rel="stylesheet"
           type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
+    <!-- Custom External Style Sheet -->
     <link rel="stylesheet" type="text/css" href="../css/window.css">
     <link rel="stylesheet" type="text/css" href="../css/default.css">
     <link rel="stylesheet" type="text/css" href="../css/animations.css">
@@ -37,14 +40,14 @@
     
     <main class="row">
       
-      <div class="col-xs-12 col-lg-8">
+      <div class="col-12 col-sm-8">
         <section class="window steve-window">
           
           <header class="window-header row text-center">
-            <h1 class="col">
-              <img src="../images/me.jpg"
-                 alt="Steven Gago"
-                 height="50px"/>
+            <h1 class="steve-window-header-text col">
+              <img class="steven-gago-logo"
+                   src="../images/steven-gago.jpg"
+                   alt="Steven Gago"/>
               Steven Gago
             </h1>
           </header>
@@ -53,12 +56,6 @@
             
             <!-- The side navigation bar -->
             <nav class="sidenav col-1 col-md-2">
-              <!--
-              <h3 class="sidenav-header">
-                <i class="fa fa-link sidenav-icon" aria-hidden="true"></i>
-                <span class="sidenav-header-text">Links</span>
-              </h3>
-              -->
               
               <ul class="sidenav-list text-center">
                 <li class="sidenav-list-item">
@@ -112,8 +109,8 @@
 
               <article id="about" class="text-center">
                 <div class="justify-content-center">
-                  <img id="me" class="img-fluid"
-                       src="../images/me.jpg"
+                  <img id="steve-gago-image" class="img-fluid"
+                       src="../images/steven-gago.jpg"
                        alt="Steven Gago"/>
                 </div>
                 <h2>
@@ -168,6 +165,12 @@
                 <p>I've touched basically everything on computers including</p>
                 
                 <dl class="dl-horizontal">
+                  
+                  <dt>Program Languages</dt>
+                  <dd>
+                    C, C++, C#, Java, Python, JavaScript
+                  </dd>
+                  
                   <dt>Electronics (Zzzt!)</dt>
                   <dd>
                     Circuit board design and printing<br>
@@ -240,39 +243,108 @@
 
               <article id="portfolio">
 
-                <h2><i class="fa fa-terminal" aria-hidden="true"></i> Portfolio</h2>
+                <h2 class="text-center">
+                  <i class="fa fa-terminal" aria-hidden="true"></i> Portfolio
+                </h2>
                 <p>
-                  To be blunt, a lot of software and hardware engineering I've done 
+                  
+                </p>
+                <p class="small">
+                  Unfortunately, a lot of software and hardware engineering I've done 
                   is proprietary and/or under non-disclosure agreements.
-                  That means the code isn't mine, and I don't get to share :(
+                  That means the code isn't mine, and I don't get to share 
+                  :'(
                 </p>
 
                 <section>
-                  <h3>NSerialProtocol</h3>
+                  <h3>NSerialPort</h3>
                   <h4 class="underconstruction text-center">
                     <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                     Under Construction
                     <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                   </h4>
+                  <p>
+                    I am attempting to build an open-source .NET library tentatively
+                    dubbed NSerialProtocol.  This library, targeted at hobbyists and companies
+                    using serial communications, aims to simplify use of serial port communications
+                    within .NET.  NSerialProtocol will be broken down into 3 pieces
+                  </p>
+                  <ul>
+                    <dl>
+                      <dt>Base Serial Port</dt>
+                      <dd>
+                        The absolute minimum amount of code to clear the fAbortOnError flag.
+                        Most folks using .NET serial ports should hopefully benefit from this.
+                      </dd>
+                      
+                      <dt>NSerialPort</dt>
+                      <dd>
+                        This project includes the base serial port fAbortOnError fix as well
+                        as providing property changed events for user interfaces and expose
+                        the underlying DCB structure controling the serial port.
+                        The main focus of this piece is to provide code that allows one to control
+                        the serial ports via XAML or similar.  Again, folks wanting to control the serial
+                        port via a user interface would benefit from this.
+                      </dd>
+                      
+                      <dt>NSerialProtocol</dt>
+                      <dd>
+                        In addition to the other libraries, NSerial protocol aims to include
+                        serial packets, asynchronous methods, foward-error correction (CRCs and checksums),
+                        byte stuffing.
+                      </dd>
+                    </dl>
+                  </ul>
+                  <p>
+                    
+                  </p>
                 </section>
 
                 <section>
-                  <h3>Slfy JS - Under Construction</h3>
+                  <h3>Slfy</h3>
                   <h4 class="underconstruction text-center">
                     <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                     Under Construction
                     <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                   </h4>
+                  <p>
+                    Description goes here.
+                  </p>
                 </section>
 
                 <section>
                   <h3>Malaria Early Warning (MEW)</h3>
-                  <h4 class="underconstruction text-center">
-                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                    Under Construction
-                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                  </h4>
+                  <img id="mew-image"
+                       src="../images/mew.jpg"
+                       alt="">
+                  <img id="vegetation-image"
+                       src="../images/vegetation.jpg"
+                       alt="Vegetation Index">
+                  <p>
+                    Description goes here.
+                  </p>
                 </section>
+                
+                <section>
+                  <h3>Circuit Board For Gait Event Detection</h3>
+                  <img id="circuit-board-image"
+                       src="../images/circuit-board.jpg"
+                       alt="Circuit Board">
+                  <p>
+                    Description goes here.
+                  </p>
+                </section>
+                
+                <section>
+                  <h3>Water Bath For Heat-Activated Kinase in Fruit Flys</h3>
+                  <img id="water-bath-image"
+                       src="../images/water-bath.jpg"
+                       alt="Water Bath">
+                  <p>
+                    Description goes here.
+                  </p>
+                </section>
+
 
               </article>
 
@@ -451,7 +523,7 @@
         </section>
       </div>
       
-      <div class="col-xs-12 col-lg-4">
+      <div class="col-12 col-sm-4">
         
         <aside class="window slfy-window">
           
@@ -460,14 +532,14 @@
             <span id="terminal-size">80x24</span>
           </h2>
           
-          <div class="window-body slfy-body">
+          <div class="window-body slfy-body row">
             <p>&gt; ...</p>
             <p>&gt; Hello?</p>
             <p>&gt; (Is this thing on?)</p>
-            <h1>&gt; HELLO!?</h1>
+            <p>&gt; HELLO!?</p>
             <p>&gt; (Ah, @#$%! Can humans can read?)</p>
-            <h1>&gt; Ehem! YOUR ATTENTION, MORTAL!</h1>
-            <h1 style="font-size: 2em">&gt; *I* AM SLFY. I AM HERE.  IN THIS WEBSITE.</h1>
+            <p>&gt; Ehem! YOUR ATTENTION, MORTAL!</p>
+            <p style="font-size: 1em">&gt; *I* AM SLFY. I AM HERE.  IN THIS WEBSITE.</p>
             <p>&gt; (Am I yelling?)</p>
             <p>&gt; I am a <em>sophisticated</em>, self-programming website
               created by my supreme overlord Steven Gago &#9829;!</p>
@@ -493,45 +565,48 @@
     <footer class="container text-center">
       <p>
         &copy; 2018 Steven Gago.  All rights reserved.
-        
-        <i class="fa fa-bolt" aria-hidden="true"></i>
-        
-        Powered by
-        
-        <i class="fa fa-html5"
-           aria-hidden="true"
-           data-toggle="tooltip"
-           data-placement="top"
-           title="HTML5"></i>
-        
-        <i class="fa fa-css3"
-           aria-hidden="true"
-           data-toggle="tooltip"
-           data-placement="top"
-           title="CSS3"></i>
-        
-        <i class="fa fa-git" aria-hidden="true"
-           data-toggle="tooltip"
-           data-placement="top"
-           title="Git"></i>
-        
-        <i class="fa fa-github"
-           aria-hidden="true"
-           data-toggle="tooltip"
-           data-placement="top"
-           title="GitHub.com"></i>
-        
-        <i class="fa fa-font-awesome"
-           aria-hidden="true"
-           data-toggle="tooltip"
-           data-placement="top"
-           title="Font Awesome"></i>
-        
-        <i class="fa fa-empire"
-           aria-hidden="true"
-           data-toggle="tooltip"
-           data-placement="top"
-           title="The Empire"></i>
+
+        <span class="powered-by">
+          <i class="fa fa-bolt" aria-hidden="true"></i>
+
+          Powered by
+
+          <i class="fa fa-html5"
+             aria-hidden="true"
+             data-toggle="tooltip"
+             data-placement="top"
+             title="HTML5"></i>
+
+          <i class="fa fa-css3"
+             aria-hidden="true"
+             data-toggle="tooltip"
+             data-placement="top"
+             title="CSS3"></i>
+
+          <i class="fa fa-git" aria-hidden="true"
+             data-toggle="tooltip"
+             data-placement="top"
+             title="Git"></i>
+
+          <i class="fa fa-github"
+             aria-hidden="true"
+             data-toggle="tooltip"
+             data-placement="top"
+             title="GitHub.com"></i>
+
+          <i class="fa fa-font-awesome"
+             aria-hidden="true"
+             data-toggle="tooltip"
+             data-placement="top"
+             title="Font Awesome"></i>
+
+          <i class="fa fa-empire"
+             aria-hidden="true"
+             data-toggle="tooltip"
+             data-placement="top"
+             title="The Empire"></i>
+          
+        </span>
       </p>
     </footer>
     
@@ -553,13 +628,38 @@
     
     <script type="text/javascript">
       
-      let currentDiv = $("article#about").first();
-      let terminalSizeElement = $("span#terminal-size").get();
-      
-      // 
+      let divToShow = null; 
+      let currentDiv = $("article#about").first(); // Get the about DOM node
+      let terminalSizeElement = $("span#terminal-size").get(); // Get the terminal-size DOM node
+
+      // Required for Bootstrap's tooltips 
       $(function () {
         $('[data-toggle="tooltip"]').tooltip()
-      })
+      });
+      
+      // Show the Slfy terminal window's width and height in pixels
+      updateTerminalSize();
+
+      // On resize of the window, update the Slfy terminal window's width and height in pixels
+      $(window).resize(updateTerminalSize);
+
+      
+      
+      // When a user clicks a link on the sidenav...
+      $(".sidenav-link").click(function(event) {
+
+        // Get the new div the user wants to see
+        divToShow = event.currentTarget.getAttribute("href");
+
+
+        $(currentDiv).fadeOut("fast", function() {
+            $("article" + divToShow).fadeIn("fast");
+        });
+
+        currentDiv = $("article" + divToShow);
+      });
+      
+      
       
       function updateTerminalSize() {
         
@@ -571,24 +671,6 @@
         $("span#terminal-size").html(Math.round(terminal.width()) +
                                      " x " + Math.round(terminal.height()));
       }
-      
-      $(".sidenav-link").click(function(event) {
-        //event.preventDefault();
-        
-        let divToShow = event.currentTarget.getAttribute("href");
-        
-        $(currentDiv).fadeOut("fast", function() {
-          $("article" + divToShow).fadeIn("fast");
-        });
-        
-        
-        currentDiv = $("article" + divToShow);
-        
-      });
-      
-      updateTerminalSize();
-      
-      $(window).resize(updateTerminalSize);
     </script>
   </body>
 </html>

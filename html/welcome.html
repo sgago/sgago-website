@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="steven,gago,stevengago,steven gago">
+    <meta name="author" content="Steven Gago">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>Software Developer</title>
+    
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicons/favicon-16x16.png">
+    <link rel="manifest" href="../images/favicons/site.webmanifest">
+    <link rel="mask-icon" href="../images/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    
+    <!-- Bootstrap External Style Sheet -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    
+    <!-- Font-Awesome External Style Sheet -->
+    <link rel="stylesheet"
+          type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../js/slfy/slfy.js"></script>
+    
+    <style>
+      footer {
+        position: absolute;
+        bottom: 0px;
+      }
+    </style>
+  </head>
+  <body class="container-fluid">
+    
+    <main>
+      
+      <div>
+        <section class="steve-window">
+
+          <!--  -->
+          <div class="steve-main">
+            
+          </div>
+
+        </section>
+      </div>
+      
+      <div>
+        <aside class="slfy-window">
+          
+          <!--  -->
+          <div class="slfy-main">
+            
+          </div>
+        </aside>
+      </div>
+    </main>
+    
+    <footer class="container text-center">
+      <p>
+        &copy; 2018 Steven Gago.  All rights reserved.
+
+        <span class="powered-by">
+          <i class="fa fa-bolt" aria-hidden="true"></i>
+
+          Powered by
+
+          <i class="fa fa-html5"
+             aria-hidden="true"
+             data-toggle="tooltip"
+             data-placement="top"
+             title="HTML5"></i>
+
+          <i class="fa fa-css3"
+             aria-hidden="true"
+             data-toggle="tooltip"
+             data-placement="top"
+             title="CSS3"></i>
+
+          <i class="fa fa-git" aria-hidden="true"
+             data-toggle="tooltip"
+             data-placement="top"
+             title="Git"></i>
+
+          <i class="fa fa-github"
+             aria-hidden="true"
+             data-toggle="tooltip"
+             data-placement="top"
+             title="GitHub.com"></i>
+
+          <i class="fa fa-font-awesome"
+             aria-hidden="true"
+             data-toggle="tooltip"
+             data-placement="top"
+             title="Font Awesome"></i>
+
+          <i class="fa fa-empire"
+             aria-hidden="true"
+             data-toggle="tooltip"
+             data-placement="top"
+             title="The Empire"></i>
+          
+        </span>
+      </p>
+    </footer>
+    
+    <script>
+      
+      // Make the slfy object
+      let slfy = new Slfy("slfy-data.html");
+      
+      $(document).ready(function() {
+        
+        document.addEventListener("onSlfyAppend", function(){
+          $("body, slfy-main").scrollTop(9999);
+        }, false);
+        
+        slfy.defaultContentSelector = ".slfy-main";
+        //slfy.defaultCodeSelector = ".steve-main"
+        
+        //slfy.start(2000);
+        slfy.start(200);
+      });
+    </script>
+  </body>
+</html>

@@ -8,8 +8,9 @@
   http://paletton.com/#uid=71a0u0kw0w0jvDaoPy4y5oODajv
 */
 
-
-/*  */
+/*
+  
+*/
 header,
 section,
 footer,
@@ -29,11 +30,12 @@ body {
   /*background-color: #510FAD;*/  /* Purple */
   background-color: #1A1EB2;  /* Blue */
   font-family: monospace;
-  height: 100vh;
   overflow: hidden;
 }
 
-
+main.row {
+  padding: 3px;
+}
 
 article {
   margin-top: 15px;
@@ -44,6 +46,7 @@ footer {
   font-size: 0.5em;
   padding-top: 10px;
 }
+
 
 /*  */
 .powered-by {
@@ -66,17 +69,26 @@ footer {
     black 10px,
     black 20px
   );
+  
   color: #FFE700;
 }
 
+.h4 {
+  font-size: 1.25em;
+}
 
-
-
+.h5 {
+  font-size: 1em;
+}
 
 
 /*  */
 .steve-window {
-  height: 94vh;
+  height: calc(95vh - 29vh - 15px);
+}
+
+.steve-window-header-text {
+  font-size: 1em;
 }
 
 .steve-main {
@@ -86,6 +98,51 @@ footer {
 .steve-main article:not([id="about"]) {
   display: none;
 }
+
+.sidenav-list {
+  padding-top: 0px;
+}
+
+.sidenav-list-item {
+  /*padding-top: 15px;*/
+  height: 100%;
+  padding-top: 2vh;
+}
+
+.sidenav-link {
+  font-size: 0.8em;
+}
+
+
+
+.steven-gago-logo {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+
+#steve-gago-image {
+  border-radius: 50%;
+  height: 10em;
+  width: 10em;
+}
+
+#circuit-board-image {
+  width: 300px;
+}
+
+#mew-image {
+  width: 300px;
+}
+
+#vegetation-image {
+  width: 300px;
+}
+
+#water-bath-image {
+  width: 300px;
+}
+
 
 .dl-horizontal dt {
   float: left;
@@ -111,14 +168,22 @@ footer {
 }
 
 
+
+
+
+
+
 /*  */
 .slfy-window {
-  display: none;
+  display: block;
+  height: calc(29vh - 5px);
 }
 
 /*  */
 .slfy-header {
   font-size: 1.0em;
+  
+  text-overflow: ellipsis;
 }
 
 /*  */
@@ -132,39 +197,47 @@ footer {
   );
   border: 1px solid darkgray;
   color: #ffBE00;
-  overflow-y: scroll;
+  height: calc(100% - 35px);
+  overflow-y: auto;
   padding: 0px;
+  padding-top: 10px;
   padding-left: 5px;
   padding-right: 5px;
 }
 
 /*  */
 .slfy-footer {
+  background-color: lightgray;
   color: black;
   text-align: center;
+  
+  padding-top: 5px;
+  bottom: 0px;
+  height: 25px;
+  width: auto;
+  z-index: 1;
 }
 
 
-
-
-
-@media screen and (min-height: 768px) {
+@media screen and (min-width: 380px) {
   
-  .steve-window {
-    height: 64.5vh;
-  }
-  
-  .slfy-window {
-    display: block;
-    height: 29vh;
+  .steve-window-header-text {
+    font-size: 6.5vw;
   }
 }
 
 
-@media screen and (min-width: 350px) {
+/*
+  Super tiny width
+*/
+@media screen and (min-width: 458px) {
   
   footer {
     font-size: 0.75em;
+  }
+  
+  .powered-by {
+    display: inline;
   }
   
   .container-fluid {
@@ -173,12 +246,45 @@ footer {
 }
 
 /*
-  
+  col-sm-*
 */
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 540px) {
+  
+  [class*=col-sm-] {
+    padding-right: 3px;
+    padding-left: 3px;
+  }
+  
+  main.row {
+    padding: 0px;
+    margin: 0px;
+  }
+  
+  .steve-window-header-text {
+    font-size: 1.5em;
+  }
+  
+  .sidenav-list-item {
+
+    margin-top: 0px;
+    padding-top: 0px;
+  }
   
   .container-fluid {
-    padding: 10px;
+    /*padding: 10px;*/
+  }
+  
+  .sidenav-list-item {
+
+    padding-top: 0px;
+  }
+  
+  .steve-window {
+    height: calc(95vh - 25px);
+  }
+  
+  .slfy-window {
+    height: calc(95vh - 25px);
   }
 }
 
@@ -191,11 +297,5 @@ footer {
 */
 @media screen and (min-width: 992px) {
   
-  .steve-window {
-    height: 95vh;
-  }
-  
-  .slfy-window {
-    height: 95vh;
-  }
+
 }

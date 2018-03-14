@@ -63,34 +63,26 @@
   
 */
 .sidenav {
-  background-color: lightgray;
-  border-right: 1px solid darkgray;
+  background-color: whitesmoke;
+  border-right: 1px solid lightgray;
   font-size: 1.3em;
+  margin: 0px;
   overflow-x: hidden;
   overflow-y: auto;
   padding: 0px;
 }
 
-/*
-  
-*/
-.sidenav-header {
-  display: none;
-  font-size: 1.2em;
-  padding-bottom: 0px;
-  padding-top: 10px;
-}
-
 .sidenav-list {
-  left: -10;
+  left: -3px;
   list-style-type: none;
-  padding-top: 0px;
   padding-left: 0px;
   position: relative;
+  margin: 0px;
+  top: -20px;
 }
 
 .sidenav-list-item {
-  margin-top: 20px;
+  padding-top: calc(100%/15px);
 }
 
 /*

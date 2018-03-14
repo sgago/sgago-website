@@ -3,8 +3,11 @@
  * Constructor for the Slfy object.
  */
 function Slfy(url) {
+  "use strict";
   
-  const that = this;
+  const self = this;
+  
+  const SLFY_ATTRIBUTE_REGEX = /[ ]*(data-slfy-(.*?['"]){2})[ ]*/gi;
   
   // Custom Slfy HTML attributes
   const SLFY_DATA_ID = "slfy-data",
@@ -16,17 +19,30 @@ function Slfy(url) {
         KEYSTROKE_DELAY_ATTRIBUTE = "data-slfy-keystroke-delay",
         REMOVE_DELAY_ATTRIBUTE = "data-slfy-remove-delay",
         APPEND_DELAY_ATTRIBUTE = "data-slfy-append-delay",
-        IGNORE_ATTRIBUTE = "data-slfy-ignore";
+        IGNORE_ATTRIBUTE = "data-slfy-ignore",
+        VERBOSITY_ATTRIBUTE = "data-slfy-verbose";
   
   // Default values
   let DEFAULT_SELECTOR = "body",
       DEFAULT_RUN_TYPE = true,
       DEFAULT_RUN_REMOVE = true,
       DEFAULT_RUN_APPEND = true,
+      DEFAULT_VERBOSITY = false,
       DEFAULT_TYPE_DELAY = 2000,
       DEFAULT_KEYSTROKE_DELAY = 40,
-      DEFAULT_REMOVE_DELAY = 1000,
+      DEFAULT_REMOVE_DELAY = 1000,  
       DEFAULT_APPEND_DELAY = 50;
+  
+  this.defaultTypeSelector = "body",    // Default selector for typing code
+  this.defaultContentSelector = "body", // Default selector for placing result of typing code
+  this.defaultRunType = true,       // 
+  this.defaultRunRemove = true,     // 
+  this.defaultRunAppend = true,     // True to  
+  this.defaultVerbose = false,      // True to type slfy HTML attributes; otherwise, false.
+  this.defaultTypeDelay = 2000,     // 
+  this.defaultKeyStrokeDelay = 40,  // Default delay between typing each character in milliseconds
+  this.defaultRemoveDelay = 1000,   // Default delay to wait before removing code in milliseconds
+  this.defaultAppendDelay = 50;     // Default delay before showing result in milliseconds
   
   // 
   let htmlNodes = null,
@@ -83,6 +99,28 @@ function Slfy(url) {
   var getHtml = function getHtml(node) {
     
     return node.outerHTML;
+  }
+  
+  
+  var getVerbosity = function getVerbosity(node) {
+    
+    var verbosity = node.getAttribute(VERBOSITY_ATTRIBUTE);
+    
+    if (verbosity === null) {
+      verbosity = DEFAULT_VERBOSITY;
+    }
+    
+    return verbosity;
+  }
+  
+  /*
+   * 
+   * 
+   * 
+   */
+  var removeSlfyAttributes = function removeSlfyAttributes(node) {
+    
+    return node.replace(SLFY_ATTRIBUTE_REGEX, "");
   }
   
   /*
@@ -255,6 +293,7 @@ function Slfy(url) {
         type = false,
         remove = false,
         append = false,
+        verbose = false,
         typeDelay = 0,
         removeDelay = 0,
         appendDelay = 0,
@@ -264,27 +303,38 @@ function Slfy(url) {
       
       if (!getIgnore(node)) {
         content = getHtml(node);
+        
+        // TODO: Remove slfy attributes here.
+        // TODO: Link to my regex here:
+        // https://regex101.com/r/PMJOl5/4
+        // Regex to find slfy attributes is /(data-slfy-(.*?['"]){2})[ ]*/gi`
+        
         selector = getSelector(node);
 
         type = getType(node);
         remove = getRemove(node);
         append = getAppend(node);
+        verbose = getVerbosity(node);
 
         typeDelay = getTypeDelay(node);
         keyStrokeDelay = getKeyStrokeDelay(node);
         removeDelay = getRemoveDelay(node);
         appendDelay = getAppendDelay(node);
 
+        if (!verbose) {
+          content = removeSlfyAttributes(content);
+        }
+        
         if (type) {
-          that.type(content, selector, delay += typeDelay, keyStrokeDelay);
+          self.type(content, selector, delay += typeDelay, keyStrokeDelay);
         }
 
         if (remove) {
-          that.remove(content, selector, delay += removeDelay);
+          self.remove(content, selector, delay += removeDelay);
         }
 
         if (append) {
-          that.append(content, selector, delay += appendDelay);
+          self.append(content, selector, delay += appendDelay);
         }
       }
     }
@@ -297,18 +347,57 @@ function Slfy(url) {
   this.type = function type(content, selector, typeDelay, keyStrokeDelay) {
 
     var i = 0;
-
-    for (i = 0; i < content.length; i++) {
-
-      (function(index) {
-        setTimeout(function() {
-          $(selector)[0].innerHTML += content[index];
+    var j = 0;
+    
+    var regex = /(\n)|(\\p)/gi;
+    var result = regex[Symbol.split](content);
+    var token = "";
+    var insert = "";
+    
+    // For each string in the array...
+    for (j = 0; result !== undefined && j < result.length; j++) {
+      
+      token = result[j];
+      
+      if (token !== undefined)
+      {
+        
+        if (token === "\n" || token === "\\p") {
+        
+          if (token === "\n") {
+            insert = "<br>";
+          }
+          else {
+            insert = "&nbsp;"
+          }
           
-          onSlfyType = new CustomEvent("onSlfyType");
-          document.dispatchEvent(onSlfyType);
-          
-        }, delay += keyStrokeDelay)
-      })(i);
+          (function(str) {
+              setTimeout(function() {
+
+                $(selector)[0].innerHTML += str;
+              }, delay += keyStrokeDelay)
+          })(insert);
+        }
+        else {
+
+          // For each character in the string...
+          for (i = 0; i < result[j].length; i++) {
+
+            (function(stringNum, charIndex) {
+              setTimeout(function() {
+
+                $(selector)[0].innerHTML += result[stringNum][charIndex];
+
+                onSlfyType = new CustomEvent("onSlfyType");
+                document.dispatchEvent(onSlfyType);
+
+              }, delay += keyStrokeDelay)
+            })(j, i);
+          }
+        }
+        
+        
+      }
     }
   }
   
@@ -321,10 +410,13 @@ function Slfy(url) {
     (function(content, selector, delay) {
       setTimeout(function() {
         var element = $(selector)[0];
-        var escapedContent = content.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        var escapedContent = content.replace(/</gi, "&lt;")
+                                    .replace(/>/gi, "&gt;")
+                                    .replace(/(\n)/gi, "<br>")
+                                    .replace(/(\\p)/gi, "&nbsp;");
 
         element.innerHTML = element.innerHTML.slice(0,
-        element.innerHTML.length - escapedContent.length);
+          element.innerHTML.length - escapedContent.length);
         
         onSlfyRemove = new CustomEvent("onSlfyRemove");
         document.dispatchEvent(onSlfyRemove);
@@ -341,7 +433,10 @@ function Slfy(url) {
     
     (function(content, selector, delay) {
       setTimeout(function() {
-        $(selector).append(content);
+        
+        var escapedContent = content.replace(/(\\p)/gi, "");
+        
+        $(selector).append(escapedContent);
         
         onSlfyAppend = new CustomEvent("onSlfyAppend");
         document.dispatchEvent(onSlfyAppend);
