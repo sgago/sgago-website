@@ -1,5 +1,17 @@
 @charset "utf-8";
 
+.sidenav-list {
+
+}
+
+.sidenav-list-item {
+  height: 100%;
+}
+
+.sidenav-link {
+  font-size: 0.8em;
+}
+
 nav ul li a {
   text-decoration: none;
 }

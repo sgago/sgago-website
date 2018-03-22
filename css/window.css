@@ -56,7 +56,6 @@
 .sidenav {
   background-color: whitesmoke;
   border-right: 1px solid lightgray;
-  font-size: 1.3em;
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -76,8 +75,6 @@
 */
 .sidenav-link {
   color: black;
-  /*display: inline;*/
-  font-size: 0.5;
   text-decoration: none;
 }
 
@@ -100,7 +97,6 @@
   
 */
 .sidenav-icon {
-  font-size: 1em;
   text-align: center;
   width: 100%;
 }
@@ -125,18 +121,12 @@
 /*  */
 @media screen and (min-width: 768px) {
   
-  .window-header {
-    font-size: 2em;
-  }
-  
-  
   .sidenav-header {
     display: block;
   }
   
   .sidenav-list-item {
     left: 0px;
-    font-size: 1.1em;
     margin-top: 15px;
     position: relative;
     width: 100%;
