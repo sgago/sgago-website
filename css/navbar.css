@@ -1,0 +1,47 @@
+@charset "utf-8";
+
+nav ul li a {
+  text-decoration: none;
+}
+
+nav ul li.about:hover {
+  background-color: red;
+  color: white;
+  text-decoration: none;
+}
+
+nav ul li.work:hover {
+  background-color: yellow;
+  color: white;
+  text-decoration: none;
+}
+
+nav ul li.education:hover {
+  background-color: orange;
+  color: white;
+  text-decoration: none;
+}
+
+nav ul li.experience:hover {
+  background-color: green;
+  color: white;
+  text-decoration: none;
+}
+
+nav ul li.portfolio:hover {
+  background-color: blue;
+  color: white;
+  text-decoration: none;
+}
+
+nav ul li.resume:hover {
+  background-color: purple;
+  color: white;
+  text-decoration: none;
+}
+
+nav ul li.contact:hover {
+  background-color: black;
+  color: white;
+  text-decoration: none;
+}

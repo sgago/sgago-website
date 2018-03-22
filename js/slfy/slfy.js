@@ -11,7 +11,8 @@ function Slfy(url) {
   
   // Custom Slfy HTML attributes
   const SLFY_DATA_ID = "slfy-data",
-        SELECTOR_ATTRIBUTE = "data-slfy-selector",
+        TYPE_SELECTOR_ATTRIBUTE = "data-slfy-selector",
+        CONTENT_SELECTOR_ATTRIBUTE = "data-slfy-content",
         TYPE_ATTRIBUTE = "data-slfy-type",
         REMOVE_ATTRIBUTE = "data-slfy-remove",
         APPEND_ATTRIBUTE = "data-slfy-append",
@@ -35,14 +36,14 @@ function Slfy(url) {
   
   this.defaultTypeSelector = "body",    // Default selector for typing code
   this.defaultContentSelector = "body", // Default selector for placing result of typing code
-  this.defaultRunType = true,       // 
-  this.defaultRunRemove = true,     // 
-  this.defaultRunAppend = true,     // True to  
-  this.defaultVerbose = false,      // True to type slfy HTML attributes; otherwise, false.
-  this.defaultTypeDelay = 2000,     // 
-  this.defaultKeyStrokeDelay = 40,  // Default delay between typing each character in milliseconds
-  this.defaultRemoveDelay = 1000,   // Default delay to wait before removing code in milliseconds
-  this.defaultAppendDelay = 50;     // Default delay before showing result in milliseconds
+  this.defaultRunType = true,           // 
+  this.defaultRunRemove = true,         // 
+  this.defaultRunAppend = true,         // True to  
+  this.defaultVerbosity = false,        // True to type slfy HTML attributes; otherwise, false.
+  this.defaultTypeDelay = 2000,         // 
+  this.defaultKeyStrokeDelay = 40,      // Default delay between typing each character in milliseconds
+  this.defaultRemoveDelay = 1000,       // Default delay to wait before removing code in milliseconds
+  this.defaultAppendDelay = 50;         // Default delay before showing result in milliseconds
   
   // 
   let htmlNodes = null,
@@ -107,7 +108,7 @@ function Slfy(url) {
     var verbosity = node.getAttribute(VERBOSITY_ATTRIBUTE);
     
     if (verbosity === null) {
-      verbosity = DEFAULT_VERBOSITY;
+      verbosity = self.defaultVerbosity;
     }
     
     return verbosity;
@@ -127,12 +128,12 @@ function Slfy(url) {
    * SUMMARY
    * Gets the selector from a DOM node as a string.
    */
-  var getSelector = function getSelector(node) {
+  var getTypeSelector = function getTypeSelector(node) {
     
-    var selector = node.getAttribute(SELECTOR_ATTRIBUTE);
+    var selector = node.getAttribute(TYPE_SELECTOR_ATTRIBUTE);
     
     if (selector === null) {
-      selector = DEFAULT_SELECTOR;
+      selector = self.defaultTypeSelector;
     }
     
     return selector;
@@ -309,7 +310,7 @@ function Slfy(url) {
         // https://regex101.com/r/PMJOl5/4
         // Regex to find slfy attributes is /(data-slfy-(.*?['"]){2})[ ]*/gi`
         
-        selector = getSelector(node);
+        selector = getTypeSelector(node);
 
         type = getType(node);
         remove = getRemove(node);
