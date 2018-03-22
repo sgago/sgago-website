@@ -15,8 +15,8 @@
   --steve-window-height-portrait: calc(100vh - 29vh - var(--footer-height));
   --slfy-window-height-portrait: calc(29vh);
   
-  --steve-window-height-lg: calc(97vh - var(--footer-height));
-  --slfy-window-height-lg: calc(97vh - var(--footer-height));
+  --steve-window-height-lg: calc(100vh - var(--footer-height) - 20px);
+  --slfy-window-height-lg: calc(100vh - var(--footer-height) - 20px);
 }
 
 
