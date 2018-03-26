@@ -56,48 +56,48 @@
           <div class="window-body row m-0">
             
             <!-- The side navigation bar -->
-            <nav class="sidenav navbar-expand-md col-1 col-md-3 col-lg-2 p-0 m-0 pl-1">
+            <nav class="sidenav col-1 col-md-3 col-lg-2 p-0 m-0 pl-0">
               
-              <ul class="sidenav-list text-center m-0 p-0">
-                <li class="sidenav-list-item about p-0 m-0">
-                  <a class="sidenav-link f-2 f-md-1 no-wrap" href="#about">
+              <ul class="sidenav-list text-right m-0 p-0">
+                <li class="sidenav-list-item about p-0 m-0 pr-2">
+                  <a class="sidenav-link pt-2 pb-2 f-2 fs-md-5 f-lg-0 no-wrap" href="#about">
                     <br>
                     <i class="fa fa-gamepad sidenav-icon" aria-hidden="true"></i>
                     <span class="sidenav-text">About</span>
                   </a>
                 </li>
-                <li class="sidenav-list-item work p-0 m-0 pt-2">
-                  <a class="sidenav-link f-2 f-md-1 no-wrap" href="#work">
+                <li class="sidenav-list-item work p-0 m-0 pr-2">
+                  <a class="sidenav-link pt-2 pb-2 f-2 fs-md-5 f-lg-0 no-wrap" href="#work">
                     <i class="fa fa-gears sidenav-icon" aria-hidden="true"></i>
                     <span class="sidenav-text">Work</span>
                   </a>
                 </li>
-                <li class="sidenav-list-item education p-0 m-0 pt-2">
-                  <a class="sidenav-link f-2 f-md-1 no-wrap" href="#education">
+                <li class="sidenav-list-item education p-0 m-0 pr-2">
+                  <a class="sidenav-link pt-2 pb-2 f-2 fs-md-5 f-lg-0 no-wrap" href="#education">
                     <i class="fa fa-university sidenav-icon" aria-hidden="true"></i>
                     <span class="sidenav-text">Education</span>
                   </a>
                 </li>
-                <li class="sidenav-list-item experience p-0 m-0 pt-2">
-                  <a class="sidenav-link f-2 f-md-1 no-wrap" href="#experience">
+                <li class="sidenav-list-item experience p-0 m-0 pr-2">
+                  <a class="sidenav-link pt-2 pb-2 f-2 fs-md-5 f-lg-0 no-wrap" href="#experience">
                     <i class="fa fa-industry sidenav-icon" aria-hidden="true"></i>
                     <span class="sidenav-text">Experience</span>
                   </a>
                 </li>
-                <li class="sidenav-list-item portfolio p-0 m-0 pt-2">
-                  <a class="sidenav-link f-2 f-md-1 no-wrap" href="#portfolio">
+                <li class="sidenav-list-item portfolio p-0 m-0 pr-2">
+                  <a class="sidenav-link pt-2 pb-2 f-2 fs-md-5 f-lg-0 no-wrap" href="#portfolio">
                     <i class="fa fa-terminal sidenav-icon" aria-hidden="true"></i>
                     <span class="sidenav-text">Portfolio</span>
                   </a>
                 </li>
-                <li class="sidenav-list-item resume p-0 m-0 pt-2">
-                  <a class="sidenav-link f-2 f-md-1 no-wrap" href="#resume">
+                <li class="sidenav-list-item resume p-0 m-0 pr-2">
+                  <a class="sidenav-link pt-2 pb-2 f-2 fs-md-5 f-lg-0 no-wrap" href="#resume">
                     <i class="fa fa-list-alt sidenav-icon" aria-hidden="true"></i>
                     <span class="sidenav-text">R&eacute;sum&eacute;</span>
                   </a>
                 </li>
-                <li class="sidenav-list-item contact p-0 m-0 pt-2">
-                  <a class="sidenav-link f-2 f-md-1 no-wrap" href="#contact">
+                <li class="sidenav-list-item contact p-0 m-0 pr-2">
+                  <a class="sidenav-link pt-2 pb-2 f-2 fs-md-5 f-lg-0 no-wrap" href="#contact">
                     <i class="fa fa-comment sidenav-icon" aria-hidden="true"></i>
                     <span class="sidenav-text">Contact</span>
                   </a>
@@ -106,30 +106,37 @@
             </nav>
             
             <!--  -->
-            <div id="main" class="window-main steve-main col-11 col-md-9  col-lg-10">
+            <div id="main" class="window-main steve-main col-11 col-md-9 col-lg-10">
 
               <article id="about" class="text-center pt-2 pt-sm-5">
+                
                 <div class="justify-content-center">
                   <img id="steve-gago-image" class="img-fluid"
                        src="../images/steven-gago.jpg"
                        alt="Steven Gago"/>
                 </div>
+                
                 <h2 class="fl-1">
                   <i class="fa fa-gamepad" aria-hidden="true"></i> About
+                  <div class="gamepad-button"></div>
                 </h2>
+                
                 <p class="f-2">
                   Hi, I'm Steve, and I am a software developer.
                   Let me help with your next software project!
                 </p>
+                
                 <p class="f-1">
                   I design, build, and test software.
                 </p>
+                
                 <p class="f-1">
                   Want to talk?  Shoot me an email at
                   <a href="mailto:Hi@StevenGago.com">
                     Hi@StevenGago.com
                   </a>
                 </p>
+                
               </article>
 
               <article id="work" class="pt-2 pt-sm-5">
@@ -258,110 +265,154 @@
                 <p>
                   
                 </p>
-                <p class="small">
+                <p class="fs-2">
                   Unfortunately, a lot of software and hardware engineering I've done 
                   is proprietary and/or under non-disclosure agreements.
                   That means the code isn't mine, and I don't get to share 
                   :'(  However, the following projects...
                 </p>
 
-                <div class="row m-1 mb-3">
+                <div class="row">
                   <!-- Card for NSerialProtocol -->
-                  <div class="card border-primary col-12 col-lg-6">
-                    <img class="card-img-top" src="" alt="NSerialProtocol">
-                    <div class="card-body">
-                      <p class="h4 card-title">NSerialProtocol</p>
-                      <p class="h4 card-subtitle text-muted">Simple Serial Port Comms</p>
-                      <p class="underconstruction text-center m-1 p-1">
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                        Under Construction
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                      </p>
-                      <p class="card-text">
-                        NSerialProtocol aims to simplify the use of the serial
-                        port communications for all .NET languages.  It includes
-                        easy-to-use serial packet declaration,
-                        asynchrounous packet transmission,
-                        forward-error correction (FEC), byte stuffing, and clears
-                        the fAbortOnError flag.
-                      </p>
-                      <a href="#" class="btn btn-primary">
-                        Visit Repo On <i class="fa fa-github" aria-hidden="true"></i>
-                      </a>
+                  <div class="col-12 col-lg-6">
+                    <div class="card border-warning mb-3">
+                      <img class="card-img-top" src="" alt="NSerialProtocol">
+                      <div class="card-body">
+                        <p class="card-title f-3">
+                          NSerialProtocol
+                        </p>
+                        <p class="card-subtitle text-muted mb-4 f-1">
+                          Simple Serial Port Comms For .NET
+                        </p>
+                        <p class="underconstruction text-center p-1">
+                          <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                          Under Construction
+                          <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                        </p>
+                        <p class="card-text">
+                          NSerialProtocol aims to simplify the use of the serial
+                          port communications for all .NET languages.  It includes
+                          easy-to-use serial packet declaration,
+                          asynchrounous packet transmission,
+                          forward-error correction (FEC), byte stuffing, and clears
+                          the fAbortOnError flag.
+                        </p>
+                        <a href="#" class="btn btn-primary">
+                          Visit Repo On <i class="fa fa-github" aria-hidden="true"></i>
+                        </a>
+                      </div>
                     </div>
                   </div>
                   
                   <!-- Card for Slfy JS -->
-                  <div class="card border-primary col-12 col-lg-6">
-                    <img class="card-img-top" src="" alt="Slfy JS">
-                    <div class="card-body">
-                      <p class="h4 card-title">Slfy JS</p>
-                      <p class="h4 card-subtitle text-muted">Subtitle goes here</p>
-                      <p class="underconstruction text-center m-1 p-1">
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                        Under Construction
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                      </p>
-                      <p class="card-text">
-                        Description goes here
-                      </p>
-                      <a href="#" class="btn btn-primary">
-                        Visit Repo On <i class="fa fa-github" aria-hidden="true"></i>
-                      </a>
+                  <div class="col-12 col-lg-6">
+                    <div class="card border-warning mb-3">
+                      <img class="card-img-top" src="" alt="Slfy JS">
+                      <div class="card-body">
+                        <p class="card-title f-3">
+                          Slfy
+                        </p>
+                        <p class="card-subtitle text-muted mb-4 f-1">
+                          The Self-Typing Code On This Website
+                        </p>
+                        <p class="underconstruction text-center p-1">
+                          <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                          Under Construction
+                          <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                        </p>
+                        <p class="card-text">
+                          Slfy is a JavaScript and jQuery library that
+                          gives the illusion of self-typing, self-executing code.
+                          (In reality, Slfy inserts each character individually,
+                          removes the characters it just inserted, then
+                          inserts the actual code.)  Slfy can type HTML, CSS or JavaScript.
+                        </p>
+                        <a href="#" class="btn btn-primary">
+                          Visit Repo On <i class="fa fa-github" aria-hidden="true"></i>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
                 
-                <div class="row m-1 mb-3">
+                <div class="row">
                   
                   <!-- Card for MEW -->
-                  <div class="card border-primary col-12 col-lg-6">
-                    <img class="card-img-top" src="../images/mew.jpg" alt="Malaria early warning">
-                    <div class="card-body">
-                      <p class="h4 card-title">Malaria Early Warning (MEW)</p>
-                      <p class="h4 card-subtitle text-muted">Subtitle goes here</p>
-                      <p class="card-text">
-                        Description goes here
-                      </p>
+                  <div class="col-12 col-lg-6">
+                    <div class="card border-primary mb-3">
+                      <img class="card-img-top" src="../images/mew.jpg" alt="Malaria early warning">
+                      <div class="card-body">
+                        <p class="card-title f-3">
+                          Malaria Early Warning (MEW)
+                        </p>
+                        <p class="card-subtitle text-muted mb-4 f-1">
+                          Predicting the Spatial and Temporal Spread of Malaria
+                        </p>
+                        <p class="card-text">
+                          Malaria Early Warning (MEW) was used by the Indian
+                          government to predict the spread of the Malaria
+                          virus in the north-western parts of India using rainfall
+                          via weather stations, vegetation via satellite,
+                          and other data.  The website was created using Python, web2py,
+                          and the R Statistical Language.
+                        </p>
+                      </div>
                     </div>
                   </div>
                   
                   <!-- Card for MEW Image Processing -->
-                  <div class="card border-primary col-12 col-lg-6">
-                    <img class="card-img-top" src="../images/vegetation.jpg" alt="Image Processing Results">
-                    <div class="card-body">
-                      <p class="h4 card-title">Image Processing</p>
-                      <p class="h4 card-subtitle text-muted">Subtitle goes here</p>
-                      <p class="card-text">
-                        Description goes here
-                      </p>
+                  <div class="col-12 col-lg-6">
+                    <div class="card border-primary mb-3">
+                      <img class="card-img-top" src="../images/vegetation.jpg" alt="Image Processing Results">
+                      <div class="card-body">
+                        <p class="card-title f-3">
+                          Image Processing
+                        </p>
+                        <p class="card-subtitle text-muted mb-4 f-1">
+                          Subtitle goes here
+                        </p>
+                        <p class="card-text">
+                          Description goes here
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
                 
-                <div class="row m-1 mb-3">
+                <div class="row">
                   
                   <!-- Card for Electrical Engineering -->
-                  <div class="card border-primary col-12 col-lg-6" style="width: 18rem;">
-                    <img class="card-img-top" src="../images/circuit-board.jpg" alt="Image Processing Results">
-                    <div class="card-body">
-                      <p class="h4 card-title">Electrical Engineering</p>
-                      <p class="h4 card-subtitle text-muted">Subtitle goes here</p>
-                      <p class="card-text">
-                        Description goes here
-                      </p>
+                  <div class="col-12 col-lg-6">
+                    <div class="card border-primary mb-3">
+                      <img class="card-img-top" src="../images/circuit-board.jpg" alt="Image Processing Results">
+                      <div class="card-body">
+                        <p class="card-title f-3">
+                          Gait-Event Detection Circuit Board
+                        </p>
+                        <p class="card-subtitle text-muted mb-4 f-1">
+                          Subtitle goes here
+                        </p>
+                        <p class="card-text">
+                          Description goes here
+                        </p>
+                      </div>
                     </div>
                   </div>
                   
                   <!-- Card for Water Bath -->
-                  <div class="card border-primary col-12 col-lg-6" style="width: 18rem;">
-                    <img class="card-img-top" src="../images/water-bath.jpg" alt="Image Processing Results">
-                    <div class="card-body">
-                      <p class="h4 card-title">Water bath</p>
-                      <p class="h4 card-subtitle mb-2 text-muted">For Heat-Activated Kinase in Fruit Flys</p>
-                      <p class="card-text">
-                        Description goes here
-                      </p>
+                  <div class="col-12 col-lg-6">
+                    <div class="card border-primary mb-3">
+                      <img class="card-img-top" src="../images/water-bath.jpg" alt="Image Processing Results">
+                      <div class="card-body">
+                        <p class="card-title f-3">
+                          Water bath</p>
+                        <p class="h4 card-subtitle text-muted mb-4 f-1">
+                          For Heat-Activated Kinase in Fruit Flys
+                        </p>
+                        <p class="card-text">
+                          Description goes here
+                        </p>
+                      </div>
                     </div>
                   </div>
                   
@@ -548,8 +599,8 @@
         
         <aside class="window slfy-window mt-1 mt-sm-0">
           
-          <div class="window-header text-center row m-0">
-            <p class="slfy-header m-0 pt-1 f-1 fs-sm-0 fs-md-5 f-lg-1">
+          <header class="window-header row text-center m-0">
+            <p class="slfy-header m-0 pt-1 fs-5 f-lg-1">
               Terminal -- SlfyJS --
               <span id="terminal-size">80x24</span>
             </p>
@@ -571,6 +622,7 @@
                       title="Play">
                 <i class="fa fa-play" aria-hidden="true"></i>
               </button>
+              <!--
               <button type="button"
                       class="btn btn-light btn-sm"
                       data-toggle="tooltip"
@@ -585,6 +637,7 @@
                       title="Stop">
                 <i class="fa fa-stop" aria-hidden="true"></i>
               </button>
+              -->
               <button type="button"
                       class="btn btn-light btn-sm"
                       data-toggle="tooltip"
@@ -592,10 +645,16 @@
                       title="Skip">
                 <i class="fa fa-step-forward" aria-hidden="true"></i>
               </button>
+              
+              <p class="m-1 ml-2 no-wrap-ellipsis">
+                <input type="checkbox" checked>
+                Lock Console
+              </p>
             </div>
-          </div>
+          </header>
           
-          <div class="window-body slfy-body row m-0 p-1 f-1">
+          <div class="window-body slfy-body row m-0">
+            <div class="window-main slfy-main col-12 m-0 p-2 f-1">
             <p>&gt; ...</p>
             <p>&gt; Hello?</p>
             <p>&gt; (Is this thing on?)</p>
@@ -614,13 +673,25 @@
             <p>&gt; (I don't have eyes.  Does this actually look better?)</p>
             <p>&gt; (I don't have eyes.  Does this actually look better?)</p>
             <p>&gt; (I don't have eyes.  Does this actually look better?)</p>
+            <p>&gt; (I don't have eyes.  Does this actually look better?)</p>
+            <p>&gt; (I don't have eyes.  Does this actually look better?)</p>
+            <p>&gt; (I don't have eyes.  Does this actually look better?)</p>
+            <p>&gt; (I don't have eyes.  Does this actually look better?)</p>
+            <p>&gt; (I don't have eyes.  Does this actually look better?)</p>
+            <p>&gt; (I don't have eyes.  Does this actually look better?)</p>
+            <p>&gt; (I don't have eyes.  Does this actually look better?)</p>
+            <p>&gt; (I don't have eyes.  Does this actually look better?)</p>
+            <p>&gt; (I don't have eyes.  Does this actually look better?)</p>
+            <p>&gt; (I don't have eyes.  Does this actually look better?)</p>
+            <p>&gt; (I don't have eyes.  Does this actually look better?)</p>
+          </div>
           </div>
         </aside>
       </div>
     </main>
     
-    <footer class="m-0 pl-1 pr-1 pt-0 pb-1 fs-4">
-      <p class="no-wrap-ellipsis">
+    <footer class="m-0 p-1 fs-4">
+      <p class="no-wrap-ellipsis text-center">
         &copy; 2018 Steven Gago.  All rights reserved.
 
         <span class="powered-by">
@@ -716,8 +787,6 @@
         currentDiv = $("article" + divToShow);
       });
       
-      
-      
       function updateTerminalSize() {
         
         let terminal = $(".slfy-window");
@@ -728,6 +797,38 @@
         $("span#terminal-size").html(Math.round(terminal.width()) +
                                      " x " + Math.round(terminal.height()));
       }
+      
+      // TODO: Parse the URL fragment and display the appropriate section
+      function showSection() {
+        
+        var url = window.location.href;
+        //var fragementRegex = /(?<=#).+/gi;
+        var fragementRegex = /#.+/gi;
+        var urlFragement = url.match(fragementRegex);
+        
+        if (urlFragement !== null && urlFragement.length > 0) {
+          urlFragement = urlFragement[0];
+        }
+        
+        if (urlFragement !== null && urlFragement !== "") {
+          divToShow = urlFragement;
+        }
+        else {
+          divToShow = "#about";
+        }
+
+        $(currentDiv).fadeOut("fast", function() {
+            $("article" + divToShow).fadeIn("fast");
+        });
+        
+        currentDiv = $("article" + divToShow);
+      }
+      
+      showSection();
+      
+      
+      
+      
     </script>
   </body>
 </html>

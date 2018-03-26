@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 .sidenav-list {
-
+  width: auto;
 }
 
 .sidenav-list-item {
@@ -12,7 +12,21 @@
   font-size: 0.8em;
 }
 
+nav ul li {
+  margin: 0;
+  padding: 0;
+  
+  position: relative;
+  top: -15px;
+}
+
 nav ul li a {
+  display: block;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  color: white;
   text-decoration: none;
 }
 
@@ -23,7 +37,7 @@ nav ul li.about:hover {
 }
 
 nav ul li.work:hover {
-  background-color: yellow;
+  background-color: gold;
   color: white;
   text-decoration: none;
 }
