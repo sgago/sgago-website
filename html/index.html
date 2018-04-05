@@ -753,14 +753,19 @@
     
     <script type="text/javascript">
       
-      let divToShow = null;
+      //let divToShow = null;
+      var fragementRegex = /#!.+/gi;
       let currentDiv = $("article#about").first(); // Get the about DOM node
       let terminalSizeElement = $("span#terminal-size").get(); // Get the terminal-size DOM node
 
+      
+      
       // Required for Bootstrap's tooltips 
       $(function () {
         $('[data-toggle="tooltip"]').tooltip()
       });
+      
+      
       
       // Show the Slfy terminal window's width and height in pixels
       updateTerminalSize();
@@ -779,50 +784,58 @@
                                      "x" + Math.round(terminal.height()));
       }
       
-      // When a user clicks a link on the sidenav...
-      $(".sidenav-link").click(function(event) {
-        
-        // Get the new div the user wants to see
-        divToShow = event.currentTarget.getAttribute("href");
-
-        $(currentDiv).fadeOut("fast", function() {
-            $("article" + divToShow).fadeIn("fast");
-        });
-
-        currentDiv = $("article" + divToShow);
-        
-        //event.preventDefault();
-      });
       
-      function showSection() {
+      
+      function onPageLoad(selector) {
         
         var url = window.location.href;
-        //var fragementRegex = /(?<=#).+/gi;
-        var fragementRegex = /#.+/gi;
         var urlFragement = url.match(fragementRegex);
         
+        // Grab the URL fragement, provided there is one to grab
         if (urlFragement !== null && urlFragement.length > 0) {
+          
           urlFragement = urlFragement[0];
         }
         
         if (urlFragement !== null && urlFragement !== "") {
-          divToShow = urlFragement;
+          
+          divToShow = urlFragement.replace("#!", "#");
         }
         else {
           divToShow = "#about";
         }
-
-        $(currentDiv).fadeOut("fast", function() {
-            $("article" + divToShow).fadeIn("fast");
-        });
         
-        currentDiv = $("article" + divToShow);
+        showArticle(divToShow);
       }
       
-      showSection();
+      // When a user clicks a link on the sidenav...
+      $(".sidenav-link").click(function(event) {
+
+        // Get the new div the user wants to see
+        var articleID = event.currentTarget.getAttribute("href");
+
+        showArticle(articleID);
+        
+        event.preventDefault();
+      });
       
+      function showArticle(articleID) {
+
+        $(currentDiv).fadeOut("fast", function() {
+            $("article" + articleID).fadeIn("fast");
+        });
+
+        currentDiv = $("article" + articleID);
+
+        if (history.pushState) {
+          history.pushState(null, null, articleID.replace("#", "#!"));
+        }
+        else {
+          location.hash = articleID.replace("#", "#!");
+        }
+      }
       
-      
+      onPageLoad();
       
     </script>
   </body>
