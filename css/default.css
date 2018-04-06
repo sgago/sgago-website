@@ -15,8 +15,8 @@
   --steve-window-height-portrait: calc(100vh - 29vh - var(--footer-height));
   --slfy-window-height-portrait: calc(29vh);
   
-  --steve-window-height-lg: calc(100vh - var(--footer-height) - 10px);
-  --slfy-window-height-lg: calc(100vh - var(--footer-height) - 10px);
+  --steve-window-height-lg: calc(100vh - var(--footer-height) - 13px);
+  --slfy-window-height-lg: calc(100vh - var(--footer-height) - 13px);
 }
 
 
@@ -47,23 +47,21 @@ body {
 }
 
 footer {
-  position: absolute;
   bottom: 0px;
-  width: 100%;
-  
-  /*height: 20px;*/ /* Set the fixed height of the footer here */
   height: var(--footer-height);
+  position: absolute;
+  width: 100%;
 }
 
 footer p {
   color: whitesmoke;
-  
   /*
   width: 70vw;
   background-color: slategray;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
   */
+  
 }
 
 
