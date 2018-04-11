@@ -179,17 +179,10 @@ footer p {
   }
 }
 
-
-
-
-
-
-/*  */
 .slfy-window {
-  height: calc(29vh - 7px);
+  height: calc(29vh);
 }
 
-/*  */
 .slfy-header {
   border: none;
   display: block;
@@ -203,7 +196,6 @@ footer p {
 
 .slfy-main p {
   margin: 0;
-  
 }
 
 /*  */
@@ -215,17 +207,35 @@ footer p {
     rgb(0,0,0) 0.5%,
     rgb(24,24,24) 0.75%
   );
-  
   color: #ffBE00;
-  
-  /*display: block;*/
-  
-  /* FIXME: Fix the height calculation for this elem */
-  /*height: calc(100% - 35px);*/
-  /*height: 95vh;*/
-  
   overflow-y: auto;
 }
+
+.card-img-sm {
+  max-width: 40%;
+}
+
+.card-img-md {
+  max-width: 60%;
+}
+
+.card-columns {
+  column-count: 1;
+}
+
+@media screen and (min-width: 1200px) {
+  
+  .card-columns {
+    column-count: 2;
+  }
+}
+
+
+.modal-body {
+  
+}
+
+
 
 /*
   Super tiny width

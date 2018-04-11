@@ -5,45 +5,56 @@
 function Slfy(url) {
   "use strict";
   
+  // TODO: Implement timer objects instead of how this works...
+  
   const self = this;
   
   const SLFY_ATTRIBUTE_REGEX = /[ ]*(data-slfy-(.*?['"]){2})[ ]*/gi;
   
   // Custom Slfy HTML attributes
-  const SLFY_DATA_ID = "slfy-data",
-        TYPE_SELECTOR_ATTRIBUTE = "data-slfy-selector",
+  const SLFY_DATA_ID =               "slfy-data",
+        TYPE_SELECTOR_ATTRIBUTE =    "data-slfy-selector",
         CONTENT_SELECTOR_ATTRIBUTE = "data-slfy-content",
-        TYPE_ATTRIBUTE = "data-slfy-type",
-        REMOVE_ATTRIBUTE = "data-slfy-remove",
-        APPEND_ATTRIBUTE = "data-slfy-append",
-        TYPE_DELAY_ATTRIBUTE = "data-slfy-type-delay",
-        KEYSTROKE_DELAY_ATTRIBUTE = "data-slfy-keystroke-delay",
-        REMOVE_DELAY_ATTRIBUTE = "data-slfy-remove-delay",
-        APPEND_DELAY_ATTRIBUTE = "data-slfy-append-delay",
-        IGNORE_ATTRIBUTE = "data-slfy-ignore",
-        VERBOSITY_ATTRIBUTE = "data-slfy-verbose";
+        TYPE_ATTRIBUTE =             "data-slfy-type",
+        REMOVE_ATTRIBUTE =           "data-slfy-remove",
+        APPEND_ATTRIBUTE =           "data-slfy-append",          // TODO: Rename to insert, here and everywhere
+        TYPE_DELAY_ATTRIBUTE =       "data-slfy-type-delay",      // TODO: Rename to start delay
+        KEYSTROKE_DELAY_ATTRIBUTE =  "data-slfy-keystroke-delay",
+        REMOVE_DELAY_ATTRIBUTE =     "data-slfy-remove-delay",
+        APPEND_DELAY_ATTRIBUTE =     "data-slfy-append-delay",
+        IGNORE_ATTRIBUTE =           "data-slfy-ignore",
+        VERBOSITY_ATTRIBUTE =        "data-slfy-verbose",
+        MODE_ATTRIBUTE =             "data-slfy-mode";           // TODO: Implement tree or nested mode
+  
+  const DEFAULT_TYPE_SELECTOR_ATTRIBUTE =    "data-slfy-default-type-selector",
+        DEFAULT_CONTENT_SELECTOR_ATTRIBUTE = "data-slfy-default-content-selector",
+        DEFAULT_RUN_TYPE_ATTRIBUTE =         "data-slfy-default-run-type",
+        DEFAULT_RUN_REMOVE_ATTRIBUTE =       "data-slfy-default-run-remove",
+        DEFAULT_RUN_APPEND_ATTRIBUTE =       "data-slfy-default-run-append",
+        DEFAULT_KEYSTROKE_DELAY_ATTRIBUTE =  "data-slfy-default-keystroke-delay",
+        DEFAULT_REMOVE_DELAY_ATTRIBUTE =     "data-slfy-default-remove-delay",
+        DEFAULT_APPEND_DELAY_ATTRIBUTE =     "data-slfy-default-append-delay",
+        DEFAULT_MODE_ATTRIBUTE =             "data-slfy-default-mode";
+  
+  /*
+    TREE MODE IDEA (DESCENDANT MODE?)!
+    Automagically starts at the top of a given element, use
+      $('#id_of_an_element').find('*').somethingsomething
+    to print elements by hierarchy.
+  */
   
   // Default values
-  let DEFAULT_SELECTOR = "body",
-      DEFAULT_RUN_TYPE = true,
-      DEFAULT_RUN_REMOVE = true,
-      DEFAULT_RUN_APPEND = true,
-      DEFAULT_VERBOSITY = false,
-      DEFAULT_TYPE_DELAY = 2000,
-      DEFAULT_KEYSTROKE_DELAY = 40,
-      DEFAULT_REMOVE_DELAY = 1000,  
-      DEFAULT_APPEND_DELAY = 50;
-  
-  this.defaultTypeSelector = "body",    // Default selector for typing code
+  this.defaultTypeSelector    = "body", // Default selector for typing code
   this.defaultContentSelector = "body", // Default selector for placing result of typing code
-  this.defaultRunType = true,           // 
-  this.defaultRunRemove = true,         // 
-  this.defaultRunAppend = true,         // True to  
-  this.defaultVerbosity = false,        // True to type slfy HTML attributes; otherwise, false.
-  this.defaultTypeDelay = 2000,         // 
-  this.defaultKeyStrokeDelay = 40,      // Default delay between typing each character in milliseconds
-  this.defaultRemoveDelay = 1000,       // Default delay to wait before removing code in milliseconds
-  this.defaultAppendDelay = 50;         // Default delay before showing result in milliseconds
+  this.defaultRunType         = true,   // True to run the type the code
+  this.defaultRunRemove       = true,   // True to run the remove the typed code
+  this.defaultRunAppend       = true,   // True to run the append the actual element typed
+  this.defaultVerbosity       = false,  // True to type slfy HTML attributes; otherwise, false.
+  this.defaultTypeDelay       = 2000,   // Default delay before starting Slfy
+  this.defaultKeyStrokeDelay  = 40,     // Default delay between typing each character in milliseconds
+  this.defaultRemoveDelay     = 1000,   // Default delay to wait before removing code in milliseconds
+  this.defaultAppendDelay     = 50;     // Default delay before showing result in milliseconds
+  this.defaultMode            = "inline";  // TODO: Author tree mode
   
   // 
   let htmlNodes = null,
@@ -51,9 +62,11 @@ function Slfy(url) {
       delay = 0;
   
   // Slfy-specific events
-  let onSlfyType,
-      onSlfyRemove,
-      onSlfyAppend;
+  let onSlfyStart,    // TODO: Implement onSlfyStart event
+      onSlfyType,     // Raised every time a character is typed by Slfy
+      onSlfyRemove,   // Raised when Slfy deletes all typed characters
+      onSlfyAppend,   // Raised when Slfy appends or inserts an element to be displayed
+      onSlfyEnd;      // TODO: Implement onSlfyEnd event
   
   // TODO: Need onSlfyStart and onSlfyEnd events
   
@@ -148,7 +161,7 @@ function Slfy(url) {
     var runType = node.getAttribute(TYPE_ATTRIBUTE);
     
     if (runType === null) {
-      runType = DEFAULT_RUN_TYPE;
+      runType = self.defaultRunType;
     }
     else {
       runType = runType === "true";
@@ -166,7 +179,7 @@ function Slfy(url) {
     var runRemove = node.getAttribute(REMOVE_ATTRIBUTE);
     
     if (runRemove === null) {
-      runRemove = DEFAULT_RUN_REMOVE;
+      runRemove = self.defaultRunRemove;
     }
     else {
       runRemove = runRemove === "true";
@@ -184,7 +197,7 @@ function Slfy(url) {
     var runAppend = node.getAttribute(APPEND_ATTRIBUTE);
     
     if (runAppend === null) {
-      runAppend = DEFAULT_RUN_APPEND;
+      runAppend = self.defaultRunAppend;
     }
     else {
       runAppend = runAppend === "true";
@@ -220,7 +233,7 @@ function Slfy(url) {
     var typeDelay = node.getAttribute(TYPE_DELAY_ATTRIBUTE);
     
     if (typeDelay === null) {
-      typeDelay = DEFAULT_TYPE_DELAY;
+      typeDelay = self.defaultTypeDelay;
     }
     else {
       typeDelay = +TypeDelay;
@@ -238,7 +251,7 @@ function Slfy(url) {
     var keyStrokeDelay = node.getAttribute(KEYSTROKE_DELAY_ATTRIBUTE);
     
     if (keyStrokeDelay === null) {
-      keyStrokeDelay = DEFAULT_KEYSTROKE_DELAY;
+      keyStrokeDelay = self.defaultKeyStrokeDelay;
     }
     else {
       keyStrokeDelay = +keyStrokeDelay;
@@ -256,7 +269,7 @@ function Slfy(url) {
     var removeDelay = node.getAttribute(REMOVE_DELAY_ATTRIBUTE);
     
     if (removeDelay === null) {
-      removeDelay = DEFAULT_REMOVE_DELAY;
+      removeDelay = self.defaultRemoveDelay;
     }
     else {
       removeDelay = +removeDelay;
@@ -274,7 +287,7 @@ function Slfy(url) {
     var appendDelay = node.getAttribute(APPEND_DELAY_ATTRIBUTE);
     
     if (appendDelay === null) {
-      appendDelay = DEFAULT_APPEND_DELAY;
+      appendDelay = self.defaultAppendDelay;
     }
     else {
       appendDelay = +appendDelay;
@@ -282,6 +295,23 @@ function Slfy(url) {
     
     return appendDelay;
   }
+  
+  
+  
+  
+  var getMode = function getMode(node) {
+    
+    var mode = node.getAttribute(MODE_ATTRIBUTE);
+    
+    if (mode === null) {
+      mode = self.defaultMode;
+    }
+    
+    return mode;
+  }
+  
+  
+  
   
   /*
    * SUMMARY
@@ -304,6 +334,37 @@ function Slfy(url) {
       
       if (!getIgnore(node)) {
         content = getHtml(node);
+        
+        // TODO: Implement tree mode here
+        /*if (getMode === "tree") {
+          1. Get node start tag
+            node.outerHTML.split(node.innerHTML)[0]; // Gets start tag of node
+            li.outerHTML.split(li.innerHTML);
+          
+          2. Close the start tag to make it a full element without content
+            https://stackoverflow.com/questions/10016834/regex-matching-up-to-the-first-occurrence-of-a-word?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
+            https://www.regular-expressions.info/repeat.html
+            
+            Regex 1. <[a-zA-Z]+(>|.*?[^?]>)
+            Regex 2. <([^>])+(['"]((>)|(\/>)))
+            
+            // Get start and end tags
+            li.outerHTML.split(li.innerHTML);
+          
+            // Get start tag
+            li.outerHTML.split(li.innerHTML)[0];
+            
+            // Get end tag
+            li.outerHTML.split(li.innerHTML)[];
+          
+          
+            // Define a jQuery method that does this for us
+            $.fn.startTag = function(){
+                return this[0].outerHTML.split(this.html())[0];
+            };
+        }*/
+        
+        
         
         // TODO: Remove slfy attributes here.
         // TODO: Link to my regex here:

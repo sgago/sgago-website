@@ -1,6 +1,7 @@
 @charset "utf-8";
 
 nav ul li a {
+  color: inherit;
   display: block;
   text-decoration: none;
 }
@@ -10,43 +11,50 @@ nav ul li a:hover {
   text-decoration: none;
 }
 
-nav ul li.about:hover {
+nav ul li.about:hover,
+.about.active a {
   background-color: red;
   color: white;
   text-decoration: none;
 }
 
-nav ul li.work:hover {
+nav ul li.work:hover,
+.work.active a {
   background-color: gold;
   color: white;
   text-decoration: none;
 }
 
-nav ul li.education:hover {
+nav ul li.education:hover,
+.education.active a  {
   background-color: orange;
   color: white;
   text-decoration: none;
 }
 
-nav ul li.experience:hover {
+nav ul li.experience:hover,
+.experience.active a {
   background-color: green;
   color: white;
   text-decoration: none;
 }
 
-nav ul li.portfolio:hover {
+nav ul li.portfolio:hover,
+.portfolio.active a {
   background-color: blue;
   color: white;
   text-decoration: none;
 }
 
-nav ul li.resume:hover {
+nav ul li.resume:hover,
+.resume.active a {
   background-color: purple;
   color: white;
   text-decoration: none;
 }
 
-nav ul li.contact:hover {
+nav ul li.contact:hover,
+.contact.active a {
   background-color: black;
   color: white;
   text-decoration: none;

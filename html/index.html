@@ -33,18 +33,18 @@
     <link rel="stylesheet" type="text/css" href="../css/animations.css">
   </head>
   
-  <body class="container-fluid m-0 p-0 p-sm-1 p-md-2 p-lg-2">
+  <body class="container-fluid m-0 p-0 p-sm-1 p-md-2 p-lg-2" onclick="alert('>hello>')">
     <main class="row m-1">
       
       <div class="col-12 col-sm-8 m-0 pl-0 pr-0 pr-sm-1 pr-md-2 pr-lg-2">
         <section class="window steve-window">
           
           <header class="window-header fadeOut row text-center m-0 pt-3 pt-sm-1">
-            <h1 class="steve-window-header-text col-12 f-5 fl-sm-1 no-wrap-ellipsis">
+            <h1 class="steve-window-header-text col-12 fl-1 no-wrap-ellipsis">
               <img class="steven-gago-logo"
                    src="../images/steven-gago.jpg"
-                   alt="Steven Gago"/>
-              Steven Gago
+                   alt="Steve Gago"/>
+              Steve Gago
             </h1>
           </header>
 
@@ -55,45 +55,52 @@
               
               <ul class="sidenav-list text-right m-0 p-0">
                 <li class="sidenav-list-item about p-0 m-0">
-                  <a class="sidenav-link pt-2 pb-2 pr-2 pl-sm-1 f-2 fs-md-7 f-lg-1 no-wrap" href="#about">
+                  <a class="sidenav-link pt-2 pb-2 pr-2 pl-sm-1 f-2 fs-md-7 f-lg-1 no-wrap"
+                     href="#about">
                     <i class="fas fa-gamepad sidenav-icon" aria-hidden="true"></i>
                     <span class="sidenav-text">About</span>
                   </a>
                 </li>
                 <li class="sidenav-list-item work p-0 m-0">
-                  <a class="sidenav-link pt-2 pb-2 pr-2 pl-sm-1 f-2 fs-md-7 f-lg-1 no-wrap" href="#work">
+                  <a class="sidenav-link pt-2 pb-2 pr-2 pl-sm-1 f-2 fs-md-7 f-lg-1 no-wrap"
+                     href="#work">
                     <i class="fas fa-cogs sidenav-icon" aria-hidden="true"></i>
                     <span class="sidenav-text">Work</span>
                   </a>
                 </li>
                 <li class="sidenav-list-item education p-0 m-0 ">
-                  <a class="sidenav-link pt-2 pb-2 pr-2 pl-sm-1 f-2 fs-md-7 f-lg-1 no-wrap" href="#education">
+                  <a class="sidenav-link pt-2 pb-2 pr-2 pl-sm-1 f-2 fs-md-7 f-lg-1 no-wrap"
+                     href="#education">
                     <i class="fas fa-graduation-cap sidenav-icon" aria-hidden="true"></i>
                     <span class="sidenav-text">Education</span>
                   </a>
                 </li>
                 <li class="sidenav-list-item experience p-0 m-0">
-                  <a class="sidenav-link pt-2 pb-2 pr-2 pl-sm-1 f-2 fs-md-7 f-lg-1 no-wrap" href="#experience">
+                  <a class="sidenav-link pt-2 pb-2 pr-2 pl-sm-1 f-2 fs-md-7 f-lg-1 no-wrap"
+                     href="#experience">
                     <i class="fas fa-industry sidenav-icon" aria-hidden="true"></i>
                     <span class="sidenav-text">Experience</span>
                   </a>
                 </li>
                 <li class="sidenav-list-item portfolio p-0 m-0">
-                  <a class="sidenav-link pt-2 pb-2 pr-2 pl-sm-1 f-2 fs-md-7 f-lg-1 no-wrap" href="#portfolio">
+                  <a class="sidenav-link pt-2 pb-2 pr-2 pl-sm-1 f-2 fs-md-7 f-lg-1 no-wrap"
+                     href="#portfolio">
                     <i class="fas fa-code sidenav-icon" aria-hidden="true"></i>
                     <span class="sidenav-text">Portfolio</span>
                   </a>
                 </li>
                 <li class="sidenav-list-item resume p-0 m-0">
-                  <a class="sidenav-link pt-2 pb-2 pr-2 pl-sm-1 f-2 fs-md-7 f-lg-1 no-wrap" href="#resume">
-                    <i class="fas fa-list-alt sidenav-icon" aria-hidden="true"></i>
+                  <a class="sidenav-link pt-2 pb-2 pr-2 pl-sm-1 f-2 fs-md-7 f-lg-1 no-wrap"
+                     href="#resume">
+                    <i class="fas fa-id-card sidenav-icon" aria-hidden="true"></i>
                     <span class="sidenav-text">R&eacute;sum&eacute;</span>
                   </a>
                 </li>
                 
                 <!--
                 <li class="sidenav-list-item contact p-0 m-0 pr-2">
-                  <a class="sidenav-link pt-2 pb-2 f-2 fs-md-5 f-lg-0 no-wrap" href="#contact">
+                  <a class="sidenav-link pt-2 pb-2 f-2 fs-md-5 f-lg-0 no-wrap"
+                     href="#contact">
                     <i class="fa fa-comment sidenav-icon" aria-hidden="true"></i>
                     <span class="sidenav-text">Contact</span>
                   </a>
@@ -129,8 +136,8 @@
                 
                 <p class="f-1">
                   Want to talk?  Shoot me an email at
-                  <a href="mailto:Hi@StevenGago.com">
-                    Hi@StevenGago.com
+                  <a href="mailto:Hi@SteveGago.com">
+                    Hi@SteveGago.com
                   </a>
                 </p>
                 
@@ -273,168 +280,169 @@
                   :'(  However, the following projects...
                 </p>
 
-                <div class="row">
+                <div class="card-columns">
+                  
                   <!-- Card for NSerialProtocol -->
-                  <div class="col-12 col-xl-6">
-                    <div class="card border-warning mb-3">
-                      <img class="card-img-top" src="../images/getsafefilehandle.png" alt="NSerialProtocol">
-                      <div class="card-body">
-                        <p class="card-title f-3">
-                          NSerialProtocol
-                        </p>
-                        <p class="card-subtitle text-muted mb-4 f-1">
-                          Simple Serial Port Comms For .NET
-                        </p>
-                        <p class="underconstruction text-center p-1">
-                          <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                          Under Construction
-                          <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                        </p>
-                        <p class="card-text">
-                          NSerialProtocol aims to simplify the use of the serial
-                          port communications for all .NET languages.  It includes
-                          easy-to-use serial packet declaration,
-                          asynchrounous packet transmission,
-                          forward-error correction (FEC), byte stuffing, and clears
-                          the fAbortOnError flag.
-                        </p>
-                        <a href="#" class="btn btn-primary">
-                          Visit Repo On <i class="fa fa-github" aria-hidden="true"></i>
-                        </a>
+                  <div class="card border-dark mb-3 text-center">
+                    <div class="card-body">
+                      <p class="card-title text-primary f-7 f-sm-6">
+                        NSerialProtocol
+                      </p>
+                      <div class="text-center mt-3">
+                        <img class="card-img card-img-sm"
+                             accesskey="" src="../images/nserialprotocol-logo.svg"
+                             alt="NSerialProtocol-Logo">
                       </div>
+                      <p class="card-subtitle text-muted text-center mb-4 mt-4 f-2 f-sm-2">
+                        Serial Port Comms For .NET
+                      </p>
+                      <p class="underconstruction text-center p-1">
+                        <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+                        Under Construction
+                        <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+                      </p>
+                      <p class="card-text">
+                        NSerialProtocol aims to simplify the use of the serial
+                        port communications for all .NET languages.  It includes
+                        easy-to-use serial packet declaration,
+                        asynchrounous packet transmission,
+                        forward-error correction (FEC), byte stuffing, and clears
+                        the fAbortOnError flag.
+                      </p>
+                      <a href="#" class="btn btn-primary">
+                        Visit Repo On <i class="fab fa-github" aria-hidden="true"></i>
+                      </a>
                     </div>
                   </div>
                   
                   <!-- Card for Slfy -->
-                  <div class="col-12 col-xl-6">
-                    <div class="card border-warning mb-3">
-                      <img class="card-img-top" src="../images/slfy.png" alt="Slfy JS">
-                      <div class="card-body">
-                        <p class="card-title f-3">
-                          Slfy
-                        </p>
-                        <p class="card-subtitle text-muted mb-4 f-1">
-                          The Self-Typing Code On This Website
-                        </p>
-                        <p class="underconstruction text-center p-1">
-                          <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                          Under Construction
-                          <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                        </p>
-                        <p class="card-text">
-                          Slfy is a JavaScript and jQuery library that
-                          gives the illusion of self-typing, self-executing code.
-                          (In reality, Slfy inserts each character individually,
-                          removes the characters it just inserted, then
-                          inserts the actual code.)  Slfy can type HTML, CSS or JavaScript.
-                        </p>
-                        <a href="#" class="btn btn-primary">
-                          Visit Repo On <i class="fa fa-github" aria-hidden="true"></i>
-                        </a>
-                      </div>
+                  <div class="card border-dark text-center mb-3">
+                    <!--
+                    <img class="card-img-top"
+                         src="../images/slfy.png"
+                         alt="Slfy JS">
+                    -->
+                    <div class="card-body">
+                      <p class="card-title text-primary f-7">
+                        Slfy
+                      </p>
+                      <p class="card-subtitle text-muted mt-2 mb-4 f-2">
+                        The Self-Typing Code On This Website
+                      </p>
+                      <p class="underconstruction text-center p-1">
+                        <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+                        Under Construction
+                        <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+                      </p>
+                      <p class="card-text">
+                        Slfy is a JavaScript and jQuery library that
+                        gives the illusion of self-typing, self-executing code.
+                        In reality, Slfy inserts each character individually,
+                        removes the characters it just inserted, then
+                        inserts the actual code.  Slfy can type HTML, CSS or JavaScript.
+                      </p>
+                      <a href="#" class="btn btn-primary">
+                        Visit Repo On <i class="fab fa-github" aria-hidden="true"></i>
+                      </a>
                     </div>
                   </div>
-                </div>
                 
-                <div class="row">
-                  
                   <!-- Card for MEW -->
-                  <div class="col-12 col-xl-6">
-                    <div class="card border-primary mb-3">
-                      <img class="card-img-top" src="../images/mew.jpg" alt="Malaria early warning">
-                      <div class="card-body">
-                        <p class="card-title f-3">
-                          Malaria Early Warning (MEW)
-                        </p>
-                        <p class="card-subtitle text-muted mb-4 f-1">
-                          Predicting the Spatial and Temporal Spread of Malaria
-                        </p>
-                        <p class="card-text">
-                          Malaria Early Warning (MEW) was a gift to the Indian
-                          government to predict the spread of the Malaria
-                          virus in the north-western parts of India using rainfall
-                          via weather stations, vegetation via satellite,
-                          and other data.  The website was created using Python, web2py,
-                          the R Statistical Language, and a host of other mathematical tools.
-                        </p>
-                      </div>
+                  <div class="card border-dark text-center mb-3">
+                    <div class="card-body">
+                      <p class="card-title text-primary f-4">
+                        Malaria Early Warning (MEW)
+                      </p>
+                      <img class="card-img"
+                         src="../images/mew.jpg"
+                         alt="Malaria early warning">
+                      <p class="card-subtitle text-muted mt-2 mb-4 f-2">
+                        Predicting the Spatial and Temporal Spread of Malaria
+                      </p>
+                      <p class="card-text">
+                        Malaria Early Warning (MEW) was a gift to the Indian
+                        government to predict the spread of the Malaria
+                        virus in the north-western parts of India using rainfall
+                        via weather stations, vegetation via satellite,
+                        and other data.  The website was created using Python, web2py,
+                        the R Statistical Language, and a host of other mathematical tools.
+                      </p>
                     </div>
                   </div>
                   
                   <!-- Card for MEW Image Processing -->
-                  <div class="col-12 col-xl-6">
-                    <div class="card border-primary mb-3">
-                      <img class="card-img-top" src="../images/vegetation.jpg" alt="Image Processing Results">
-                      <div class="card-body">
-                        <p class="card-title f-3">
-                          MEW Image Processing
-                        </p>
-                        <p class="card-subtitle text-muted mb-4 f-1">
-                          Vegetation Index from Satelite Data
-                        </p>
-                        <p class="card-text">
-                          For the MEW project, we used satelite data
-                          taken from the NOAA Climate Data Record
-                          to generate images of vegetation.  Each
-                          pixel in the above image represents the
-                          amount of green light per
-                          square mile of land within the state of
-                          Gujarat, India.
-                          <!-- https://www.google.com/maps/place/24%C2%B000'00.0%22N+71%C2%B000'00.0%22E/@23.9938013,65.2086863,1721389m/data=!3m1!1e3!4m5!3m4!1s0x0:0x0!8m2!3d24!4d71 -->
-                          The above image shows a desert.
-                        </p>
-                      </div>
+                  <div class="card border-dark text-center mb-3">
+                    <div class="card-body">
+                      <p class="card-title text-primary f-7">
+                        Image Processing
+                      </p>
+                      <img class="card-img-top"
+                         src="../images/vegetation.jpg"
+                         alt="Image Processing Results">
+                      <p class="card-subtitle text-muted mt-2 mb-4 f-2">
+                        Vegetation Index from Satelite Data for MEW
+                      </p>
+                      <p class="card-text">
+                        For the MEW project, we used satelite data
+                        taken from the NOAA Climate Data Record
+                        to generate images of vegetation.  Each
+                        pixel in the above image represents the
+                        amount of green light per
+                        square mile of land within the state of
+                        Gujarat, India.
+                        <!-- https://www.google.com/maps/place/24%C2%B000'00.0%22N+71%C2%B000'00.0%22E/@23.9938013,65.2086863,1721389m/data=!3m1!1e3!4m5!3m4!1s0x0:0x0!8m2!3d24!4d71 -->
+                        The above image shows a desert.
+                      </p>
                     </div>
                   </div>
-                </div>
-                
-                <div class="row">
                   
                   <!-- Card for Electrical Engineering -->
-                  <div class="col-12 col-xl-6">
-                    <div class="card border-primary mb-3">
-                      <img class="card-img-top" src="../images/circuit-board.jpg" alt="Image Processing Results">
-                      <div class="card-body">
-                        <p class="card-title f-3">
-                          Circuit Board
-                        </p>
-                        <p class="card-subtitle text-muted mb-4 f-1">
-                          For Gait-Event Detection
-                        </p>
-                        <p class="card-text">
-                          The above circuit board was designed to help monitor
-                          important events in the walk-cycle (gait) for research and the
-                          rehibilitation of stroke patients.
-                        </p>
-                      </div>
+                  <div class="card border-dark text-center mb-3">
+                    <div class="card-body">
+                      <p class="card-title text-primary f-7">
+                        Circuit Board
+                      </p>
+                      <img class="card-img card-img-md mt-3"
+                           src="../images/circuit-board.jpg"
+                           alt="Image Processing Results">
+                      <p class="card-subtitle text-muted mt-2 mb-4 f-2">
+                        For Gait-Event Detection
+                      </p>
+                      <p class="card-text">
+                        The above circuit board was designed to help monitor
+                        important events in the walk-cycle (gait) for research and the
+                        rehibilitation of stroke patients.
+                      </p>
                     </div>
                   </div>
                   
                   <!-- Card for Water Bath -->
-                  <div class="col-12 col-xl-6">
-                    <div class="card border-primary mb-3">
-                      <img class="card-img-top" src="../images/water-bath.jpg" alt="Image Processing Results">
-                      <div class="card-body">
-                        <p class="card-title f-3">
-                          Water bath</p>
-                        <p class="h4 card-subtitle text-muted mb-4 f-1">
-                          For Heat-Activated Kinase in Fruit Flys
-                        </p>
-                        <p class="card-text">
-                          We engineered a water bath to rapidly heat fruit-fly eggs to 10O
-                          C and back to room temperature for genetics research.
-                        </p>
-                      </div>
+                  <div class="card border-dark text-center mb-3">
+                    <div class="card-body">
+                      <p class="card-title text-primary f-7">
+                        Water bath
+                      </p>
+                      <img class="card-img"
+                         src="../images/water-bath.jpg"
+                         alt="Image Processing Results">
+                      <p class="h4 card-subtitle text-muted mt-2 mb-4 f-2">
+                        For Heat-Activated Kinase in Fruit Flys
+                      </p>
+                      <p class="card-text">
+                        We created a custom water bath to rapidly heat fruit-fly eggs to
+                        100&deg; C and back to room temperature for genetics research.
+                        I engineered the electronics, user controls, and the PID
+                        temperature-control loop.
+                      </p>
                     </div>
                   </div>
-                  
                   
                 </div>
               </article>
               
               <article id="resume" class="pt-2 pt-sm-5">
                 <h2 class="text-center fl-1">
-                  <i class="fas fa-list-alt" aria-hidden="true"></i> R&eacute;sum&eacute;
+                  <i class="fas fa-id-card" aria-hidden="true"></i> R&eacute;sum&eacute;
                 </h2>
                 
                 <p class="h5 text-center">
@@ -474,7 +482,7 @@
                       SQL, assembly, and more
                     </li>
                     <li>
-                      Microsoft Visual Studio, Microsoft SQL Server Management Studio,
+                      Microsoft Visual Studio, Eclispe IDE, Microsoft SQL Server Management Studio,
                       unit testing frameworks, mocking libraries, IoC Containers, MVVM frameworks,
                       profilers, gaming frameworks, web application frameworks, ladder logic,
                       control systems, numerous hardware peripherals, circuit design, and more
@@ -488,27 +496,18 @@
                   </p>
                   
                   <p class="h5">
-                    Independent Contracting
-                  </p>
-                  <p class="h6">
-                    Software Engineer January 2014 - July 2016
-                  </p>
-                  <ul>
-                    <li>
-                      Constructed C# application to select desired LED light
-                      frequency for use in blood parameter probes
-                    </li>
-                    <li>
-                      Coached clients about complicated software architecture
-                      and processes
-                    </li>
-                  </ul>
-                  
-                  <p class="h5">
                     Terumo Cardiovascular Group
+                    
+                    <button type="btn btn-primary"
+                            data-toggle="modal"
+                            data-target="#exampleModalCenter">
+                      <i class="fas fa-map-marker-alt"></i>
+                    </button>
                   </p>
+                  
+                  
                   <p class="h6">
-                    Software Engineer May 2014 - October 2015
+                    Software Engineer May 2014 - July 2016
                   </p>
                   <ul>
                     <li>
@@ -527,6 +526,14 @@
                       assure that the intended use of software met the requirements
                       of end-users and complied with regulatory bodies including
                       the FDA
+                    </li>
+                    <li>
+                      Constructed C# application to select desired LED light
+                      frequency for use in blood parameter probes
+                    </li>
+                    <li>
+                      Coached clients about complicated software architecture
+                      and processes
                     </li>
                   </ul>
                   
@@ -740,6 +747,34 @@
       </p>
     </footer>
     
+    <!-- Modal -->
+    <div class="modal fade"
+         id="exampleModalCenter"
+         tabindex="-1"
+         role="dialog"
+         aria-labelledby="exampleModalCenterTitle"
+         aria-hidden="true">
+      
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6044447.994402207!2d-88.33423569898835!3d42.29152977919168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x883cb6b476427427%3A0xb97099dc24ba4d03!2sTerumo+Cardiovascular+Group!5e0!3m2!1sen!2sus!4v1523377384390"
+                    width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen>
+            </iframe>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
     <!-- jQuery Library -->
     <script
       src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -775,7 +810,10 @@
         $('[data-toggle="tooltip"]').tooltip()
       });
       
-      
+      $("#exampleModalCenter").on("shown.bs.modal", function () {
+          google.maps.event.trigger(map, "resize");
+      });
+
       
       // Show the Slfy terminal window's width and height in pixels
       updateTerminalSize();
@@ -843,6 +881,16 @@
         else {
           location.hash = articleID.replace("#", "#!");
         }
+        
+        setActiveLink(articleID);
+      }
+      
+      function setActiveLink(articleID) {
+        
+        var activeListItem = $("a[href=\"" + articleID + "\"]").parent();
+        
+        activeListItem.siblings("li").removeClass("active");
+        activeListItem.addClass("active");
       }
       
       onPageLoad();
