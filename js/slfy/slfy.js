@@ -128,9 +128,6 @@ function Slfy(url) {
   }
   
   /*
-   * 
-   * 
-   * 
    */
   var removeSlfyAttributes = function removeSlfyAttributes(node) {
     

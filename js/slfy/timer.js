@@ -1,4 +1,5 @@
 function Timer(delay, callback) {
+  "use strict";
   
   var timerId,
       start,
