@@ -5,8 +5,6 @@ function Attributes() {
   
   const self = this;
   
-  const SLFY_ATTRIBUTE_REGEX = /[ ]*(data-slfy-(.*?['"]){2})[ ]*/gi;
-  
   // Custom Slfy HTML attributes
   const TYPE_SELECTOR_ATTRIBUTE =    "data-slfy-selector",
         CONTENT_SELECTOR_ATTRIBUTE = "data-slfy-content",
@@ -40,7 +38,7 @@ function Attributes() {
     runInsert:       true,   // True to run the append the actual element typed
     ignore:          false,
     verbose:         false,  // True to type slfy HTML attributes; otherwise, false.
-    typeDelay:       0,      // Default delay before starting to type
+    typeDelay:       1000,   // Default delay before starting to type
     keyStrokeDelay:  40,     // Default delay between typing each character in milliseconds
     removeDelay:     1000,   // Default delay to wait before removing code in milliseconds
     insertDelay:     30,     // Default delay before showing result in milliseconds

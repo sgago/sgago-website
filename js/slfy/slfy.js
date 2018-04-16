@@ -11,22 +11,8 @@ function Slfy(url) {
   
   const SLFY_ATTRIBUTE_REGEX = /[ ]*(data-slfy-(.*?['"]){2})[ ]*/gi;
   
-  // Custom Slfy HTML attributes
-  const SLFY_DATA_ID =               "slfy-data",
-        TYPE_SELECTOR_ATTRIBUTE =    "data-slfy-selector",
-        CONTENT_SELECTOR_ATTRIBUTE = "data-slfy-content",
-        TYPE_ATTRIBUTE =             "data-slfy-type",
-        REMOVE_ATTRIBUTE =           "data-slfy-remove",
-        APPEND_ATTRIBUTE =           "data-slfy-append",          // TODO: Rename to insert, here and everywhere
-        TYPE_DELAY_ATTRIBUTE =       "data-slfy-type-delay",      // TODO: Rename to start delay
-        KEYSTROKE_DELAY_ATTRIBUTE =  "data-slfy-keystroke-delay",
-        REMOVE_DELAY_ATTRIBUTE =     "data-slfy-remove-delay",
-        APPEND_DELAY_ATTRIBUTE =     "data-slfy-append-delay",
-        IGNORE_ATTRIBUTE =           "data-slfy-ignore",
-        VERBOSITY_ATTRIBUTE =        "data-slfy-verbose",
-        MODE_ATTRIBUTE =             "data-slfy-mode";           // TODO: Implement tree or nested mode
-  
-  const DEFAULT_TYPE_SELECTOR_ATTRIBUTE =    "data-slfy-default-type-selector",
+  const SLFY_DATA_ID =                       "slfy-data",
+        DEFAULT_TYPE_SELECTOR_ATTRIBUTE =    "data-slfy-default-type-selector",
         DEFAULT_CONTENT_SELECTOR_ATTRIBUTE = "data-slfy-default-content-selector",
         DEFAULT_RUN_TYPE_ATTRIBUTE =         "data-slfy-default-run-type",
         DEFAULT_RUN_REMOVE_ATTRIBUTE =       "data-slfy-default-run-remove",
@@ -36,25 +22,14 @@ function Slfy(url) {
         DEFAULT_APPEND_DELAY_ATTRIBUTE =     "data-slfy-default-append-delay",
         DEFAULT_MODE_ATTRIBUTE =             "data-slfy-default-mode";
   
+  this.attributes = new Attributes();
+  
   /*
     TREE MODE IDEA (DESCENDANT MODE?)!
     Automagically starts at the top of a given element, use
       $('#id_of_an_element').find('*').somethingsomething
     to print elements by hierarchy.
   */
-  
-  // Default values
-  this.defaultTypeSelector    = "body", // Default selector for typing code
-  this.defaultContentSelector = "body", // Default selector for placing result of typing code
-  this.defaultRunType         = true,   // True to run the type the code
-  this.defaultRunRemove       = true,   // True to run the remove the typed code
-  this.defaultRunAppend       = true,   // True to run the append the actual element typed
-  this.defaultVerbosity       = false,  // True to type slfy HTML attributes; otherwise, false.
-  this.defaultTypeDelay       = 2000,   // Default delay before starting Slfy
-  this.defaultKeyStrokeDelay  = 40,     // Default delay between typing each character in milliseconds
-  this.defaultRemoveDelay     = 1000,   // Default delay to wait before removing code in milliseconds
-  this.defaultAppendDelay     = 50;     // Default delay before showing result in milliseconds
-  this.defaultMode            = "inline";  // TODO: Author tree mode
   
   // 
   let htmlNodes = null,
@@ -115,16 +90,39 @@ function Slfy(url) {
     return node.outerHTML;
   }
   
-  
-  var getVerbosity = function getVerbosity(node) {
+  var getNodeTree = function getNodeTree(parentNode, node) {
     
-    var verbosity = node.getAttribute(VERBOSITY_ATTRIBUTE);
+    const ELEMENT_NODE_TYPE = 3;
+    var nodes = [];
+    var childNodes = [];
     
-    if (verbosity === null) {
-      verbosity = self.defaultVerbosity;
+    // Is the node an element?
+    if (node.nodeType !== ELEMENT_NODE_TYPE) {
+      
+      // The node is an element, push the node and it's parent onto the results
+      nodes.push([parentNode, node.outerHTML.split(node.innerHTML)[0].trim()]);
     }
     
-    return verbosity;
+    // For each child node of node...
+    for (let childNode of node.childNodes) {
+      
+      // Is the child node of type element?
+      if (childNode.nodeType !== ELEMENT_NODE_TYPE) {
+        
+        // The child node is an element, use recursion to parse it's nodes
+        childNodes = getNodeTree(childNode.parentNode, childNode);
+        
+        // Add the child nodes to the results
+        nodes = nodes.concat(childNodes);
+      }
+      else {
+        
+        // Child node is not an element, slap it onto the results
+        nodes.push([childNode.parentNode, childNode.textContent.trim()]);
+      }
+    }
+    
+    return nodes;
   }
   
   /*
@@ -136,264 +134,53 @@ function Slfy(url) {
   
   /*
    * SUMMARY
-   * Gets the selector from a DOM node as a string.
-   */
-  var getTypeSelector = function getTypeSelector(node) {
-    
-    var selector = node.getAttribute(TYPE_SELECTOR_ATTRIBUTE);
-    
-    if (selector === null) {
-      selector = self.defaultTypeSelector;
-    }
-    
-    return selector;
-  }
-
-  /*
-   * SUMMARY
-   * TODO: Write a comment here
-   */
-  var getType = function getType(node) {
-    
-    var runType = node.getAttribute(TYPE_ATTRIBUTE);
-    
-    if (runType === null) {
-      runType = self.defaultRunType;
-    }
-    else {
-      runType = runType === "true";
-    }
-    
-    return runType;
-  }
-  
-  /*
-   * SUMMARY
-   * TODO: Write a comment here
-   */
-  var getRemove = function getRemove(node) {
-    
-    var runRemove = node.getAttribute(REMOVE_ATTRIBUTE);
-    
-    if (runRemove === null) {
-      runRemove = self.defaultRunRemove;
-    }
-    else {
-      runRemove = runRemove === "true";
-    }
-    
-    return runRemove;
-  }
-  
-  /*
-   * SUMMARY
-   * TODO: Write a comment here
-   */
-  var getAppend = function getAppend(node) {
-    
-    var runAppend = node.getAttribute(APPEND_ATTRIBUTE);
-    
-    if (runAppend === null) {
-      runAppend = self.defaultRunAppend;
-    }
-    else {
-      runAppend = runAppend === "true";
-    }
-    
-    return runAppend;
-  }
-  
-  /*
-   * SUMMARY
-   * TODO: Write a comment here
-   */
-  var getIgnore = function getIgnore(node) {
-    
-    var ignore = node.getAttribute(IGNORE_ATTRIBUTE);
-    
-    if (ignore === null) {
-      ignore = false;
-    }
-    else {
-      ignore = ignore === "true";
-    }
-    
-    return ignore;
-  }
-  
-  /*
-   * SUMMARY
-   * TODO: Write a comment here
-   */
-  var getTypeDelay = function getTypeDelay(node) {
-    
-    var typeDelay = node.getAttribute(TYPE_DELAY_ATTRIBUTE);
-    
-    if (typeDelay === null) {
-      typeDelay = self.defaultTypeDelay;
-    }
-    else {
-      typeDelay = +TypeDelay;
-    }
-    
-    return typeDelay;
-  }
-  
-  /*
-   * SUMMARY
-   * TODO: Write a comment here
-   */
-  var getKeyStrokeDelay = function getKeyStrokeDelay(node) {
-    
-    var keyStrokeDelay = node.getAttribute(KEYSTROKE_DELAY_ATTRIBUTE);
-    
-    if (keyStrokeDelay === null) {
-      keyStrokeDelay = self.defaultKeyStrokeDelay;
-    }
-    else {
-      keyStrokeDelay = +keyStrokeDelay;
-    }
-    
-    return keyStrokeDelay;
-  }
-  
-  /*
-   * SUMMARY
-   * TODO: Write a comment here
-   */
-  var getRemoveDelay = function getRemoveDelay(node) {
-    
-    var removeDelay = node.getAttribute(REMOVE_DELAY_ATTRIBUTE);
-    
-    if (removeDelay === null) {
-      removeDelay = self.defaultRemoveDelay;
-    }
-    else {
-      removeDelay = +removeDelay;
-    }
-    
-    return removeDelay;
-  }
-  
-  /*
-   * SUMMARY
-   * TODO: Write a comment here
-   */
-  var getAppendDelay = function getAppendDelay(node) {
-    
-    var appendDelay = node.getAttribute(APPEND_DELAY_ATTRIBUTE);
-    
-    if (appendDelay === null) {
-      appendDelay = self.defaultAppendDelay;
-    }
-    else {
-      appendDelay = +appendDelay;
-    }
-    
-    return appendDelay;
-  }
-  
-  
-  
-  
-  var getMode = function getMode(node) {
-    
-    var mode = node.getAttribute(MODE_ATTRIBUTE);
-    
-    if (mode === null) {
-      mode = self.defaultMode;
-    }
-    
-    return mode;
-  }
-  
-  
-  
-  
-  /*
-   * SUMMARY
    * TODO: Write a comment here
    */
   var htmlPump = function htmlPump(nodes) {
   
     let content = null,
-        selector = null,
-        type = false,
-        remove = false,
-        append = false,
-        verbose = false,
-        typeDelay = 0,
-        removeDelay = 0,
-        appendDelay = 0,
-        keyStrokeDelay = 0;
+        nodeAttributes = null,
+        treeNodes = null;
     
     for (let node of nodes) {
       
-      if (!getIgnore(node)) {
+      nodeAttributes = self.attributes.get(node);
+      
+      if (!nodeAttributes.ignore) {
+        
         content = getHtml(node);
         
-        // TODO: Implement tree mode here
-        /*if (getMode === "tree") {
-          1. Get node start tag
-            node.outerHTML.split(node.innerHTML)[0]; // Gets start tag of node
-            li.outerHTML.split(li.innerHTML);
-          
-          2. Close the start tag to make it a full element without content
-            https://stackoverflow.com/questions/10016834/regex-matching-up-to-the-first-occurrence-of-a-word?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
-            https://www.regular-expressions.info/repeat.html
-            
-            Regex 1. <[a-zA-Z]+(>|.*?[^?]>)
-            Regex 2. <([^>])+(['"]((>)|(\/>)))
-            
-            // Get start and end tags
-            li.outerHTML.split(li.innerHTML);
-          
-            // Get start tag
-            li.outerHTML.split(li.innerHTML)[0];
-            
-            // Get end tag
-            li.outerHTML.split(li.innerHTML)[];
-          
-          
-            // Define a jQuery method that does this for us
-            $.fn.startTag = function(){
-                return this[0].outerHTML.split(this.html())[0];
-            };
-        }*/
+        
+        var tree = getNodeTree($(nodeAttributes.contentSelector).get(0), node);
+        
+        if (nodeAttributes.mode === "tree") {
+          //var n = getNodeTree(node);
+        }
         
         
         
-        // TODO: Remove slfy attributes here.
-        // TODO: Link to my regex here:
-        // https://regex101.com/r/PMJOl5/4
-        // Regex to find slfy attributes is /(data-slfy-(.*?['"]){2})[ ]*/gi`
         
-        selector = getTypeSelector(node);
-
-        type = getType(node);
-        remove = getRemove(node);
-        append = getAppend(node);
-        verbose = getVerbosity(node);
-
-        typeDelay = getTypeDelay(node);
-        keyStrokeDelay = getKeyStrokeDelay(node);
-        removeDelay = getRemoveDelay(node);
-        appendDelay = getAppendDelay(node);
-
-        if (!verbose) {
+        if (!nodeAttributes.verbose) {
           content = removeSlfyAttributes(content);
         }
         
-        if (type) {
-          self.type(content, selector, delay += typeDelay, keyStrokeDelay);
+        if (nodeAttributes.runType) {
+          self.type(content,
+                    nodeAttributes.typeSelector,
+                    delay += nodeAttributes.typeDelay,
+                    nodeAttributes.keyStrokeDelay);
         }
 
-        if (remove) {
-          self.remove(content, selector, delay += removeDelay);
+        if (nodeAttributes.runRemove) {
+          self.remove(content,
+                      nodeAttributes.typeSelector,
+                      delay += nodeAttributes.removeDelay);
         }
 
-        if (append) {
-          self.append(content, selector, delay += appendDelay);
+        if (nodeAttributes.runInsert) {
+          self.append(content,
+                      nodeAttributes.contentSelector,
+                      delay += nodeAttributes.insertDelay);
         }
       }
     }
@@ -469,6 +256,9 @@ function Slfy(url) {
     (function(content, selector, delay) {
       setTimeout(function() {
         var element = $(selector)[0];
+        
+        
+        // TODO: Find a better way to escape HTML content for typing
         var escapedContent = content.replace(/</gi, "&lt;")
                                     .replace(/>/gi, "&gt;")
                                     .replace(/(\n)/gi, "<br>")
