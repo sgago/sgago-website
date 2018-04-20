@@ -90,6 +90,17 @@ function Slfy(url) {
     return node.outerHTML;
   }
   
+  var getStartTag = function getStartTag(node) {
+    
+    return node.outerHTML.split(node.innerHTML)[0].trim();
+  }
+  
+  var getContent = function getContent(node) {
+    
+    return node.textContent.trim();
+  }
+  
+  
   var getNodeTree = function getNodeTree(parentNode, node) {
     
     const ELEMENT_NODE_TYPE = 3;
@@ -97,17 +108,17 @@ function Slfy(url) {
     var childNodes = [];
     
     // Is the node an element?
-    if (node.nodeType !== ELEMENT_NODE_TYPE) {
+    if (node.nodeType === ELEMENT_NODE_TYPE) {
       
       // The node is an element, push the node and it's parent onto the results
-      nodes.push([parentNode, node.outerHTML.split(node.innerHTML)[0].trim()]);
+      nodes.push([parentNode, node]);
     }
     
-    // For each child node of node...
+    // Then, for each child nodes of node...
     for (let childNode of node.childNodes) {
       
       // Is the child node of type element?
-      if (childNode.nodeType !== ELEMENT_NODE_TYPE) {
+      if (childNode.nodeType === ELEMENT_NODE_TYPE) {
         
         // The child node is an element, use recursion to parse it's nodes
         childNodes = getNodeTree(childNode.parentNode, childNode);
@@ -118,8 +129,9 @@ function Slfy(url) {
       else {
         
         // Child node is not an element, slap it onto the results
-        nodes.push([childNode.parentNode, childNode.textContent.trim()]);
+        nodes.push([childNode.parentNode, childNode]);
       }
+      
     }
     
     return nodes;
@@ -139,52 +151,86 @@ function Slfy(url) {
   var htmlPump = function htmlPump(nodes) {
   
     let content = null,
-        nodeAttributes = null,
+        attributes = null,
         treeNodes = null;
     
     for (let node of nodes) {
       
-      nodeAttributes = self.attributes.get(node);
+      showNodes([node]);
       
+    }
+  }
+  
+  var showNodes(nodes) = function showNodes(nodes) {
+    
+    var nodeTree = null;
+    var attributes = null;
+    var content = null;
+    var nodeAttributes = null;
+    
+    for (let node of nodes) {
+      
+      nodeAttributes = self.attributes.get(node);
+
       if (!nodeAttributes.ignore) {
-        
-        content = getHtml(node);
-        
-        
-        var tree = getNodeTree($(nodeAttributes.contentSelector).get(0), node);
-        
+
         if (nodeAttributes.mode === "tree") {
-          //var n = getNodeTree(node);
+          
+          nodeTree = getNodeTree(null, node);
+        }
+        else {
+          nodeTree = [node];
         }
         
         
         
-        
-        if (!nodeAttributes.verbose) {
-          content = removeSlfyAttributes(content);
-        }
-        
-        if (nodeAttributes.runType) {
-          self.type(content,
-                    nodeAttributes.typeSelector,
-                    delay += nodeAttributes.typeDelay,
-                    nodeAttributes.keyStrokeDelay);
-        }
+        for (let n of nodeTree) {
+          
+          attributes = self.attributes.get(n);
+          
+          if (!attributes.ignore) {
+            
+            if (!attributes.mode === "tree") {
+              content = getHtml(n);
+            }
+            else {
+              content = getStartTag(n);
+            }
 
-        if (nodeAttributes.runRemove) {
-          self.remove(content,
-                      nodeAttributes.typeSelector,
-                      delay += nodeAttributes.removeDelay);
-        }
+            if (!attributes.verbose) {
+              content = removeSlfyAttributes(content);
+            }
 
-        if (nodeAttributes.runInsert) {
-          self.append(content,
-                      nodeAttributes.contentSelector,
-                      delay += nodeAttributes.insertDelay);
+            if (attributes.runType) {
+              self.type(content,
+                        attributes.typeSelector,
+                        delay += nodeAttributes.typeDelay,
+                        nodeAttributes.keyStrokeDelay);
+            }
+
+            if (attributes.runRemove) {
+              self.remove(content,
+                          attributes.typeSelector,
+                          delay += nodeAttributes.removeDelay);
+            }
+
+            if (attributes.runInsert) {
+              self.append(content,
+                          attributes.contentSelector,
+                          delay += nodeAttributes.insertDelay);
+            }
+          }
+          
+          
         }
       }
     }
+    
   }
+  
+  
+  
+  
   
   /*
    * SUMMARY
