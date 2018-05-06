@@ -100,6 +100,11 @@ function Slfy(url) {
     return node.textContent.trim();
   }
   
+  var closeStartTag = function closeStartTag(tag) {
+    
+    return tag.replace(/(?=.*)>$/gi, "/>");
+  }
+  
   
   var getNodeTree = function getNodeTree(parentNode, node) {
     
@@ -151,84 +156,114 @@ function Slfy(url) {
   var htmlPump = function htmlPump(nodes) {
   
     let content = null,
-        attributes = null,
-        treeNodes = null;
+        attribs = null,
+        nodeTree = null;
     
     for (let node of nodes) {
       
-      showNodes([node]);
-      
-    }
-  }
-  
-  var showNodes(nodes) = function showNodes(nodes) {
-    
-    var nodeTree = null;
-    var attributes = null;
-    var content = null;
-    var nodeAttributes = null;
-    
-    for (let node of nodes) {
-      
-      nodeAttributes = self.attributes.get(node);
+      attribs = self.attributes.get(node);
 
-      if (!nodeAttributes.ignore) {
+      if (!attribs.ignore) {
 
-        if (nodeAttributes.mode === "tree") {
+        if (attribs.mode === "tree") {
           
           nodeTree = getNodeTree(null, node);
+          runSlfyNodeTree(nodeTree);
         }
         else {
-          nodeTree = [node];
-        }
-        
-        
-        
-        for (let n of nodeTree) {
           
-          attributes = self.attributes.get(n);
-          
-          if (!attributes.ignore) {
-            
-            if (!attributes.mode === "tree") {
-              content = getHtml(n);
-            }
-            else {
-              content = getStartTag(n);
-            }
-
-            if (!attributes.verbose) {
-              content = removeSlfyAttributes(content);
-            }
-
-            if (attributes.runType) {
-              self.type(content,
-                        attributes.typeSelector,
-                        delay += nodeAttributes.typeDelay,
-                        nodeAttributes.keyStrokeDelay);
-            }
-
-            if (attributes.runRemove) {
-              self.remove(content,
-                          attributes.typeSelector,
-                          delay += nodeAttributes.removeDelay);
-            }
-
-            if (attributes.runInsert) {
-              self.append(content,
-                          attributes.contentSelector,
-                          delay += nodeAttributes.insertDelay);
-            }
-          }
-          
-          
+          runSlfyNode(node);
         }
       }
     }
     
   }
   
+  // Normal, inline mode
+  var runSlfyNode = function runSlfyNode(node) {
+    
+    var content = null;
+    var attribs = self.attributes.get(node);
+          
+    if (!attribs.ignore) {
+
+      content = getHtml(node);
+
+      if (!attribs.verbose) {
+        content = removeSlfyAttributes(content);
+      }
+
+      if (attribs.runType) {
+        self.type(content,
+                  attribs.typeSelector,
+                  delay += attribs.typeDelay,
+                  attribs.keyStrokeDelay);
+      }
+
+      if (attribs.runRemove) {
+        self.remove(content,
+                    attribs.typeSelector,
+                    delay += attribs.removeDelay);
+      }
+
+      if (attribs.runInsert) {
+        self.append(content,
+                    attribs.contentSelector,
+                    delay += attribs.insertDelay);
+      }
+    }
+  }
   
+  
+  
+  var runSlfyNodeTree = function runSlfyNodeTree(nodeTree) {
+    
+    const ELEMENT_NODE_TYPE = 1;
+    var content = null;
+    var attribs = null;
+    var topNodeAttribs = self.attributes.get(nodeTree[0][0]);
+    
+    if (!topNodeAttribs.ignore) {
+      
+      for (let n of nodeTree) {
+        
+        if (n[1].nodeType === ELEMENT_NODE_TYPE) {
+          attribs = self.attributes.get(n[1]);
+          content = getStartTag(n[1]);
+          content = closeStartTag(content);
+          
+          if (!attribs.verbose) {
+            content = removeSlfyAttributes(content);
+          }
+        }
+        else {
+          attribs = self.attributes.get(n[0]);
+          content = n[1].data;
+        }
+
+        if (attribs.runType) {
+          self.type(content,
+                    attribs.typeSelector,
+                    delay += attribs.typeDelay,
+                    attribs.keyStrokeDelay);
+        }
+
+        if (attribs.runRemove) {
+          self.remove(content,
+                      attribs.typeSelector,
+                      delay += attribs.removeDelay);
+        }
+
+        if (attribs.runInsert) {
+          self.append(content,
+                      attribs.contentSelector,
+                      delay += attribs.insertDelay);
+        }
+        
+      }
+      
+    }
+  }
   
   
   
@@ -291,6 +326,8 @@ function Slfy(url) {
         
       }
     }
+    
+    
   }
   
   /*
