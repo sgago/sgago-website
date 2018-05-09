@@ -105,6 +105,30 @@ function Slfy(url) {
     return tag.replace(/(?=.*)>$/gi, "/>");
   }
   
+  /*
+    OLD:
+    type(content, selector, typeDelay, keyStrokeDelay)
+    remove(content, selector, removeDelay)
+    append(content, selector, appendDelay)
+    getNodeTree(parentNode, node)
+    
+    
+    
+    NEW:
+    type(content, parentNode, typeDelay, keyStrokeDelay)
+    remove(content, parentNode, removeDelay)
+    append(content, parentNode, appendDelay)
+    getNodeTree(node) => nodes[0].node, nodes[0].parent, 
+      {
+        node
+        parent
+        content
+        attributes
+      }
+    
+  */
+  
+  
   
   var getNodeTree = function getNodeTree(parentNode, node) {
     
@@ -159,6 +183,8 @@ function Slfy(url) {
         attribs = null,
         nodeTree = null;
     
+    var slfyNodeTree = null;
+    
     for (let node of nodes) {
       
       attribs = self.attributes.get(node);
@@ -167,8 +193,8 @@ function Slfy(url) {
 
         if (attribs.mode === "tree") {
           
-          nodeTree = getNodeTree(null, node);
-          runSlfyNodeTree(nodeTree);
+          slfyNodeTree = new SlfyNodeTree(node);
+          runSlfyNodeTree(slfyNodeTree);
         }
         else {
           
@@ -214,57 +240,45 @@ function Slfy(url) {
     }
   }
   
-  
-  
+
   var runSlfyNodeTree = function runSlfyNodeTree(nodeTree) {
     
-    const ELEMENT_NODE_TYPE = 1;
-    var content = null;
-    var attribs = null;
-    var topNodeAttribs = self.attributes.get(nodeTree[0][0]);
-    
-    if (!topNodeAttribs.ignore) {
+    if (!nodeTree[0].ignore) {
       
       for (let n of nodeTree) {
         
-        if (n[1].nodeType === ELEMENT_NODE_TYPE) {
-          attribs = self.attributes.get(n[1]);
-          content = getStartTag(n[1]);
-          content = closeStartTag(content);
-          
-          if (!attribs.verbose) {
-            content = removeSlfyAttributes(content);
-          }
+        if (!n.attributes.verbose) {
+          //content = removeSlfyAttributes(content);
         }
-        else {
-          attribs = self.attributes.get(n[0]);
-          content = n[1].data;
+        
+        
+        // ERROR: typeSelector and contentSelectors are wrong.
+        // ERROR: We need to reauthor self.type, self.remove, and self.append
+        // ERROR: Such that they take a node instead of a selector...
+
+        if (n.attributes.runType) {
+          self.type(n.content,
+                    n.attributes.typeSelector,
+                    delay += n.attributes.typeDelay,
+                    n.attributes.keyStrokeDelay);
         }
 
-        if (attribs.runType) {
-          self.type(content,
-                    attribs.typeSelector,
-                    delay += attribs.typeDelay,
-                    attribs.keyStrokeDelay);
+        if (n.attributes.runRemove) {
+          self.remove(n.content,
+                      n.attributes.typeSelector,
+                      delay += n.attributes.removeDelay);
         }
 
-        if (attribs.runRemove) {
-          self.remove(content,
-                      attribs.typeSelector,
-                      delay += attribs.removeDelay);
-        }
-
-        if (attribs.runInsert) {
-          self.append(content,
-                      attribs.contentSelector,
-                      delay += attribs.insertDelay);
+        if (n.attributes.runInsert) {
+          self.append(n.content,
+                      n.attributes.contentSelector,
+                      delay += n.attributes.insertDelay);
         }
         
       }
       
     }
   }
-  
   
   
   /*
