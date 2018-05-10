@@ -1,20 +1,9 @@
-function SlfyNode(node, content, parent, attributes) {
+function SlfyTree(node, parent) {
   "use strict";
   
   const self = this;
   
-  this.node = node;
-  this.content = content;
-  this.parent = parent;
-  this.attributes = attributes;
-}
-
-function SlfyNodeTree(node) {
-  "use strict";
-  
-  this.attributes = new Attributes();
-  
-  const self = this;
+  this.attributes = new SlfyAttributes();
   
   var getStartTag = function getStartTag(node) {
     
@@ -31,20 +20,20 @@ function SlfyNodeTree(node) {
     return tag.replace(/(?=.*)>$/gi, "/>");
   }
   
-  var createTree = function createTree(node) {
+  var createTree = function createTree(node, parent) {
     
     const ELEMENT_NODE_TYPE = 1;
     const TEXT_NODE_TYPE = 3;
     
     var nodes = [];
     
-    var parent = null;
+    //var parent = null;
     var content = "";
     var attribs = null;
     
     if (node.nodeType === ELEMENT_NODE_TYPE) {
       
-      parent = node.parentNode;
+      //parent = node.parentNode;
       attribs = self.attributes.get(node);
       
       if (node.childNodes.length === 1 &&
@@ -56,12 +45,12 @@ function SlfyNodeTree(node) {
       }
       else {
         content = closeStartTag(getStartTag(node));
-        parent = node.parentNode;
+        //parent = node.parentNode;
         
         nodes.push(new SlfyNode(node, content, parent, attribs));
         
         for (let n of node.childNodes) {
-          nodes = nodes.concat(createTree(n));
+          nodes = nodes.concat(createTree(n, node));
         }
       }
       
@@ -78,5 +67,5 @@ function SlfyNodeTree(node) {
     return nodes;
   }
   
-  return createTree(node);
+  return createTree(node, parent);
 }

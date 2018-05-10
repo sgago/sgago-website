@@ -1,6 +1,6 @@
 
 
-function Attributes() {
+function SlfyAttributes() {
   "use strict";
   
   const self = this;

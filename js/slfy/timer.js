@@ -1,4 +1,4 @@
-function Timer(delay, callback) {
+function Timer(delay, callback, start) {
   "use strict";
   
   var timerId,
@@ -16,7 +16,9 @@ function Timer(delay, callback) {
       timerId = window.setTimeout(callback, remaining);
   };
 
-  this.resume();
+  if (start) {
+    this.resume();
+  }
 }
 
 /*

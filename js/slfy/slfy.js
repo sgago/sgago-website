@@ -22,14 +22,10 @@ function Slfy(url) {
         DEFAULT_APPEND_DELAY_ATTRIBUTE =     "data-slfy-default-append-delay",
         DEFAULT_MODE_ATTRIBUTE =             "data-slfy-default-mode";
   
-  this.attributes = new Attributes();
+  this.attributes = new SlfyAttributes();
   
-  /*
-    TREE MODE IDEA (DESCENDANT MODE?)!
-    Automagically starts at the top of a given element, use
-      $('#id_of_an_element').find('*').somethingsomething
-    to print elements by hierarchy.
-  */
+  Slfy.prototype.nodeIndex = 0;
+  
   
   // 
   let htmlNodes = null,
@@ -58,6 +54,10 @@ function Slfy(url) {
    */
   var parse = function parse(text) {
 
+    // TODO: Give each node a unique ID using
+    // Slfy.prototype.nodeIndex
+    
+    
     return new DOMParser()
         .parseFromString(text, "text/xml")
         .getElementById(SLFY_DATA_ID)
@@ -106,67 +106,6 @@ function Slfy(url) {
   }
   
   /*
-    OLD:
-    type(content, selector, typeDelay, keyStrokeDelay)
-    remove(content, selector, removeDelay)
-    append(content, selector, appendDelay)
-    getNodeTree(parentNode, node)
-    
-    
-    
-    NEW:
-    type(content, parentNode, typeDelay, keyStrokeDelay)
-    remove(content, parentNode, removeDelay)
-    append(content, parentNode, appendDelay)
-    getNodeTree(node) => nodes[0].node, nodes[0].parent, 
-      {
-        node
-        parent
-        content
-        attributes
-      }
-    
-  */
-  
-  
-  
-  var getNodeTree = function getNodeTree(parentNode, node) {
-    
-    const ELEMENT_NODE_TYPE = 3;
-    var nodes = [];
-    var childNodes = [];
-    
-    // Is the node an element?
-    if (node.nodeType === ELEMENT_NODE_TYPE) {
-      
-      // The node is an element, push the node and it's parent onto the results
-      nodes.push([parentNode, node]);
-    }
-    
-    // Then, for each child nodes of node...
-    for (let childNode of node.childNodes) {
-      
-      // Is the child node of type element?
-      if (childNode.nodeType === ELEMENT_NODE_TYPE) {
-        
-        // The child node is an element, use recursion to parse it's nodes
-        childNodes = getNodeTree(childNode.parentNode, childNode);
-        
-        // Add the child nodes to the results
-        nodes = nodes.concat(childNodes);
-      }
-      else {
-        
-        // Child node is not an element, slap it onto the results
-        nodes.push([childNode.parentNode, childNode]);
-      }
-      
-    }
-    
-    return nodes;
-  }
-  
-  /*
    */
   var removeSlfyAttributes = function removeSlfyAttributes(node) {
     
@@ -180,21 +119,19 @@ function Slfy(url) {
   var htmlPump = function htmlPump(nodes) {
   
     let content = null,
+        parent = null,
         attribs = null,
         nodeTree = null;
-    
-    var slfyNodeTree = null;
     
     for (let node of nodes) {
       
       attribs = self.attributes.get(node);
+      parent = $(attribs.contentSelector).get()[0];
 
       if (!attribs.ignore) {
 
         if (attribs.mode === "tree") {
-          
-          slfyNodeTree = new SlfyNodeTree(node);
-          runSlfyNodeTree(slfyNodeTree);
+          runSlfyTree(new SlfyTree(node, parent));
         }
         else {
           
@@ -210,6 +147,7 @@ function Slfy(url) {
     
     var content = null;
     var attribs = self.attributes.get(node);
+    var slfyNode = null;
           
     if (!attribs.ignore) {
 
@@ -218,61 +156,55 @@ function Slfy(url) {
       if (!attribs.verbose) {
         content = removeSlfyAttributes(content);
       }
+      
+      slfyNode = new SlfyNode(node, content, $(attribs.contentSelector), attribs);
 
       if (attribs.runType) {
-        self.type(content,
-                  attribs.typeSelector,
+        self.type(slfyNode,
                   delay += attribs.typeDelay,
-                  attribs.keyStrokeDelay);
+                  attribs.keyStrokeDelay
+                  );
       }
 
       if (attribs.runRemove) {
-        self.remove(content,
-                    attribs.typeSelector,
+        self.remove(slfyNode,
                     delay += attribs.removeDelay);
       }
 
       if (attribs.runInsert) {
-        self.append(content,
-                    attribs.contentSelector,
+        self.append(slfyNode,
                     delay += attribs.insertDelay);
       }
     }
   }
   
 
-  var runSlfyNodeTree = function runSlfyNodeTree(nodeTree) {
+  var runSlfyTree = function runSlfyTree(slfyTree) {
     
-    if (!nodeTree[0].ignore) {
+    if (!slfyTree[0].ignore) {
       
-      for (let n of nodeTree) {
+      //slfyTree[0].parent = $(slfyNode.attributes.contentSelector).get()[0];
+      
+      for (let slfyNode of slfyTree) {
         
-        if (!n.attributes.verbose) {
+        if (!slfyNode.attributes.verbose) {
           //content = removeSlfyAttributes(content);
         }
         
-        
-        // ERROR: typeSelector and contentSelectors are wrong.
-        // ERROR: We need to reauthor self.type, self.remove, and self.append
-        // ERROR: Such that they take a node instead of a selector...
-
-        if (n.attributes.runType) {
-          self.type(n.content,
-                    n.attributes.typeSelector,
-                    delay += n.attributes.typeDelay,
-                    n.attributes.keyStrokeDelay);
+        if (slfyNode.attributes.runType) {
+          self.type(slfyNode,
+                    delay += slfyNode.attributes.typeDelay,
+                    slfyNode.attributes.keyStrokeDelay);
         }
 
-        if (n.attributes.runRemove) {
-          self.remove(n.content,
-                      n.attributes.typeSelector,
-                      delay += n.attributes.removeDelay);
+        if (slfyNode.attributes.runRemove) {
+          self.remove(slfyNode,
+                      delay += slfyNode.attributes.removeDelay);
         }
 
-        if (n.attributes.runInsert) {
-          self.append(n.content,
-                      n.attributes.contentSelector,
-                      delay += n.attributes.insertDelay);
+        if (slfyNode.attributes.runInsert) {
+          self.append(slfyNode,
+                      delay += slfyNode.attributes.insertDelay);
         }
         
       }
@@ -285,13 +217,13 @@ function Slfy(url) {
    * SUMMARY
    * TODO: Write a comment here
    */
-  this.type = function type(content, selector, typeDelay, keyStrokeDelay) {
+  this.type = function type(slfyNode, typeDelay, keyStrokeDelay) {
 
     var i = 0;
     var j = 0;
     
     var regex = /(\n)|(\\p)/gi;
-    var result = regex[Symbol.split](content);
+    var result = regex[Symbol.split](slfyNode.content);
     var token = "";
     var insert = "";
     
@@ -312,28 +244,30 @@ function Slfy(url) {
             insert = "&nbsp;"
           }
           
-          (function(str) {
+          (function(str, slfyNode) {
               setTimeout(function() {
 
-                $(selector)[0].innerHTML += str;
+                $(slfyNode.attributes.typeSelector)[0].innerHTML += str;
+                
               }, delay += keyStrokeDelay)
-          })(insert);
+          })(insert, slfyNode);
         }
         else {
 
           // For each character in the string...
           for (i = 0; i < result[j].length; i++) {
 
-            (function(stringNum, charIndex) {
+            (function(stringNum, charIndex, slfyNode) {
+              
               setTimeout(function() {
-
-                $(selector)[0].innerHTML += result[stringNum][charIndex];
+                
+                $(slfyNode.attributes.typeSelector)[0].innerHTML += result[stringNum][charIndex];
 
                 onSlfyType = new CustomEvent("onSlfyType");
                 document.dispatchEvent(onSlfyType);
 
               }, delay += keyStrokeDelay)
-            })(j, i);
+            })(j, i, slfyNode);
           }
         }
         
@@ -348,6 +282,7 @@ function Slfy(url) {
    * SUMMARY
    * TODO: Write a comment here
    */
+  /*
   this.remove = function remove(content, selector, removeDelay) {
     
     (function(content, selector, delay) {
@@ -370,11 +305,39 @@ function Slfy(url) {
       }, delay)
     })(content, selector, removeDelay);
   }
+  */
+  
+    this.remove = function remove(slfyNode, removeDelay) {
+    
+    (function(slfyNode, delay) {
+      setTimeout(function() {
+        var element = $(slfyNode.attributes.typeSelector)[0];
+        var content = slfyNode.content;
+        
+        // TODO: Find a better way to escape HTML content for typing
+        var escapedContent = content.replace(/</gi, "&lt;")
+                                    .replace(/>/gi, "&gt;")
+                                    .replace(/(\n)/gi, "<br>")
+                                    .replace(/(\\p)/gi, "&nbsp;");
+
+        element.innerHTML = element.innerHTML.slice(0,
+          element.innerHTML.length - escapedContent.length);
+        
+        onSlfyRemove = new CustomEvent("onSlfyRemove");
+        document.dispatchEvent(onSlfyRemove);
+        
+      }, delay)
+    })(slfyNode, removeDelay);
+  }
+  
+  
+  
   
   /*
    * SUMMARY
    * TODO: Write a comment here
    */
+  /*
   this.append = function append(content, selector, appendDelay) {
     
     (function(content, selector, delay) {
@@ -389,6 +352,34 @@ function Slfy(url) {
         
       }, delay)
     })(content, selector, appendDelay);
+  }
+  */
+    
+  this.append = function append(slfyNode, appendDelay) {
+    
+    (function(slfyNode, delay) {
+      setTimeout(function() {
+        
+        var escapedContent = slfyNode.content.replace(/(\\p)/gi, "");
+        var parent = slfyNode.parent;
+        
+        //$(slfyNode.attributes.contentSelector).append(escapedContent);
+        //$(slfyNode.parent).append(escapedContent);
+        //var jQueryObj = jQuery(slfyNode.parent)[0];
+        //var jQueryObj = $("body").find(slfyNode.parent)[0];
+        //jQueryObj.append(escapedContent);
+        
+        // TODO: We need to a way to uniquely identify nodes that are added
+        // TODO: The nodes that are appended are NOT the same nodes in the tree.
+        // TODO: THEY ARE A DEEP CLONE.  We need a way to find the parent clone.
+        // TODO: Probably, by adding a unique class upon insert or similar.
+        // TODO: data-slfy-node="1234567"
+        
+        onSlfyAppend = new CustomEvent("onSlfyAppend");
+        document.dispatchEvent(onSlfyAppend);
+        
+      }, delay)
+    })(slfyNode, appendDelay);
   }
   
   /*
