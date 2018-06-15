@@ -1,0 +1,33 @@
+
+/*  */
+.steve-window {
+  
+  height: var(--steve-window-height-portrait);
+}
+
+.steve-main {
+  height: 100%;
+}
+
+/*
+.steve-main article:not([id="about"]) {
+  display: none;
+}
+*/
+.steve-main article {
+  display: none;
+}
+
+.steven-gago-logo {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+
+@media screen and (min-width: 576px) {
+  
+  .steve-window {
+    height: var(--steve-window-height-lg);
+    /*transform: matrix3d(1,0,0.00,0.00009,0.00,1,0.00,0.0000,0,0,1,0,0,0,0,1);*/
+  }
+}

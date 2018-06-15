@@ -1,0 +1,147 @@
+article(id="portfolio" class="pt-2 pt-sm-5")
+
+  h2(class="text-center fl-1")
+    i(class="fas fa-code" aria-hidden="true")
+    |&nbsp;Portfolio
+
+  p(class="fs-2")
+    |Unfortunately, a lot of software and hardware engineering I've done 
+    |is proprietary and/or under non-disclosure agreements.
+    |That means the code isn't mine, and I don't get to share 
+    |:'(  However, the following projects...
+
+  div(class="card-columns")
+    
+    //- Card for NSerialProtocol
+    div(class="card border-dark mb-3 text-center")
+      div(class="card-body")
+        p(class="card-title text-primary f-7 f-sm-6")
+          |NSerialProtocol
+        
+        div(class="text-center mt-3")
+          img(class="card-img card-img-sm"
+              accesskey=""
+              src="./images/nserialprotocol-logo.svg"
+              alt="NSerialProtocol-Logo")
+        
+        p(class="card-subtitle text-muted text-center mb-4 mt-4 f-2 f-sm-2")
+          |Serial Port Comms For .NET
+        
+        p(class="underconstruction text-center p-1")
+          i(class="fas fa-exclamation-triangle" aria-hidden="true")
+          |Under Construction
+          i(class="fas fa-exclamation-triangle" aria-hidden="true")
+        
+        p(class="card-text")
+          |NSerialProtocol aims to simplify the use of the serial
+          |port communications for all .NET languages.  It includes
+          |easy-to-use serial packet declaration,
+          |asynchrounous packet transmission,
+          |forward-error correction (FEC), byte stuffing, and clears
+          |the fAbortOnError flag.
+        
+        a(href="#" class="btn btn-primary")
+          |Visit Repo On
+          i(class="fab fa-github" aria-hidden="true")
+
+    
+    div(class="card border-dark text-center mb-3")
+      div(class="card-body")
+        p(class="card-title text-primary f-7")
+          |Slfy
+        
+        p(class="card-subtitle text-muted mt-2 mb-4 f-2")
+          |The Self-Typing Code On This Website
+        
+        p(class="underconstruction text-center p-1")
+          i(class="fas fa-exclamation-triangle" aria-hidden="true")
+          |Under Construction
+          i(class="fas fa-exclamation-triangle" aria-hidden="true")
+        
+        p(class="card-text")
+          |Slfy is a JavaScript and jQuery library that
+          |gives the illusion of self-typing, self-executing code.
+          |In reality, Slfy inserts each character individually,
+          |removes the characters it just inserted, then
+          |inserts the actual code.  Slfy can type HTML, CSS or JavaScript.
+        
+        a(href="#" class="btn btn-primary")
+          |Visit Repo On 
+          i(class="fab fa-github" aria-hidden="true")
+
+  
+    div(class="card border-dark text-center mb-3")
+      div(class="card-body")
+        p(class="card-title text-primary f-4")
+          |Malaria Early Warning (MEW)
+        
+        img(class="card-img"
+            src="./images/mew.jpg"
+            alt="Malaria early warning")
+        p(class="card-subtitle text-muted mt-2 mb-4 f-2")
+          |Predicting the Spatial and Temporal Spread of Malaria
+        
+        p(class="card-text")
+          |Malaria Early Warning (MEW) was a gift to the Indian
+          |government to predict the spread of the Malaria
+          |virus in the north-western parts of India using rainfall
+          |via weather stations, vegetation via satellite,
+          |and other data.  The website was created using Python, web2py,
+          |the R Statistical Language, and a host of other mathematical tools.
+
+    
+    div(class="card border-dark text-center mb-3")
+      div(class="card-body")
+        p(class="card-title text-primary f-7")
+          |Image Processing
+        
+        img(class="card-img-top"
+            src="./images/vegetation.jpg"
+            alt="Image Processing Results")
+        p(class="card-subtitle text-muted mt-2 mb-4 f-2")
+          |Vegetation Index from Satelite Data for MEW
+        
+        p(class="card-text")
+          |For the MEW project, we used satelite data
+          |taken from the NOAA Climate Data Record
+          |to generate images of vegetation.  Each
+          |pixel in the above image represents the
+          |amount of green light per
+          |square mile of land within the state of
+          |Gujarat, India.
+          |The above image shows a desert.
+    
+    div(class="card border-dark text-center mb-3")
+      div(class="card-body")
+        p(class="card-title text-primary f-7")
+          |Circuit Board
+        
+        img(class="card-img card-img-md mt-3"
+              src="./images/circuit-board.jpg"
+              alt="Image Processing Results")
+        p(class="card-subtitle text-muted mt-2 mb-4 f-2")
+          |For Gait-Event Detection
+        
+        p(class="card-text")
+          |The above circuit board was designed to help monitor
+          |important events in the walk-cycle (gait) for research and the
+          |rehibilitation of stroke patients.
+        
+      
+    div(class="card border-dark text-center mb-3")
+      div(class="card-body")
+        p(class="card-title text-primary f-7")
+          |Water bath
+        
+        img(class="card-img"
+            src="./images/water-bath.jpg"
+            alt="Image Processing Results")
+        p(class="h4 card-subtitle text-muted mt-2 mb-4 f-2")
+          |For Heat-Activated Kinase in Fruit Flys
+        
+        p(class="card-text")
+          |We created a custom water bath to rapidly heat fruit-fly eggs to
+          |100&deg; C and back to room temperature for genetics research.
+          |I engineered the electronics, user controls, and the PID
+          |temperature-control loop.
+        

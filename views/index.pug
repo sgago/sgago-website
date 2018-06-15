@@ -1,0 +1,155 @@
+doctype html
+html(lang="en")
+  
+  include includes/head.pug
+
+  body(class="container-fluid m-0 p-0 p-sm-1 p-md-2 p-lg-2")
+    main(class="row m-1")
+
+      //- The main window
+      div(class="col-12 col-sm-8 m-0 pl-0 pr-0 pr-sm-1 pr-md-2 pr-lg-2")
+        section(class="window steve-window")
+          header(class="window-header fadeOut row text-center m-0 pt-3 pt-sm-1")
+            h1(class="steve-window-header-text col-12 fl-1 no-wrap-ellipsis")
+              img(class="steven-gago-logo"
+                  src="../images/steven-gago.jpg"
+                  alt="Steve Gago")
+              |&nbsp;Steve Gago
+
+          div(class="window-body row m-0")
+            
+            include includes/index/navbar.pug
+
+            div(id="main"
+                class="window-main steve-main white-mask col-11 col-md-9 col-xl-10 pb-3")
+              include includes/index/about.pug
+              include includes/index/work.pug
+              include includes/index/education.pug
+              include includes/index/experience.pug
+              include includes/index/portfolio.pug
+              include includes/index/resume.pug
+
+      //- The Slfy window
+      div(class="col-12 col-sm-4 m-0 pr-0 pl-0 pl-sm-1 pl-md-2 pl-lg-2")
+        include includes/index/slfy.pug
+
+    include includes/index/footer.pug
+
+    //- TODO: Add cookie notice via Bootstrap alert
+    include includes/cookie-alert.pug
+
+    //- jQuery Library
+    script(src="https://code.jquery.com/jquery-3.3.1.min.js"
+           integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+           crossorigin="anonymous")
+    
+    //- Popper Library for Bootstrap
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+           integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+           crossorigin="anonymous")
+
+    //- Font-Awesome Library
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+           integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+           crossorigin="anonymous")
+
+    script(src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"
+            integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
+            crossorigin="anonymous")
+
+    script(type="text/javascript").
+
+      //let divToShow = null;
+      var fragementRegex = /#!.+/gi;
+      let currentDiv = $("article#about").first(); // Get the about DOM node
+      let terminalSizeElement = $("span#terminal-size").get(); // Get the terminal-size DOM node
+
+      // Required for Bootstrap's tooltips 
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      });
+      
+      $("#exampleModalCenter").on("shown.bs.modal", function () {
+          google.maps.event.trigger(map, "resize");
+      });
+
+      
+      // Show the Slfy terminal window's width and height in pixels
+      updateTerminalSize();
+
+      // On resize of the window, update the Slfy terminal window's width and height in pixels
+      $(window).resize(updateTerminalSize);
+
+      function updateTerminalSize() {
+        
+        let terminal = $(".slfy-window");
+
+        let offsetWidth = terminal.offsetWidth;
+        let offsetHeight = terminal.offsetHeight;
+
+        $("span#terminal-size").html(Math.round(terminal.width()) +
+                                     "x" + Math.round(terminal.height()));
+      }
+      
+      function onPageLoad(selector) {
+        
+        var url = window.location.href;
+        var urlFragement = url.match(fragementRegex);
+        
+        // Grab the URL fragement, provided there is one to grab
+        if (urlFragement !== null && urlFragement.length > 0) {
+          
+          urlFragement = urlFragement[0];
+        }
+        
+        if (urlFragement !== null && urlFragement !== "") {
+          
+          divToShow = urlFragement.replace("#!", "#");
+        }
+        else {
+          divToShow = "#about";
+        }
+        
+        showArticle(divToShow);
+      }
+      
+      // When a user clicks a link on the sidenav...
+      $(".sidenav-link").click(function(event) {
+
+        // Get the new div the user wants to see
+        var articleID = event.currentTarget.getAttribute("href");
+
+        showArticle(articleID);
+        
+        event.preventDefault();
+      });
+      
+      function showArticle(articleID) {
+
+        $(currentDiv).fadeOut("fast", function() {
+            $("article" + articleID).fadeIn("fast");
+        });
+
+        currentDiv = $("article" + articleID);
+
+        if (history.pushState) {
+          history.pushState(null, null, articleID.replace("#", "#!"));
+        }
+        else {
+          location.hash = articleID.replace("#", "#!");
+        }
+        
+        setActiveLink(articleID);
+      }
+      
+      function setActiveLink(articleID) {
+        
+        var activeListItem = $("a[href=\"" + articleID + "\"]").parent();
+        
+        activeListItem.siblings("li").removeClass("active");
+        activeListItem.addClass("active");
+      }
+      
+      onPageLoad();
+
+    

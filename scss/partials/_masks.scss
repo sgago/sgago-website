@@ -1,0 +1,24 @@
+
+@mixin scroll-mask($color) {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent, 
+    $color 15px, 
+    $color 92%, 
+    transparent);
+
+  mask-image: linear-gradient(
+    to bottom, 
+    transparent,
+    $color 15px,
+    $color 92%,
+    transparent);
+}
+
+.white-mask {
+  @include scroll-mask(white);
+}
+
+.black-mask {
+  @include scroll-mask(black);
+}

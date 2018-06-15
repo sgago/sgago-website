@@ -1,0 +1,42 @@
+#steve-gago-image {
+  border-radius: 50%;
+  height: 10em;
+  width: 10em;
+}
+
+#circuit-board-image {
+  width: 300px;
+}
+
+#mew-image {
+  width: 300px;
+}
+
+#vegetation-image {
+  width: 300px;
+}
+
+#water-bath-image {
+  width: 300px;
+}
+
+.card-img-sm {
+  max-width: 40%;
+}
+
+.card-img-md {
+  max-width: 60%;
+}
+
+.card-columns {
+  column-count: 1;
+}
+
+
+
+@media screen and (min-width: 1200px) {
+  
+  .card-columns {
+    column-count: 2;
+  }
+}

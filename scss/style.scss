@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+/*
+  Good example website of what I'm aiming to be similar to:
+  https://timmyomahony.com/
+
+  My current color pallete idea:
+  http://paletton.com/#uid=71a0u0kw0w0jvDaoPy4y5oODajv
+*/
+
+:root {
+  --footer-height: 23px;
+  
+  --steve-window-height-portrait: calc(100vh - 29vh - var(--footer-height));
+  --slfy-window-height-portrait: calc(29vh);
+  
+  --steve-window-height-lg: calc(100vh - var(--footer-height) - 13px);
+  --slfy-window-height-lg: calc(100vh - var(--footer-height) - 13px);
+}
+
+header,
+section,
+footer,
+aside,
+nav,
+main,
+article,
+figure {
+  display: block; 
+}
+
+html {
+  font-family: monospace;
+  //font: "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+/*  */
+body {
+  /*background-color: #510FAD;*/  /* Purple */
+  background-color: #1A1EB2;  /* Blue */
+  font-family: monospace;
+  overflow: hidden;
+}
+
+@import "partials/footer";
+@import "partials/alerts";
+@import "partials/window";
+@import "partials/masks";
+@import "partials/construction";
+
+@import "partials/index/steve-window";
+@import "partials/index/navbar";
+@import "partials/index/portfolio";
+@import "partials/index/experience";
+
+@import "partials/index/slfy-window";
+
+
+
+
+
