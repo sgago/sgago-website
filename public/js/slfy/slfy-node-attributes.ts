@@ -56,23 +56,23 @@ class SlfyNodeAttributes implements ISlfyNodeAttributes {
   private static readonly DEFAULT_INSERT_DELAY:     number = 0;
 
 
-  private node: Element = null;
+  private element: Element = null;
 
-  private get Node(): Element {
+  private get Element(): Element {
 
-    return this.node;
+    return this.element;
   }
 
-  private set Node(node: Element) {
+  private set Element(node: Element) {
 
-    this.node = node;
+    this.element = node;
   }
 
   private getBooleanAttributeValue(name: string, defaultValue: boolean): boolean {
 
     let value: boolean = defaultValue;
     
-    if (this.Node.getAttribute(name) !== null) {
+    if (this.Element.getAttribute(name) !== null) {
       value = true;
     }
 
@@ -81,7 +81,7 @@ class SlfyNodeAttributes implements ISlfyNodeAttributes {
 
   private getStringAttributeValue(name: string, defaultValue: string): string {
 
-    let value: string = this.Node.getAttribute(name);;
+    let value: string = this.Element.getAttribute(name);;
 
     if (value === null) {
       value = defaultValue;
@@ -195,8 +195,8 @@ class SlfyNodeAttributes implements ISlfyNodeAttributes {
     );
   }
   
-  constructor(node: Element) {
+  constructor(element: Element) {
 
-    this.Node = node;
+    this.Element = element;
   }
 }

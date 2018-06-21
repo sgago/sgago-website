@@ -10,7 +10,7 @@ class Timer {
      * @param onElapseHandler Callback method called when the timer finishes.
      * @param autoStart True to start the timer immediately; otherwise, false.
      */
-    constructor(duration, onElapseHandler, autoStart = true) {
+    constructor(duration, onElapseHandler, autoStart = false) {
         /**
          * The timer's unique ID returned from the window.setTimeout method.
          */

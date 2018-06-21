@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Slfy Tree Test</title>
+  </head>
+  <body id="body">
+    <h1 id="title">
+      <b>The one and only</b>
+      <i>Slfy</i>
+      Tree
+      <em>Test</em>
+      <strong>!</strong>
+    </h1>
+    <script src="../js/slfy/slfy-node-attributes.js"></script>
+    <script src="../js/slfy/slfy-node.js"></script>
+    <script src="../js/slfy/slfy-tree.js"></script>
+    <script type="text/javascript">
+
+      var body = document.getElementById("body");
+      var h1 = document.getElementById("title");
+      var attributes = new SlfyNodeAttributes(h1);
+
+      var slfyNode = new SlfyNode(
+        h1,
+        body,
+        attributes
+      );
+
+      var tree = new SlfyTree(
+        h1,
+        body
+      );
+
+    </script>
+  </body>
+</html>

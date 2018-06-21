@@ -211,7 +211,7 @@ class Timer implements ITimer {
    */
   constructor (duration: number,
                onElapseHandler: (this: void) => void,
-               autoStart: boolean = true) {
+               autoStart: boolean = false) {
 
     this.Duration = duration >= 0 ? duration : 0;
     this.OnElapseHandler = onElapseHandler;

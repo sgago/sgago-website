@@ -8,31 +8,62 @@
 class SlfyNode {
     /**
      * Instantiates a new instance of a SlfyNode.
-     * @param node
-     * @param parent
-     * @param content
-     * @param attributes
      */
-    constructor(node, parent, content, attributes) {
+    constructor(element, slfyParent, slfyAttributes) {
+        this.element = null;
+        this.slfyParent = null;
+        this.slfyContent = null;
         // Set dependencies
-        this.Node = node;
-        this.Parent = parent;
-        this.Content = content;
-        this.Attributes = attributes;
-        this.Node.setAttribute("data-slfy-node-id", SlfyNode.counter.toString());
+        this.Element = element;
+        this.SlfyParent = slfyParent;
+        this.SlfyAttributes = slfyAttributes;
+        if (this.Element.nodeType === Node.ELEMENT_NODE)
+            this.Element.setAttribute("data-slfy-node-id", SlfyNode.counter.toString());
         SlfyNode.counter++;
     }
-    /**
-     * Gets the Element DOM node for this SlfyNode instance.
-     */
-    get Node() {
-        return this.node;
+    get Element() {
+        return this.element;
     }
-    /**
-     * Sets the Element DOM node for this SlfyNode instance.
-     */
-    set Node(node) {
-        this.node = node;
+    set Element(element) {
+        this.element = element;
+    }
+    get NodeType() {
+        return this.element.nodeType;
+    }
+    get TextContent() {
+        return this.Element.textContent;
+    }
+    set TextContent(text) {
+        this.Element.textContent = text;
+    }
+    get SlfyContent() {
+        return this.slfyContent;
+    }
+    set SlfyContent(text) {
+        this.slfyContent = text;
+    }
+    get EscapedTextContent() {
+        return this.TextContent.replace(SlfyNode.HTML_ENTITIES_REGEX, (entity) => {
+            return SlfyNode.htmlEntities.get(entity);
+        });
+    }
+    get InnerHtml() {
+        return this.Element.innerHTML;
+    }
+    get OuterHtml() {
+        return this.Element.outerHTML;
+    }
+    get StartTag() {
+        return this.OuterHtml.split(this.InnerHtml)[0].trim();
+    }
+    get EmptyTag() {
+        return this.StartTag.replace(SlfyNode.CLOSE_START_TAG_REGEX, "/>");
+    }
+    get Children() {
+        return this.Element.children;
+    }
+    get ChildNodes() {
+        return this.Element.childNodes;
     }
     /**
      * Gets the parent Element DOM node for this SlfyNode instance.
@@ -40,8 +71,8 @@ class SlfyNode {
      * this.Node.parent.  This occurs when this content is being
      * put into a separate parent element.
      */
-    get Parent() {
-        return this.parent;
+    get SlfyParent() {
+        return this.slfyParent;
     }
     /**
      * Sets the parent Element DOM node for this SlfyNode instance.
@@ -49,39 +80,37 @@ class SlfyNode {
      * this.Node.parent.  This occurs when this content is being
      * put into a separate parent element.
      */
-    set Parent(parent) {
-        this.parent = parent;
-    }
-    /**
-     * Gets the text content for this SlfyNode instance.
-     * Note that this text content is not necessarily the same as
-     * this.Node.innerText or this.Node.innerHTML.  This occurs
-     * when content is being escaped by Slfy.
-     */
-    get Content() {
-        return this.content;
-    }
-    /**
-     * Sets the text content for this SlfyNode instance.
-     * Note that this text content is not necessarily the same as
-     * this.Node.innerText or this.Node.innerHTML.  This occurs
-     * when content is being escaped by Slfy.
-     */
-    set Content(content) {
-        this.content = content;
+    set SlfyParent(slfyParent) {
+        this.slfyParent = slfyParent;
     }
     /**
      * Gets the SlfyAttributes for this SlfyNode instance.
      */
-    get Attributes() {
+    get SlfyAttributes() {
         return this.attributes;
     }
     /**
      * Sets the SlfyAttributes for this SlfyNode instance.
      */
-    set Attributes(attributes) {
+    set SlfyAttributes(attributes) {
         this.attributes = attributes;
     }
+    getAttribute(name) {
+        return this.Element.getAttribute(name);
+    }
+    setAttribute(name, value) {
+        return this.Element.setAttribute(name, value);
+    }
 }
+SlfyNode.CLOSE_START_TAG_REGEX = /(?=.*)>$/gi;
+SlfyNode.HTML_ENTITIES_REGEX = /[&<>"'\n]/g;
+SlfyNode.htmlEntities = new Map([
+    ["&", "&amp;"],
+    ["<", "&lt;"],
+    [">", "&gt;"],
+    ["\"", "&quot;"],
+    ["'", "&#039"],
+    ["\n", "<br>"]
+]);
 SlfyNode.counter = 0;
 //# sourceMappingURL=slfy-node.js.map

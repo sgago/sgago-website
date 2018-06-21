@@ -1,123 +1,117 @@
 
 class SlfyTree {
 
-  node: ISlfyElement = null;
-  parent: ISlfyElement = null;
+  element: Element = null;
+  root: Element = null;
 
   tree: Array<ISlfyNode> = new Array<ISlfyNode>();
 
-  private get Node(): ISlfyElement {
+  private get Element(): Element {
 
-    return this.node;
+    return this.element;
   }
 
-  private set Node(node: ISlfyElement) {
+  private set Element(node: Element) {
 
-    this.node = node;
+    this.element = node;
   }
 
-  private get Parent(): ISlfyElement {
+  private get Root(): Element {
 
-    return this.parent;
+    return this.root;
   }
 
-  private set Parent(parent: ISlfyElement) {
+  private set Root(parent: Element) {
 
-    this.parent = parent;
+    this.root = parent;
   }
 
-  private get Tree(): Array<ISlfyNode>  {
+  public get Tree(): Array<ISlfyNode>  {
 
     return this.tree;
   }
 
-  private set Tree(parent: Array<ISlfyNode>) {
+  public set Tree(parent: Array<ISlfyNode>) {
 
     this.tree = parent;
   }
 
-  constructor (node: ISlfyElement, parent: ISlfyElement) {
+  constructor (element: Element, root: Element) {
 
-    this.Node = node;
-    this.Parent = parent;
+    this.Element = element;
+    this.Root = root;
 
-    this.Tree = this.createTree(node, parent);
+    this.Tree = this.createTree(this.Element, this.Root);
   }
 
 
-  private createTree(root: ISlfyElement, parent: ISlfyElement): Array<ISlfyNode> {
+  private createTree(element: Element, parent: Element): Array<ISlfyNode> {
 
     let tree: Array<ISlfyNode> = new Array<ISlfyNode>();
+    let childNode: ISlfyNode = null;
 
-    let children: HTMLCollection = root.Children;
-    let attributes: ISlfyNodeAttributes = null;
-    let content: string = "";
-
-    for (let child of children) {
+    for (let child of element.childNodes) {
 
       // Is the root element an Element type?
       if (child.nodeType === Node.ELEMENT_NODE) {
         
-        // root is of element type.
-        // Grab its attributes
-        attributes = new SlfyNodeAttributes(child);
-        
-        // Does root contain only one child?
-        // And, is that child a non-element node?
-        if (root.ChildNodes.length === 1 &&
-          root.ChildNodes[0].nodeType !== Node.ELEMENT_NODE) {
-        
-          // Root contains 1 node that is a non-element
-          content = root.OuterHtml;
+        childNode = new SlfyNode(
+          child,
+          parent,
+          new SlfyNodeAttributes(child as Element)
+        );
+
+        // Ok, childNode is of type element.
+        // Does childNode have any children of its own?
+        // And, if childNode does have children, is that child a non-element node?
+        if (childNode.ChildNodes.length === 1 &&
+            childNode.ChildNodes[0].nodeType !== Node.ELEMENT_NODE) {
+
+          childNode.SlfyContent = childNode.OuterHtml;
           
           // Add this node to our tree
           // This is a leaf, so we're done, no recursion
-          tree.push(new SlfyNode(
-            new SlfyElement(child),
-            parent,
-            content,
-            attributes
-          ));
+          tree.push(childNode);
         }
         else {
 
           // Root contains more than one type of node
+
           // Let's grab and close the start
-          content = root.EmptyTag;
+          childNode.SlfyContent = childNode.EmptyTag;
           
           // Push that newly closed start tag onto our tree
-          tree.push(new SlfyNode(
-            new SlfyElement(child),
-            parent,
-            content,
-            attributes
-          ));
+          tree.push(childNode);
 
           // Let's recursively add each of those tags to our
           // our tree as well
-          for (let n of root.Children) {
+          for (let n of childNode.Children) {
 
             tree.concat(
-              this.createTree(new SlfyElement(n),
-              new SlfyElement(child))
+              this.createTree(
+                n,
+                childNode.Element
+              )
             );
           }
         }
 
       }
       // Is the root node of type text?
-      else if (root.NodeType === Node.TEXT_NODE) {
-        
-        parent = new SlfyElement(child.parentElement);
-        content = root.TextContent.trim();
-        attributes = new SlfyNodeAttributes(child.parentElement);
-        
-        tree.push(new SlfyNode(
-          new SlfyElement(child),
+      else if (child.nodeType === Node.TEXT_NODE) {
+
+        // This node is of type text
+
+        childNode = new SlfyNode(
+          child,
           parent,
-          content,
-          attributes
-        ));
+          new SlfyNodeAttributes(parent)
+        );
+
+        childNode.SlfyContent = childNode.TextContent.trim();
+        childNode.SlfyContent = childNode.EscapedTextContent;
+
+        tree.push(childNode);
       }
     }
 

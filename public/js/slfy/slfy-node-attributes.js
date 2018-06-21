@@ -6,25 +6,25 @@ var Mode;
 })(Mode || (Mode = {}));
 ;
 class SlfyNodeAttributes {
-    constructor(node) {
-        this.node = null;
-        this.Node = node;
+    constructor(element) {
+        this.element = null;
+        this.Element = element;
     }
-    get Node() {
-        return this.node;
+    get Element() {
+        return this.element;
     }
-    set Node(node) {
-        this.node = node;
+    set Element(node) {
+        this.element = node;
     }
     getBooleanAttributeValue(name, defaultValue) {
         let value = defaultValue;
-        if (this.Node.getAttribute(name) !== null) {
+        if (this.Element.getAttribute(name) !== null) {
             value = true;
         }
         return value;
     }
     getStringAttributeValue(name, defaultValue) {
-        let value = this.Node.getAttribute(name);
+        let value = this.Element.getAttribute(name);
         ;
         if (value === null) {
             value = defaultValue;

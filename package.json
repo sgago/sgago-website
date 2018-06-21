@@ -5,17 +5,24 @@
   "scripts": {
     "start": "nodemon ./bin/www",
     "sass": "node-sass --output-style=expanded --watch scss/ -o ./public/css/"
+
   },
   "dependencies": {
     "cookie-parser": "^1.4.3",
     "debug": "^2.6.9",
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
+    "jquery": "^3.3.1",
     "morgan": "^1.9.0",
     "node-sass": "^4.9.0",
-    "pug": "^2.0.0-beta11"
+    "pug": "^2.0.0-beta11",
+    "requirejs": "^2.3.5",
+    "webpack": "^4.12.0",
+    "webpack-cli": "^3.0.8"
   },
   "devDependencies": {
-    "ts-loader": "^4.3.0"
+    "@types/jquery": "^3.3.4",
+    "ts-loader": "^4.4.1",
+    "webpack-command": "^0.2.1"
   }
 }

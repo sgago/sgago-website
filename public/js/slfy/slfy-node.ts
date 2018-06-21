@@ -1,11 +1,18 @@
 
-
 interface ISlfyNode {
 
-  Node: ISlfyElement;
-  Parent: ISlfyElement;
-  Content: string;
-  Attributes: ISlfyNodeAttributes;
+  Children: HTMLCollection;
+  ChildNodes: NodeListOf<Node & ChildNode>;
+
+  Element: Element;
+  EscapedTextContent: string;
+  EmptyTag: string;
+  NodeType: NodeType;
+  OuterHtml: string;
+  SlfyParent: Element;
+  SlfyAttributes: ISlfyNodeAttributes;
+  SlfyContent: string;
+  TextContent: string;
 }
 
 /**
@@ -16,27 +23,99 @@ interface ISlfyNode {
  */
 class SlfyNode implements ISlfyNode
 {
+  private static readonly CLOSE_START_TAG_REGEX = /(?=.*)>$/gi;
+  private static readonly HTML_ENTITIES_REGEX = /[&<>"'\n]/g;
+
+  private static readonly htmlEntities = new Map([
+    ["&", "&amp;"],
+    ["<", "&lt;"],
+    [">", "&gt;"],
+    ["\"", "&quot;"],
+    ["'", "&#039"],
+    ["\n", "<br>"]
+  ]);
+
   private static counter: number = 0;
 
-  private node: ISlfyElement;
-  private parent: ISlfyElement;
-  private content: string;
+  private element: Element = null;
+  private slfyParent: Element = null;
+  private slfyContent: string = null;
   private attributes: ISlfyNodeAttributes;
 
-  /**
-   * Gets the Element DOM node for this SlfyNode instance.
-   */
-  public get Node(): ISlfyElement {
+  public get Element(): Element {
 
-    return this.node;
+    return this.element;
   }
 
-  /**
-   * Sets the Element DOM node for this SlfyNode instance.
-   */
-  public set Node(node: ISlfyElement) {
+  public set Element(element: Element) {
 
-    this.node = node;
+    this.element = element;
+  }
+
+  public get NodeType(): number {
+
+    return this.element.nodeType;
+  }
+  
+  public get TextContent(): string {
+
+    return this.Element.textContent;
+  }
+
+  public set TextContent(text: string) {
+
+    this.Element.textContent = text;
+  }
+
+  public get SlfyContent(): string {
+
+    return this.slfyContent;
+  }
+
+  public set SlfyContent(text: string) {
+
+    this.slfyContent = text;
+  }
+
+  public get EscapedTextContent(): string {
+
+    return this.TextContent.replace(
+      SlfyNode.HTML_ENTITIES_REGEX,
+      (entity: string): string =>
+        {
+          return SlfyNode.htmlEntities.get(entity);
+        }
+    );
+  }
+
+  public get InnerHtml(): string {
+
+    return this.Element.innerHTML;
+  }
+
+  public get OuterHtml(): string {
+
+    return this.Element.outerHTML;
+  }
+
+  public get StartTag(): string {
+
+    return this.OuterHtml.split(this.InnerHtml)[0].trim();
+  }
+
+  public get EmptyTag(): string {
+
+    return this.StartTag.replace(SlfyNode.CLOSE_START_TAG_REGEX, "/>");
+  }
+
+  public get Children(): HTMLCollection {
+
+    return this.Element.children;
+  }
+
+  public get ChildNodes(): NodeListOf<Node & ChildNode> {
+
+    return this.Element.childNodes;
   }
 
   /**
@@ -45,9 +124,9 @@ class SlfyNode implements ISlfyNode
    * this.Node.parent.  This occurs when this content is being
    * put into a separate parent element.
    */
-  public get Parent(): ISlfyElement {
+  public get SlfyParent(): Element {
     
-    return this.parent;
+    return this.slfyParent;
   }
 
   /**
@@ -56,37 +135,15 @@ class SlfyNode implements ISlfyNode
    * this.Node.parent.  This occurs when this content is being
    * put into a separate parent element.
    */
-  public set Parent(parent: ISlfyElement) {
+  public set SlfyParent(slfyParent: Element) {
 
-    this.parent = parent;
-  }
-
-  /**
-   * Gets the text content for this SlfyNode instance.
-   * Note that this text content is not necessarily the same as
-   * this.Node.innerText or this.Node.innerHTML.  This occurs
-   * when content is being escaped by Slfy.
-   */
-  public get Content(): string {
-
-    return this.content;
-  }
-
-  /**
-   * Sets the text content for this SlfyNode instance.
-   * Note that this text content is not necessarily the same as
-   * this.Node.innerText or this.Node.innerHTML.  This occurs
-   * when content is being escaped by Slfy.
-   */
-  public set Content(content: string) {
-
-    this.content = content;
+    this.slfyParent = slfyParent;
   }
 
   /**
    * Gets the SlfyAttributes for this SlfyNode instance.
    */
-  public get Attributes(): ISlfyNodeAttributes {
+  public get SlfyAttributes(): ISlfyNodeAttributes {
 
     return this.attributes;
   }
@@ -94,28 +151,33 @@ class SlfyNode implements ISlfyNode
   /**
    * Sets the SlfyAttributes for this SlfyNode instance.
    */
-  public set Attributes(attributes: ISlfyNodeAttributes) {
+  public set SlfyAttributes(attributes: ISlfyNodeAttributes) {
 
     this.attributes = attributes;
   }
 
   /**
    * Instantiates a new instance of a SlfyNode.
-   * @param node 
-   * @param parent 
-   * @param content 
-   * @param attributes 
    */
-  constructor (node: ISlfyElement, parent: ISlfyElement,
-      content: string, attributes: ISlfyNodeAttributes) {
+  constructor (element: Node, slfyParent: Node, slfyAttributes: ISlfyNodeAttributes) {
 
     // Set dependencies
-    this.Node = node;
-    this.Parent = parent;
-    this.Content = content;
-    this.Attributes = attributes;
+    this.Element = element as Element;
+    this.SlfyParent = slfyParent as Element;
+    this.SlfyAttributes = slfyAttributes;
 
-    this.Node.setAttribute("data-slfy-node-id", SlfyNode.counter.toString());
+    if (this.Element.nodeType === Node.ELEMENT_NODE)
+      this.Element.setAttribute("data-slfy-node-id", SlfyNode.counter.toString());
     SlfyNode.counter++;
+  }
+
+  public getAttribute(name: string): string {
+
+    return this.Element.getAttribute(name);
+  }
+
+  public setAttribute(name: string, value: string) {
+
+    return this.Element.setAttribute(name, value);
   }
 }

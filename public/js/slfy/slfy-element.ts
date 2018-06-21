@@ -6,6 +6,8 @@ enum NodeType {
   COMMENT = 8
 }
 
+/*
+
 interface ISlfyElement {
 
   Element: Element;
@@ -25,6 +27,9 @@ interface ISlfyElement {
   setAttribute(name: string, value: string): void;
   getAttribute(name: string): string;
 }
+*/
+
+/*
 
 class SlfyElement implements ISlfyElement {
 
@@ -123,3 +128,5 @@ class SlfyElement implements ISlfyElement {
     return this.Element.setAttribute(name, value);
   }
 }
+
+*/
