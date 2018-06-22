@@ -21,13 +21,21 @@ footer {
     */
   }
   
-  &.powered-by {
+  .powered-by {
     display: none;
   }
-  
+
+  .fa-cookie-bite {
+    color: white;
+  }
+
+  a:hover {
+    color: whitesmoke;
+  }
+
   @media screen and (min-width: $breakpoint) {
     
-    &.powered-by {
+    .powered-by {
       display: inline;
     }
   }

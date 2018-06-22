@@ -1,4 +1,11 @@
 
+enum NodeType {
+  ELEMENT = 1,
+  ATTRIBUTE = 2,
+  TEXT = 3,
+  COMMENT = 8
+}
+
 interface ISlfyNode {
 
   Children: HTMLCollection;

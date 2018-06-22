@@ -1,7 +1,7 @@
 doctype html
 html(lang="en")
   
-  include includes/head.pug
+  include includes/index/head.pug
 
   body(class="container-fluid m-0 p-0 p-sm-1 p-md-2 p-lg-2")
     main(class="row m-1")
@@ -35,7 +35,6 @@ html(lang="en")
 
     include includes/index/footer.pug
 
-    //- TODO: Add cookie notice via Bootstrap alert
     include includes/cookie-alert.pug
 
     //- jQuery Library
@@ -48,15 +47,11 @@ html(lang="en")
            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
            crossorigin="anonymous")
 
-    //- Font-Awesome Library
+    //- Bootstrap Library
     script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
            crossorigin="anonymous")
-
-    script(src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"
-            integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
-            crossorigin="anonymous")
-
+    
     script(type="text/javascript").
 
       //let divToShow = null;
@@ -72,6 +67,10 @@ html(lang="en")
       $("#exampleModalCenter").on("shown.bs.modal", function () {
           google.maps.event.trigger(map, "resize");
       });
+
+      setTimeout(function() {
+        //$("#cookie-alert").alert("close");
+      }, 7000);
 
       
       // Show the Slfy terminal window's width and height in pixels

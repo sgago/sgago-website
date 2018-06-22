@@ -1,4 +1,11 @@
 "use strict";
+var NodeType;
+(function (NodeType) {
+    NodeType[NodeType["ELEMENT"] = 1] = "ELEMENT";
+    NodeType[NodeType["ATTRIBUTE"] = 2] = "ATTRIBUTE";
+    NodeType[NodeType["TEXT"] = 3] = "TEXT";
+    NodeType[NodeType["COMMENT"] = 8] = "COMMENT";
+})(NodeType || (NodeType = {}));
 /**
  * Represents a node in a tree structure.
  * This node includes the HTML element DOM node,

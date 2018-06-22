@@ -1,9 +1,3 @@
-
-//import $ from "jquery";
-//import * as $ from "jquery";
-//import $ = require("jquery");
-
-
 class Slfy {
 
   private static readonly SLFY_DATA_ID: string = "slfy-data";
@@ -24,7 +18,7 @@ class Slfy {
 
   public set Elements(elements: HTMLCollection) {
 
-    this.elements = elements;
+    this.elements = elements; 
   }
 
   private get Timers(): ISlfyTimers {
@@ -56,6 +50,7 @@ class Slfy {
       type: "GET",
       url: url,
       dataType: "text",
+      async: false,
       success: (data: string) => {
         this.Elements = Slfy.parseNodes(data);
       }
@@ -101,6 +96,8 @@ class Slfy {
     let parent = $(attributes.ContentSelector).get(0);
     let slfyNode: SlfyNode = new SlfyNode(element, parent, attributes);
 
+    slfyNode.SlfyContent = slfyNode.OuterHtml;
+
     if (attributes.RunTyping) {
       this.type(slfyNode);
     }
@@ -142,26 +139,39 @@ class Slfy {
 
   private type(slfyNode: ISlfyNode) {
 
-    for (let i: number = 0; i < slfyNode.TextContent.length; i++) {
+    for (let i: number = 0; i < slfyNode.SlfyContent.length; i++) {
 
       this.Timers.next(
         slfyNode.SlfyAttributes.KeyStrokeDelay,
         () => {
-          $(slfyNode.SlfyAttributes.TypingSelector).get(0).innerHTML += slfyNode.TextContent[i];
+          let element = $(slfyNode.SlfyAttributes.TypingSelector).get(0);
+          element.innerHTML += slfyNode.SlfyContent[i];
         },
         false
-      )
+      );
     }
   }
 
   private remove(slfyNode: ISlfyNode) {
-    
-    console.log(slfyNode);
+
+    this.Timers.next(
+      slfyNode.SlfyAttributes.RemoveDelay,
+      () => {
+ 
+        //element.innerHTML = element.innerHTML.slice(0,
+        //  element.innerHTML.length - escapedContent.length);
+
+        let element = $(slfyNode.SlfyAttributes.TypingSelector).get(0);
+
+        element.innerHTML.slice(0, slfyNode.EscapedTextContent.length);
+      },
+      false
+    );
   }
 
   private append(slfyNode: ISlfyNode) {
 
-    console.log(slfyNode);
+    slfyNode = slfyNode;
   }
 
   public start() {

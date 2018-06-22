@@ -1,7 +1,4 @@
 "use strict";
-//import $ from "jquery";
-//import * as $ from "jquery";
-//import $ = require("jquery");
 class Slfy {
     constructor(url) {
         this.elements = null;
@@ -36,6 +33,7 @@ class Slfy {
             type: "GET",
             url: url,
             dataType: "text",
+            async: false,
             success: (data) => {
                 this.Elements = Slfy.parseNodes(data);
             }
@@ -63,6 +61,7 @@ class Slfy {
         let attributes = new SlfyNodeAttributes(element);
         let parent = $(attributes.ContentSelector).get(0);
         let slfyNode = new SlfyNode(element, parent, attributes);
+        slfyNode.SlfyContent = slfyNode.OuterHtml;
         if (attributes.RunTyping) {
             this.type(slfyNode);
         }
@@ -92,17 +91,21 @@ class Slfy {
         }
     }
     type(slfyNode) {
-        for (let i = 0; i < slfyNode.TextContent.length; i++) {
+        for (let i = 0; i < slfyNode.SlfyContent.length; i++) {
             this.Timers.next(slfyNode.SlfyAttributes.KeyStrokeDelay, () => {
-                $(slfyNode.SlfyAttributes.TypingSelector).get(0).innerHTML += slfyNode.TextContent[i];
+                let element = $(slfyNode.SlfyAttributes.TypingSelector).get(0);
+                element.innerHTML += slfyNode.SlfyContent[i];
             }, false);
         }
     }
     remove(slfyNode) {
-        console.log(slfyNode);
+        this.Timers.next(slfyNode.SlfyAttributes.RemoveDelay, () => {
+            let element = $(slfyNode.SlfyAttributes.TypingSelector).get(0);
+            element.innerHTML.slice(0, slfyNode.EscapedTextContent.length);
+        }, false);
     }
     append(slfyNode) {
-        console.log(slfyNode);
+        slfyNode = slfyNode;
     }
     start() {
         this.htmlPump(this.Elements);

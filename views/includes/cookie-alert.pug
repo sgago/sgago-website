@@ -1,12 +1,26 @@
-div(class="alert alert-warning alert-dismissible fade show" role="alert")
-    p
-      | Yep, this website uses cookies too. Carry on if you're happy with this or
-      | click 
-      a(class="alert-link" href="/cookies")
-        | here
-      | for the cookie policy.  By using my site, 
-      | you have acknowledged that you have read, understood, and accepted
-      | the cookie policy.
-    button(type="button" class="close" data-dismiss="alert" aria-label="Close")
-      span(aria-hidden="true")
-        i(class="fas fa-times-circle")
+div(id="cookie-alert"
+    class="alert alert-warning alert-dismissible container-fluid fade show"
+    role="alert")
+
+  div(class="row")
+    div(class="col-10")
+      p
+        i(class="fas fa-cookie-bite") &nbsp;
+        | Cookie Policy
+      p
+        | Yep, this website uses cookies too. Carry on if you're happy with this or
+        | click 
+        a(class="alert-link" href="/cookies")
+          | here
+        | for the cookie policy.  By using my site, 
+        | you have acknowledged that you have read, understood, and accepted
+        | the cookie policy.
+
+    div(class="col-2")
+      button(id="close-button"
+              class="close justify-center" 
+              type="button"
+              data-dismiss="alert"
+              aria-label="Close")
+        span(aria-hidden="true")
+          i(class="fas fa-times-circle")

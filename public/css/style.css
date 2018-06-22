@@ -55,22 +55,34 @@ footer p {
     */
 }
 
-footer.powered-by {
+footer .powered-by {
   display: none;
 }
 
+footer .fa-cookie-bite {
+  color: white;
+}
+
+footer a:hover {
+  color: whitesmoke;
+}
+
 @media screen and (min-width: 458px) {
-  footer.powered-by {
+  footer .powered-by {
     display: inline;
   }
 }
 
-div.alert {
+.alert {
   bottom: -10px;
   left: 2.5%;
   position: absolute;
   width: 95%;
   z-index: 100;
+}
+
+.alert #close-button {
+  height: 100%;
 }
 
 /*************** WINDOW ******************/

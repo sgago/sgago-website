@@ -52,8 +52,8 @@ class SlfyNodeAttributes implements ISlfyNodeAttributes {
 
   private static readonly DEFAULT_START_DELAY:      number = 1000;
   private static readonly DEFAULT_KEY_STROKE_DELAY: number = 40;
-  private static readonly DEFAULT_REMOVE_DELAY:     number = 40;
-  private static readonly DEFAULT_INSERT_DELAY:     number = 0;
+  private static readonly DEFAULT_REMOVE_DELAY:     number = 1000;
+  private static readonly DEFAULT_INSERT_DELAY:     number = 40;
 
 
   private element: Element = null;
