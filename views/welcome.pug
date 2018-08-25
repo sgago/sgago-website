@@ -1,0 +1,38 @@
+doctype html
+html(lang="en")
+  
+  include includes/welcome/head.pug
+
+  body(class="container-fluid m-0 p-0")
+    main(class="row m-1")
+
+    include includes/index/footer.pug
+
+
+    //- jQuery Library
+    script(src="https://code.jquery.com/jquery-3.3.1.min.js"
+           integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+           crossorigin="anonymous")
+    
+    //- Popper Library for Bootstrap
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+           integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+           crossorigin="anonymous")
+
+    //- Bootstrap Library
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+           integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+           crossorigin="anonymous")
+
+    script(src="../js/slfy/timer.js")
+    script(src="../js/slfy/slfy-timers.js")
+    script(src="../js/slfy/slfy-node-attributes.js")
+    script(src="../js/slfy/slfy-node.js")
+    script(src="../js/slfy/slfy-tree.js")
+    script(src="../js/slfy/slfy.js")
+
+    script(type="text/javascript").
+      
+      var slfy = new Slfy("html/slfy-data.html");
+      
+      slfy.start();

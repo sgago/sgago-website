@@ -1,0 +1,40 @@
+.slfy-window {
+  height: calc(29vh);
+}
+
+.slfy-header {
+  border: none;
+  display: block;
+  font-size: 15px;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.slfy-main p {
+  margin: 0;
+}
+
+/*  */
+.slfy-body {
+  background-color: black;
+  background-image: repeating-linear-gradient(
+    180deg,
+    rgb(0,0,0),
+    rgb(0,0,0) 0.5%,
+    rgb(24,24,24) 0.75%
+  );
+  color: #ffBE00;
+  overflow-y: auto;
+}
+
+@media screen and (min-width: 576px) {
+  
+  .slfy-window {
+    height: var(--slfy-window-height-lg);
+    /*transform: matrix3d(1,0,0.00,-0.00009,0.00,1,0.00,0.0000,0,0,1,0,0,0,0,1);*/
+  }
+}
+

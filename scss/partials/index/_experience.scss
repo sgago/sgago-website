@@ -1,0 +1,18 @@
+.dl-horizontal dt {
+  width: 160px;
+  overflow: hidden;
+  clear: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (min-width: 992px) {
+  .dl-horizontal dt {
+    float: left;
+    text-align: right;
+  }
+  
+  .dl-horizontal dd {
+    margin-left: 180px;
+  }
+}

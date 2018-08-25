@@ -1,0 +1,113 @@
+@charset "utf-8";
+
+$breakpoint: 768px;
+
+$window-background-color: lightgray;
+$content-background-color: whitesmoke;
+$border-color: lightgray;
+$foreground-color: black;
+
+@mixin flex() {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+
+  display: flex;
+}
+
+/*************** WINDOW ******************/
+
+/*
+  Styling for the outside of the window class.
+*/
+.window {
+  background-color: $window-background-color;
+  border-radius: 4px;
+  box-shadow: 15px 15px 12px rgba(50, 50, 50, 0.55);
+  color: $foreground-color;
+  @include flex();
+  flex-direction: column;
+  overflow: hidden;
+
+  .window-header {
+    background: linear-gradient($content-background-color, $border-color);
+    border-bottom: 1px solid darkgray;
+    z-index: 10;
+  }
+
+  .window-body {
+    background-color: $content-background-color;
+    @include flex();
+    flex: 1;
+    width: 100%;
+  }
+
+  .window-main {
+    height: inherit;
+    overflow-y: auto;
+  }
+
+  .window-footer {
+    color: $foreground-color;
+    z-index: 10;
+  }
+
+  .sidenav {
+    background-color: $content-background-color;
+    border-right: 1px solid $border-color;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    .sidenav-list {
+      list-style-type: none;
+    }
+    
+    .sidenav-link {
+      //color: black;
+      text-decoration: none;
+    }
+    
+    .sidenav-link.hover {
+    
+      text-decoration: none;
+    }
+    
+    .sidenav.hover:not(.active) {
+      background-color: $content-background-color;
+    }
+    
+    .sidenav-text {
+      display: none;
+    }
+    
+    @media screen and (min-width: $breakpoint) {
+      
+      .sidenav-text {
+        display: inline;
+      }
+    }
+    
+  }
+}
+
+
+
+/*
+  
+*/
+
+
+/*
+  
+*/
+
+
+
+
+/*************** SIDENAV ******************/
+
+/*
+  
+*/
+

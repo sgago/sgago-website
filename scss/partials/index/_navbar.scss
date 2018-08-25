@@ -1,0 +1,71 @@
+@charset "utf-8";
+
+nav {
+  ul {
+
+    li {
+      a {
+        color: inherit;
+        display: block;
+        text-decoration: none;
+
+        &:hover {
+          color: white;
+        }
+      }
+
+      &.about {
+
+        &:hover,  &.active a {
+          background-color: red;
+          color: white;
+        }
+      }
+
+      &.work {
+        &:hover,  &.active a {
+          background-color: gold;
+          color: white;
+        }
+      }
+
+      &.education {
+        &:hover, &.active a {
+          background-color: orange;
+          color: white;
+        }
+      }
+
+      &.experience {
+        &:hover, &.active a {
+          background-color: green;
+          color: white;
+        }
+      }
+
+      &.portfolio {
+        &:hover, &.active a {
+          background-color: blue;
+          color: white;
+        }
+      }
+
+      &.resume {
+        &:hover, &.active a {
+          background-color: purple;
+          color: white;
+        }
+      }
+
+      &.contact {
+        &:hover, &.active a {
+          background-color: black;
+          color: white;
+        }
+      }
+
+    }
+
+
+  }
+}

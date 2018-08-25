@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Remaining Time: <span id="time">------</span></h1>
+
+
+
+    <input type="button" value="start" onclick="startTimer();">
+    <input type="button" value="pause" onclick="pauseTimer();">
+    <input type="button" value="stop" onclick="stopTimer();">
+    <input type="button" value="reset" onclick="resetTimer();">
+
+    <script src="../js/slfy/timer.js"></script>
+    <script type="text/javascript">
+
+
+      var timeSpan = document.getElementById("time");
+      
+      var timer = new Timer(3000, function() {alert("elapsed");}, true);
+
+      function updateTimeRemaining(timeRemaining) {
+        
+        timeSpan.innerHTML = "" + timer.getRemainingTime();
+      }
+
+      function startTimer() {
+        timer.start();
+      }
+
+      function stopTimer() {
+        timer.stop();
+      }
+
+      function pauseTimer() {
+        timer.pause();
+      }
+
+      function resetTimer() {
+        timer.reset();
+      }
+
+      setInterval(updateTimeRemaining, 100);
+
+    </script>
+  </body>
+</html>

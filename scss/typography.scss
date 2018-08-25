@@ -1,0 +1,182 @@
+@charset "utf-8";
+
+/*
+  EXAMPLES:
+  
+  f{scale}-{breakpoint}-{size}
+
+  <p class="f-0">Hello, Typography</p>
+  
+  <p class="f-2">Hello, Typography</p>
+
+  <p class="f-sm-2">Hello, Typography</p>
+
+  <p class="f-0 f-sm-1 f-md-2">Hello, Typography</p>
+*/
+
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+html {
+  font-size: 1.0rem !important;
+}
+
+.no-wrap {
+  overflow: hidden;
+  text-overflow: clip;
+  white-space: nowrap;
+}
+
+.no-wrap-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fs-0 { font-size: 0.4rem !important; }
+.fs-1 { font-size: 0.5rem !important; }
+.fs-2 { font-size: 0.6rem !important; }
+.fs-3 { font-size: 0.7rem !important; }
+.fs-4 { font-size: 0.8rem !important; }
+.fs-5 { font-size: 0.9rem !important; }
+.fs-6 { font-size: 1.0rem !important; }
+.fs-7 { font-size: 1.1rem !important; }
+.fs-8 { font-size: 1.2rem !important; }
+.fs-9 { font-size: 1.3rem !important; }
+
+.f-0 { font-size: 1.0rem !important; }
+.f-1 { font-size: 1.2rem !important; }
+.f-2 { font-size: 1.4rem !important; }
+.f-3 { font-size: 1.6rem !important; }
+.f-4 { font-size: 1.8rem !important; }
+.f-5 { font-size: 2.0rem !important; }
+.f-6 { font-size: 2.2rem !important; }
+.f-7 { font-size: 2.4rem !important; }
+.f-8 { font-size: 2.6rem !important; }
+.f-9 { font-size: 2.8rem !important; }
+
+.fl-0 { font-size: 2.0rem !important; }
+.fl-1 { font-size: 3.0rem !important; }
+.fl-2 { font-size: 4.0rem !important; }
+.fl-3 { font-size: 5.0rem !important; }
+.fl-4 { font-size: 6.0rem !important; }
+.fl-5 { font-size: 7.0rem !important; }
+.fl-6 { font-size: 8.0rem !important; }
+.fl-7 { font-size: 9.0rem !important; }
+.fl-8 { font-size: 10.0rem !important; }
+.fl-9 { font-size: 11.0rem !important; }
+
+
+@media (min-width: $breakpoint-sm) {
+  
+  .fs-sm-0 { font-size: 0.1rem !important; }
+  .fs-sm-1 { font-size: 0.2rem !important; }
+  .fs-sm-2 { font-size: 0.3rem !important; }
+  .fs-sm-3 { font-size: 0.4rem !important; }
+  .fs-sm-4 { font-size: 0.5rem !important; }
+  .fs-sm-5 { font-size: 0.6rem !important; }
+  .fs-sm-6 { font-size: 0.7rem !important; }
+  .fs-sm-7 { font-size: 0.8rem !important; }
+  .fs-sm-8 { font-size: 0.9rem !important; }
+  .fs-sm-9 { font-size: 1.0rem !important; }
+  
+  .f-sm-0 { font-size: 1.0rem !important; }
+  .f-sm-1 { font-size: 1.2rem !important; }
+  .f-sm-2 { font-size: 1.4rem !important; }
+  .f-sm-3 { font-size: 1.6rem !important; }
+  .f-sm-4 { font-size: 1.8rem !important; }
+  .f-sm-5 { font-size: 2.0rem !important; }
+  .f-sm-6 { font-size: 2.2rem !important; }
+  .f-sm-7 { font-size: 2.4rem !important; }
+  .f-sm-8 { font-size: 2.6rem !important; }
+  .f-sm-9 { font-size: 2.8rem !important; }
+  
+  .fl-sm-0 { font-size: 2.0rem !important; }
+  .fl-sm-1 { font-size: 3.0rem !important; }
+  .fl-sm-2 { font-size: 4.0rem !important; }
+  .fl-sm-3 { font-size: 5.0rem !important; }
+  .fl-sm-4 { font-size: 6.0rem !important; }
+  .fl-sm-5 { font-size: 7.0rem !important; }
+  .fl-sm-6 { font-size: 8.0rem !important; }
+  .fl-sm-7 { font-size: 9.0rem !important; }
+  .fl-sm-8 { font-size: 10.0rem !important; }
+  .fl-sm-9 { font-size: 11.0rem !important; }
+}
+
+@media (min-width: $breakpoint-md) {
+  
+  .fs-md-0 { font-size: 0.4rem !important; }
+  .fs-md-1 { font-size: 0.5rem !important; }
+  .fs-md-2 { font-size: 0.6rem !important; }
+  .fs-md-3 { font-size: 0.7rem !important; }
+  .fs-md-4 { font-size: 0.8rem !important; }
+  .fs-md-5 { font-size: 0.9rem !important; }
+  .fs-md-6 { font-size: 1.0rem !important; }
+  .fs-md-7 { font-size: 1.1rem !important; }
+  .fs-md-8 { font-size: 1.2rem !important; }
+  .fs-md-9 { font-size: 1.3rem !important; }
+  
+  .f-md-0 { font-size: 1.0rem !important; }
+  .f-md-1 { font-size: 1.2rem !important; }
+  .f-md-2 { font-size: 1.4rem !important; }
+  .f-md-3 { font-size: 1.6rem !important; }
+  .f-md-4 { font-size: 1.8rem !important; }
+  .f-md-5 { font-size: 2.0rem !important; }
+  
+  .fl-md-0 { font-size: 2.2rem !important; }
+  .fl-md-1 { font-size: 3.0rem !important; }
+  .fl-md-2 { font-size: 4.0rem !important; }
+  .fl-md-3 { font-size: 5.0rem !important; }
+  .fl-md-4 { font-size: 6.0rem !important; }
+  .fl-md-5 { font-size: 7.0rem !important; }
+}
+
+@media (min-width: $breakpoint-lg) {
+  
+  .fs-lg-0 { font-size: 0.4rem !important; }
+  .fs-lg-1 { font-size: 0.5rem !important; }
+  .fs-lg-2 { font-size: 0.6rem !important; }
+  .fs-lg-3 { font-size: 0.7rem !important; }
+  .fs-lg-4 { font-size: 0.8rem !important; }
+  .fs-lg-5 { font-size: 0.9rem !important; }
+  
+  .f-lg-0 { font-size: 1.0rem !important; }
+  .f-lg-1 { font-size: 1.2rem !important; }
+  .f-lg-2 { font-size: 1.4rem !important; }
+  .f-lg-3 { font-size: 1.6rem !important; }
+  .f-lg-4 { font-size: 1.8rem !important; }
+  .f-lg-5 { font-size: 2.0rem !important; }
+  
+  .fl-lg-0 { font-size: 2.2rem !important; }
+  .fl-lg-1 { font-size: 3.0rem !important; }
+  .fl-lg-2 { font-size: 4.0rem !important; }
+  .fl-lg-3 { font-size: 5.0rem !important; }
+  .fl-lg-4 { font-size: 6.0rem !important; }
+  .fl-lg-5 { font-size: 7.0rem !important; }
+}
+
+@media (min-width: $breakpoint-xl) {
+  
+  .fs-xl-0 { font-size: 0.4rem !important; }
+  .fs-xl-1 { font-size: 0.5rem !important; }
+  .fs-xl-2 { font-size: 0.6rem !important; }
+  .fs-xl-3 { font-size: 0.7rem !important; }
+  .fs-xl-4 { font-size: 0.8rem !important; }
+  .fs-xl-5 { font-size: 0.9rem !important; }
+  
+  .f-xl-0 { font-size: 1.0rem !important; }
+  .f-xl-1 { font-size: 1.2rem !important; }
+  .f-xl-2 { font-size: 1.4rem !important; }
+  .f-xl-3 { font-size: 1.6rem !important; }
+  .f-xl-4 { font-size: 1.8rem !important; }
+  .f-xl-5 { font-size: 2.0rem !important; }
+  
+  .fl-xl-0 { font-size: 2.2rem !important; }
+  .fl-xl-1 { font-size: 3.0rem !important; }
+  .fl-xl-2 { font-size: 4.0rem !important; }
+  .fl-xl-3 { font-size: 5.0rem !important; }
+  .fl-xl-4 { font-size: 6.0rem !important; }
+  .fl-xl-5 { font-size: 7.0rem !important; }
+}

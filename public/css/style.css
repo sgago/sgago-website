@@ -1,0 +1,354 @@
+/*
+  Good example website of what I'm aiming to be similar to:
+  https://timmyomahony.com/
+
+  My current color pallete idea:
+  http://paletton.com/#uid=71a0u0kw0w0jvDaoPy4y5oODajv
+*/
+:root {
+  --footer-height: 23px;
+  --steve-window-height-portrait: calc(100vh - 29vh - var(--footer-height));
+  --slfy-window-height-portrait: calc(29vh);
+  --steve-window-height-lg: calc(100vh - var(--footer-height) - 13px);
+  --slfy-window-height-lg: calc(100vh - var(--footer-height) - 13px);
+}
+
+header,
+section,
+footer,
+aside,
+nav,
+main,
+article,
+figure {
+  display: block;
+}
+
+html {
+  font-family: monospace;
+}
+
+/*  */
+body {
+  /*background-color: #510FAD;*/
+  /* Purple */
+  background-color: #1A1EB2;
+  /* Blue */
+  font-family: monospace;
+  overflow: hidden;
+}
+
+footer {
+  bottom: 0px;
+  height: 23px;
+  position: absolute;
+  width: 100%;
+}
+
+footer p {
+  color: whitesmoke;
+  /*
+    width: 70vw;
+    background-color: slategray;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    */
+}
+
+footer .powered-by {
+  display: none;
+}
+
+footer .fa-cookie-bite {
+  color: white;
+}
+
+footer a:hover {
+  color: whitesmoke;
+}
+
+@media screen and (min-width: 458px) {
+  footer .powered-by {
+    display: inline;
+  }
+}
+
+.alert {
+  bottom: -10px;
+  left: 2.5%;
+  position: absolute;
+  width: 95%;
+  z-index: 100;
+}
+
+/*************** WINDOW ******************/
+/*
+  Styling for the outside of the window class.
+*/
+.window {
+  background-color: lightgray;
+  border-radius: 4px;
+  box-shadow: 15px 15px 12px rgba(50, 50, 50, 0.55);
+  color: black;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.window .window-header {
+  background: linear-gradient(whitesmoke, lightgray);
+  border-bottom: 1px solid darkgray;
+  z-index: 10;
+}
+
+.window .window-body {
+  background-color: whitesmoke;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex: 1;
+  width: 100%;
+}
+
+.window .window-main {
+  height: inherit;
+  overflow-y: auto;
+}
+
+.window .window-footer {
+  color: black;
+  z-index: 10;
+}
+
+.window .sidenav {
+  background-color: whitesmoke;
+  border-right: 1px solid lightgray;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.window .sidenav .sidenav-list {
+  list-style-type: none;
+}
+
+.window .sidenav .sidenav-link {
+  text-decoration: none;
+}
+
+.window .sidenav .sidenav-link.hover {
+  text-decoration: none;
+}
+
+.window .sidenav .sidenav.hover:not(.active) {
+  background-color: whitesmoke;
+}
+
+.window .sidenav .sidenav-text {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .window .sidenav .sidenav-text {
+    display: inline;
+  }
+}
+
+/*
+  
+*/
+/*
+  
+*/
+/*************** SIDENAV ******************/
+/*
+  
+*/
+.white-mask {
+  -webkit-mask-image: linear-gradient(to bottom, transparent, white 15px, white 92%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, white 15px, white 92%, transparent);
+}
+
+.black-mask {
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 15px, black 92%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, black 15px, black 92%, transparent);
+}
+
+.underconstruction {
+  background: repeating-linear-gradient(45deg, #43464B, #43464B 10px, black 10px, black 20px);
+  color: #FFE700;
+}
+
+/*  */
+.steve-window {
+  height: var(--steve-window-height-portrait);
+}
+
+.steve-main {
+  height: 100%;
+}
+
+/*
+.steve-main article:not([id="about"]) {
+  display: none;
+}
+*/
+.steve-main article {
+  display: none;
+}
+
+.steven-gago-logo {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+
+@media screen and (min-width: 576px) {
+  .steve-window {
+    height: var(--steve-window-height-lg);
+    /*transform: matrix3d(1,0,0.00,0.00009,0.00,1,0.00,0.0000,0,0,1,0,0,0,0,1);*/
+  }
+}
+
+nav ul li a {
+  color: inherit;
+  display: block;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  color: white;
+}
+
+nav ul li.about:hover, nav ul li.about.active a {
+  background-color: red;
+  color: white;
+}
+
+nav ul li.work:hover, nav ul li.work.active a {
+  background-color: gold;
+  color: white;
+}
+
+nav ul li.education:hover, nav ul li.education.active a {
+  background-color: orange;
+  color: white;
+}
+
+nav ul li.experience:hover, nav ul li.experience.active a {
+  background-color: green;
+  color: white;
+}
+
+nav ul li.portfolio:hover, nav ul li.portfolio.active a {
+  background-color: blue;
+  color: white;
+}
+
+nav ul li.resume:hover, nav ul li.resume.active a {
+  background-color: purple;
+  color: white;
+}
+
+nav ul li.contact:hover, nav ul li.contact.active a {
+  background-color: black;
+  color: white;
+}
+
+/* TODO: This style shouldn't be here... */
+#steve-gago-image {
+  border-radius: 5%;
+  height: 30vh;
+  background: white transparent;
+}
+
+#circuit-board-image {
+  width: 300px;
+}
+
+#mew-image {
+  width: 300px;
+}
+
+#vegetation-image {
+  width: 300px;
+}
+
+#water-bath-image {
+  width: 300px;
+}
+
+.card-img-sm {
+  max-width: 40%;
+}
+
+.card-img-md {
+  max-width: 60%;
+}
+
+.card-columns {
+  column-count: 1;
+}
+
+@media screen and (min-width: 1200px) {
+  .card-columns {
+    column-count: 2;
+  }
+}
+
+.dl-horizontal dt {
+  width: 160px;
+  overflow: hidden;
+  clear: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (min-width: 992px) {
+  .dl-horizontal dt {
+    float: left;
+    text-align: right;
+  }
+  .dl-horizontal dd {
+    margin-left: 180px;
+  }
+}
+
+.slfy-window {
+  height: calc(29vh);
+}
+
+.slfy-header {
+  border: none;
+  display: block;
+  font-size: 15px;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.slfy-main p {
+  margin: 0;
+}
+
+/*  */
+.slfy-body {
+  background-color: black;
+  background-image: repeating-linear-gradient(180deg, black, black 0.5%, #181818 0.75%);
+  color: #ffBE00;
+  overflow-y: auto;
+}
+
+@media screen and (min-width: 576px) {
+  .slfy-window {
+    height: var(--slfy-window-height-lg);
+    /*transform: matrix3d(1,0,0.00,-0.00009,0.00,1,0.00,0.0000,0,0,1,0,0,0,0,1);*/
+  }
+}

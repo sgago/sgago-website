@@ -1,0 +1,25 @@
+{
+  "name": "sgago-website",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www",
+    "tsc": "tsc",
+    "sass": "node-sass --output-style=expanded --watch scss/ -o ./public/css/"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "debug": "^2.6.9",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "jquery": "^3.3.1",
+    "morgan": "^1.9.0",
+    "pug": "^2.0.0-beta11"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.3.4",
+    "node-sass": "^4.9.0",
+    "nodemon": "^1.18.1",
+    "typescript": "^2.9.2"
+  }
+}

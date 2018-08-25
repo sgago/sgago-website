@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../js/require.js"></script>
+  </head>
+  <body>
+    
+    <h1 data-slfy-type-delay="100">Hello</h1>
+    
+    <div class="console">
+      
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="../js/slfy/timer.js"></script>
+    <script src="../js/slfy/slfy-node-attributes.js"></script>
+    <script src="../js/slfy/slfy-node.js"></script>
+    <script src="../js/slfy/slfy-tree.js"></script>
+    <script src="../js/slfy/slfy-timers.js"></script>
+    <script src="../js/slfy/slfy.js"></script>
+    
+    <script>
+      
+      let slfy = new Slfy("test.html");
+      
+      $(document).ready(function() {
+        
+        slfy.start(1000);
+      });      
+      
+    </script>
+  </body>
+</html>
