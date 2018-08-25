@@ -8,8 +8,6 @@ html(lang="en")
 
     include includes/index/footer.pug
 
-    include includes/cookie-alert.pug
-
 
     //- jQuery Library
     script(src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -34,15 +32,7 @@ html(lang="en")
     script(src="../js/slfy/slfy.js")
 
     script(type="text/javascript").
-      // Required for Bootstrap's tooltips 
-      $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-      });
       
-      setTimeout(function() {
-        //$("#cookie-alert").alert("close");
-      }, 700000);
-
       var slfy = new Slfy("html/slfy-data.html");
       
       slfy.start();

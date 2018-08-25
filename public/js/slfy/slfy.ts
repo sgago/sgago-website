@@ -107,7 +107,7 @@ class Slfy {
     }
 
     if (attributes.RunInsert) {
-      this.append(slfyNode);
+      this.insert(slfyNode);
     }
   }
 
@@ -131,7 +131,7 @@ class Slfy {
       }
   
       if (attributes.RunInsert) {
-        this.append(slfyNode);
+        this.insert(slfyNode);
       }
     }
   }
@@ -145,7 +145,7 @@ class Slfy {
         slfyNode.SlfyAttributes.KeyStrokeDelay,
         () => {
           let element = $(slfyNode.SlfyAttributes.TypingSelector).get(0);
-          element.innerHTML += slfyNode.SlfyContent[i];
+          element.innerHTML += slfyNode.Escape(slfyNode.SlfyContent[i]);
         },
         false
       );
@@ -155,23 +155,31 @@ class Slfy {
   private remove(slfyNode: ISlfyNode) {
 
     this.Timers.next(
+
       slfyNode.SlfyAttributes.RemoveDelay,
       () => {
- 
-        //element.innerHTML = element.innerHTML.slice(0,
-        //  element.innerHTML.length - escapedContent.length);
 
         let element = $(slfyNode.SlfyAttributes.TypingSelector).get(0);
 
-        element.innerHTML.slice(0, slfyNode.EscapedTextContent.length);
+        element.innerHTML = element.innerHTML.slice(0, element.innerHTML.length - slfyNode.EscapedOuterHtml.length);
       },
       false
     );
   }
 
-  private append(slfyNode: ISlfyNode) {
+  private insert(slfyNode: ISlfyNode) {
 
-    slfyNode = slfyNode;
+    this.Timers.next(
+
+      slfyNode.SlfyAttributes.InsertDelay,
+      () => {
+
+        //let element = $(slfyNode.SlfyAttributes.TypingSelector).get(0);
+
+        $(slfyNode.SlfyAttributes.TypingSelector).append(slfyNode.OuterHtml);
+      },
+      false
+    );
   }
 
   public start() {

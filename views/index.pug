@@ -12,7 +12,7 @@ html(lang="en")
           header(class="window-header fadeOut row text-center m-0 pt-3 pt-sm-1")
             h1(class="steve-window-header-text col-12 fl-1 no-wrap-ellipsis")
               img(class="steven-gago-logo"
-                  src="../images/steven-gago.jpg"
+                  src="../images/steven-gago.png"
                   alt="Steve Gago")
               |&nbsp;Steve Gago
 
@@ -23,7 +23,7 @@ html(lang="en")
             div(id="main"
                 class="window-main steve-main white-mask col-11 col-md-9 col-xl-10 pb-3")
               include includes/index/about.pug
-              include includes/index/work.pug
+              //-include includes/index/work.pug
               include includes/index/education.pug
               include includes/index/experience.pug
               include includes/index/portfolio.pug
@@ -69,7 +69,7 @@ html(lang="en")
       });
 
       setTimeout(function() {
-        //$("#cookie-alert").alert("close");
+        $("#cookie-alert").alert("close");
       }, 7000);
 
       

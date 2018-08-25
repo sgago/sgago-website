@@ -12,14 +12,18 @@ interface ISlfyNode {
   ChildNodes: NodeListOf<Node & ChildNode>;
 
   Element: Element;
-  EscapedTextContent: string;
   EmptyTag: string;
   NodeType: NodeType;
-  OuterHtml: string;
   SlfyParent: Element;
   SlfyAttributes: ISlfyNodeAttributes;
   SlfyContent: string;
+  Escape(text: string): string;
   TextContent: string;
+  EscapedTextContent: string;
+  InnerHtml: string;
+  EscapedInnerHtml: string;
+  OuterHtml: string;
+  EscapedOuterHtml: string;
 }
 
 /**
@@ -33,7 +37,7 @@ class SlfyNode implements ISlfyNode
   private static readonly CLOSE_START_TAG_REGEX = /(?=.*)>$/gi;
   private static readonly HTML_ENTITIES_REGEX = /[&<>"'\n]/g;
 
-  private static readonly htmlEntities = new Map([
+  private static readonly HTML_ENTITIES = new Map([
     ["&", "&amp;"],
     ["<", "&lt;"],
     [">", "&gt;"],
@@ -74,6 +78,11 @@ class SlfyNode implements ISlfyNode
     this.Element.textContent = text;
   }
 
+  public get EscapedTextContent(): string {
+
+    return this.Escape(this.TextContent);
+  }
+
   public get SlfyContent(): string {
 
     return this.slfyContent;
@@ -84,25 +93,24 @@ class SlfyNode implements ISlfyNode
     this.slfyContent = text;
   }
 
-  public get EscapedTextContent(): string {
-
-    return this.TextContent.replace(
-      SlfyNode.HTML_ENTITIES_REGEX,
-      (entity: string): string =>
-        {
-          return SlfyNode.htmlEntities.get(entity);
-        }
-    );
-  }
-
   public get InnerHtml(): string {
 
     return this.Element.innerHTML;
   }
 
+  public get EscapedInnerHtml(): string {
+
+    return this.Escape(this.InnerHtml);
+  }
+
   public get OuterHtml(): string {
 
     return this.Element.outerHTML;
+  }
+
+  public get EscapedOuterHtml(): string {
+
+    return this.Escape(this.OuterHtml);
   }
 
   public get StartTag(): string {
@@ -178,12 +186,24 @@ class SlfyNode implements ISlfyNode
     SlfyNode.counter++;
   }
 
-  public getAttribute(name: string): string {
+  // FIXME: This should be accessible by all
+  public Escape(text: string): string {
+
+    return text.replace(
+      SlfyNode.HTML_ENTITIES_REGEX,
+      (entity: string): string =>
+        {
+          return SlfyNode.HTML_ENTITIES.get(entity);
+        }
+    );
+  }
+
+  public GetAttribute(name: string): string {
 
     return this.Element.getAttribute(name);
   }
 
-  public setAttribute(name: string, value: string) {
+  public SetAttribute(name: string, value: string) {
 
     return this.Element.setAttribute(name, value);
   }

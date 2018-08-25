@@ -81,10 +81,6 @@ footer a:hover {
   z-index: 100;
 }
 
-.alert #close-button {
-  height: 100%;
-}
-
 /*************** WINDOW ******************/
 /*
   Styling for the outside of the window class.
@@ -264,10 +260,11 @@ nav ul li.contact:hover, nav ul li.contact.active a {
   color: white;
 }
 
+/* TODO: This style shouldn't be here... */
 #steve-gago-image {
-  border-radius: 50%;
-  height: 10em;
-  width: 10em;
+  border-radius: 5%;
+  height: 30vh;
+  background: white transparent;
 }
 
 #circuit-board-image {

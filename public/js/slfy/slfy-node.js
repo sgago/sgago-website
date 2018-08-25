@@ -43,22 +43,26 @@ class SlfyNode {
     set TextContent(text) {
         this.Element.textContent = text;
     }
+    get EscapedTextContent() {
+        return this.Escape(this.TextContent);
+    }
     get SlfyContent() {
         return this.slfyContent;
     }
     set SlfyContent(text) {
         this.slfyContent = text;
     }
-    get EscapedTextContent() {
-        return this.TextContent.replace(SlfyNode.HTML_ENTITIES_REGEX, (entity) => {
-            return SlfyNode.htmlEntities.get(entity);
-        });
-    }
     get InnerHtml() {
         return this.Element.innerHTML;
     }
+    get EscapedInnerHtml() {
+        return this.Escape(this.InnerHtml);
+    }
     get OuterHtml() {
         return this.Element.outerHTML;
+    }
+    get EscapedOuterHtml() {
+        return this.Escape(this.OuterHtml);
     }
     get StartTag() {
         return this.OuterHtml.split(this.InnerHtml)[0].trim();
@@ -102,16 +106,22 @@ class SlfyNode {
     set SlfyAttributes(attributes) {
         this.attributes = attributes;
     }
-    getAttribute(name) {
+    // FIXME: This should be accessible by all
+    Escape(text) {
+        return text.replace(SlfyNode.HTML_ENTITIES_REGEX, (entity) => {
+            return SlfyNode.HTML_ENTITIES.get(entity);
+        });
+    }
+    GetAttribute(name) {
         return this.Element.getAttribute(name);
     }
-    setAttribute(name, value) {
+    SetAttribute(name, value) {
         return this.Element.setAttribute(name, value);
     }
 }
 SlfyNode.CLOSE_START_TAG_REGEX = /(?=.*)>$/gi;
 SlfyNode.HTML_ENTITIES_REGEX = /[&<>"'\n]/g;
-SlfyNode.htmlEntities = new Map([
+SlfyNode.HTML_ENTITIES = new Map([
     ["&", "&amp;"],
     ["<", "&lt;"],
     [">", "&gt;"],

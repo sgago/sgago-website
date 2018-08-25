@@ -1,22 +1,25 @@
 div(id="cookie-alert"
     class="alert alert-warning alert-dismissible container-fluid fade show"
-    role="alert")
+    role="alert"
+    data-dismiss="alert")
 
   div(class="row")
-    div(class="col-10")
-      p
+    div(class="col-12")
+      p(class="h3")
         i(class="fas fa-cookie-bite") &nbsp;
         | Cookie Policy
       p
         | Yep, this website uses cookies too. Carry on if you're happy with this or
         | click 
-        a(class="alert-link" href="/cookies")
+        a(class="alert-link"
+          href="/cookies"
+          onclick="window.location.href='/cookies';")
           | here
         | for the cookie policy.  By using my site, 
         | you have acknowledged that you have read, understood, and accepted
-        | the cookie policy.
+        | the cookie policy.  Click anywhere to make this alert go away.
 
-    div(class="col-2")
+    div
       button(id="close-button"
               class="close justify-center" 
               type="button"

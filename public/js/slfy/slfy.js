@@ -69,7 +69,7 @@ class Slfy {
             this.remove(slfyNode);
         }
         if (attributes.RunInsert) {
-            this.append(slfyNode);
+            this.insert(slfyNode);
         }
     }
     runTree(tree) {
@@ -86,7 +86,7 @@ class Slfy {
                 this.remove(slfyNode);
             }
             if (attributes.RunInsert) {
-                this.append(slfyNode);
+                this.insert(slfyNode);
             }
         }
     }
@@ -94,18 +94,21 @@ class Slfy {
         for (let i = 0; i < slfyNode.SlfyContent.length; i++) {
             this.Timers.next(slfyNode.SlfyAttributes.KeyStrokeDelay, () => {
                 let element = $(slfyNode.SlfyAttributes.TypingSelector).get(0);
-                element.innerHTML += slfyNode.SlfyContent[i];
+                element.innerHTML += slfyNode.Escape(slfyNode.SlfyContent[i]);
             }, false);
         }
     }
     remove(slfyNode) {
         this.Timers.next(slfyNode.SlfyAttributes.RemoveDelay, () => {
             let element = $(slfyNode.SlfyAttributes.TypingSelector).get(0);
-            element.innerHTML.slice(0, slfyNode.EscapedTextContent.length);
+            element.innerHTML = element.innerHTML.slice(0, element.innerHTML.length - slfyNode.EscapedOuterHtml.length);
         }, false);
     }
-    append(slfyNode) {
-        slfyNode = slfyNode;
+    insert(slfyNode) {
+        this.Timers.next(slfyNode.SlfyAttributes.InsertDelay, () => {
+            //let element = $(slfyNode.SlfyAttributes.TypingSelector).get(0);
+            $(slfyNode.SlfyAttributes.TypingSelector).append(slfyNode.OuterHtml);
+        }, false);
     }
     start() {
         this.htmlPump(this.Elements);

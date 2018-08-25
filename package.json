@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
+    "tsc": "tsc",
     "sass": "node-sass --output-style=expanded --watch scss/ -o ./public/css/"
   },
   "dependencies": {
@@ -17,6 +18,8 @@
   },
   "devDependencies": {
     "@types/jquery": "^3.3.4",
-    "node-sass": "^4.9.0"
+    "node-sass": "^4.9.0",
+    "nodemon": "^1.18.1",
+    "typescript": "^2.9.2"
   }
 }
