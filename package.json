@@ -19,7 +19,7 @@
   "devDependencies": {
     "@types/jquery": "^3.3.4",
     "node-sass": "^4.9.0",
-    "nodemon": "^1.18.1",
+    "nodemon": "^1.18.3",
     "typescript": "^2.9.2"
   }
 }

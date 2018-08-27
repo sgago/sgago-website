@@ -22,10 +22,16 @@ router.get("/", function(req, res, next) {
       copyrightYear: copyrightYear });
 });
 
+/* GET Slfy Demo page */
+router.get("/slfy", function(req, res, next) {
+  res.render("slfy",
+    { title: "Slfy JS",
+      copyrightYear: copyrightYear });
+});
+
 /* GET cookies page */
 router.get("/cookies", function(req, res, next) {
   res.render("cookies", { title: "Cookie Policy" });
 });
-
 
 module.exports = router;
