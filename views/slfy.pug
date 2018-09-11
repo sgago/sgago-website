@@ -3,9 +3,14 @@ html(lang="en")
   
   include includes/slfy/head.pug
 
-  body
+  body(class="container-fluid")
 
-    h1 Slfy!
+    div(class="row")
+      main(class="col-12" style="background-color: red;")
+        h1 Main
+
+      aside(class="col-12" style="background-color: green;")
+        h1 Aside
 
     //- jQuery Library
     script(src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -21,3 +26,15 @@ html(lang="en")
     script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous")
+
+    script(src="../js/slfy/timer.js")
+    script(src="../js/slfy/slfy-timers.js")
+    script(src="../js/slfy/slfy-node-attributes.js")
+    script(src="../js/slfy/slfy-node.js")
+    script(src="../js/slfy/slfy-tree.js")
+    script(src="../js/slfy/slfy.js")
+
+    script(type="text/javascript").
+      var slfy = new Slfy("html/slfy-data2.html");
+      
+      slfy.start();
